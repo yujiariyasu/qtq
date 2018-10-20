@@ -15,6 +15,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 group :development, :test do
   gem 'byebug', platform: :mri
