@@ -9,6 +9,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'common/header' %>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <%= yield %>
+        </div>
+      </div>
+      <footer class='row text-center'>
+        <p>(C) Ari 2018</p>
+      </footer>
+    </div>
   </body>
 </html>
