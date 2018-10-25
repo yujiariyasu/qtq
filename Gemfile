@@ -14,10 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'devise'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
-gem 'bootstrap'
+gem 'bootstrap-sass', '3.3.7'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -33,7 +30,6 @@ group :development do
 end
 
 group :test do
-  gem 'devise'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
