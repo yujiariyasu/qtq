@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+.inline-block {
+	display: inline-block;
+}
+
 .m0 {
 	margin: 0;
 }
@@ -42,6 +46,10 @@
 	padding-bottom: 0;
 }
 
+.p10 {
+	padding: 10px;
+}
+
 .w100 {
 	width: 100%;
 }
@@ -58,6 +66,10 @@
 	color: #ffffff;
 }
 
+.thin-white {
+	color: rgba(255, 255, 255, 0.5);
+}
+
 .nav-item {
 	height: 30px;
 	padding: 16px;
@@ -68,6 +80,20 @@
 .sidebar {
     width: 225px !important;
     background-color: #212529;
-    min-height: calc(100vh - 56px);
+    min-height: calc(100vh - 50px);
+    padding-top: 10px;
 }
 
+.main-content {
+	min-width: calc(100vw - 250px);
+}
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.sidebar-list {
+	padding: 18px;
+}
