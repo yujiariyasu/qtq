@@ -14,24 +14,21 @@
           </ul>
       </nav>
 
-      <div id="content" class='p10'>
-          <button type="button" id="sidebarCollapse" class="navbar-btn">
-              <span></span>
-              <span></span>
-              <span></span>
-          </button>
-      </div>
-      <h3>aaaaaa</h3>
-      <div class="">
-        <%= fa_icon 'chart', class: 'white' %>
-        Area Chart Example
-      </div>
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2018</span>
+      <div id="content" class='p10 w100'>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Charts</li>
+        </ol>
+        <%= high_chart("sample", @graph) %>
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
   </div>
 </div>
