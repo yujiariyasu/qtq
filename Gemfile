@@ -42,4 +42,8 @@ group :test do
   gem 'selenium-webdriver', '2.47.1'
 end
 
+group :production do
+  gem 'unicorn'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
