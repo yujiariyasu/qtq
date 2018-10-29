@@ -10,6 +10,10 @@
 	margin: 0;
 }
 
+.m0a {
+	margin: 0 auto;
+}
+
 .mt0 {
 	margin-top: 0;
 }
@@ -48,6 +52,10 @@
 
 .p10 {
 	padding: 10px;
+}
+
+.p20 {
+	padding: 20px;
 }
 
 .w100 {
@@ -96,4 +104,31 @@
 
 .sidebar-list {
 	padding: 18px;
+}
+
+.item-wrapper {
+	width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.125);
+  margin-bottom: 10px;
+}
+
+.item-header {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.left-item {
+	display: inline-block;
+	margin-right: 10px;
+	width: calc(50% - 8px);
+}
+
+.right-item {
+	display: inline-block;
+	width: calc(50% - 8px);
+}
+
+.sticky-footer {
+	background: #e9ecef;
+	font-size: 12px;
 }
