@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: rootedlearning_production
-  username: rootedlearning
-  password: <%= ENV['ROOTEDLEARNING_DATABASE_PASSWORD'] %>
+  username: root
+  password: 
