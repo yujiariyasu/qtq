@@ -1,14 +1,16 @@
-@media screen and (max-width: 1361px) {
+@media screen and (max-width: 1325px) {
 	.left-item {
-		width: 48.7%;
-	}
-
-	.right-item {
-		width: 48.7%;
+		margin-right: 0.7%;
 	}
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1024px) {
+	.left-item {
+		margin-right: 0.5%;
+	}
+}
+
+@media screen and (max-width: 857px) {
 	.left-item {
 		width: 100%;
 	}
@@ -17,6 +19,9 @@
 		width: 100%;
 	}
 
+}
+
+@media screen and (max-width: 600px) {
 	.main {
 		min-width: 100%;
 	}
@@ -26,6 +31,6 @@
 	}
 
 	.header-nav {
-		width: 414px;
+		width: 100vw;
 	}
 }
