@@ -39,6 +39,7 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara', '2.5.0'
   gem 'turnip', '2.1.0'
+  gem 'poltergeist', '1.6.0'
   gem 'selenium-webdriver', '2.47.1'
 end
 
