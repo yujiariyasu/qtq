@@ -14,18 +14,10 @@ class UsersController < ApplicationController
     end
 
 
-    @chart2 = LazyHighCharts::HighChart.new("graph") do |c|
-      c.title(text: "4-9月売上")
-      # X軸の名称を設定 '月'
-      c.xAxis(categories: months, title: {text: '月'})       # Y軸の名称を設定 '円'
-      c.yAxis(title: {text: '円'})
-      c.series(name: "A", data: product_A_sales)
-      c.series(name: "B", data: product_B_sales)
-      # 判例を右側に配置
-     c.legend(align: 'right', verticalAlign: 'top', 
-       x: -100, y: 180, layout: 'vertical')
-     # グラフの種類を「折れ線グラフ」から「棒グラフ」に変更
-     c.chart(type: "column")
+    @chart2 = LazyHighCharts::HighChart.new("graph") do |f|
+      f.title(text: 'ItemXXXの在庫の推移')
+      f.xAxis(categories: category)
+      f.series(name: '在庫数', data: current_quantity)
     end
 
     @chart3 = LazyHighCharts::HighChart.new("graph") do |c|
