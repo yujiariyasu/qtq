@@ -1,0 +1,31 @@
+@media screen and (max-width: 1361px) {
+	.left-item {
+		width: 48.7%;
+	}
+
+	.right-item {
+		width: 48.7%;
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.left-item {
+		width: 100%;
+	}
+
+	.right-item {
+		width: 100%;
+	}
+
+	.main {
+		min-width: 100%;
+	}
+
+	.app-title {
+		margin-left: 10px;
+	}
+
+	.header-nav {
+		width: 414px;
+	}
+}
