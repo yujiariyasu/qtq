@@ -2,9 +2,12 @@
   <div id="wrapper" class='wrapper'>
       <nav id="sidebar" class='sidebar'>
           <ul class="list-unstyled components">
-              <li class='sidebar-list'><a href="#">
-                <%= fa_icon 'folder', class: 'white' %>
-                <span class='thin-white'>Home</span></a></li>
+              <li class='sidebar-list'>
+                <%= link_to current_user do %>
+                  <%= fa_icon 'folder', class: 'white' %>
+                  <span class='thin-white'>Show</span>
+                <% end %>
+              </li>
               <li class='sidebar-list'><a href="#">
                 <%= fa_icon 'folder', class: 'white' %>
                 <span class='thin-white'>About</span></a></li>
