@@ -1,3 +1,16 @@
-User#account_activation
+こんにちは<%= @user.name %>さん
 
-<%= @greeting %>, find me in app/views/user_mailer/account_activation.text.erb
+新規登録をしていただき、ありがとうございます。
+
+ユーザー登録はまだ完了していません。
+以下のURL（アドレス）にアクセスしてユーザー登録を完了させてください。
+
+※このメールに心当たりがない場合はメールを破棄してください。
+
+■ユーザー認証アドレス
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+このアドレスはお申し込みから1時間有効です。
+期限を過ぎた場合は、会員登録をやり直してください。
+

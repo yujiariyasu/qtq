@@ -1,5 +1,19 @@
-<h1>User#account_activation</h1>
+<h1>ユーザー認証</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/user_mailer/account_activation.html.erb
-</p>
+<p>こんにちは<%= @user.name %>さん</p>
+
+
+<p>新規登録をしていただき、ありがとうございます。</p>
+
+<p>ユーザー登録はまだ完了していません。</p>
+<p>以下のURL（アドレス）にアクセスしてユーザー登録を完了させてください。</p>
+
+<p>※このメールに心当たりがない場合はメールを破棄してください。</p>
+
+<p>■ユーザー認証アドレス</p>
+
+<p><%= edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
+
+<p>このアドレスはお申し込みから1時間有効です。</p>
+<p>期限を過ぎた場合は、会員登録をやり直してください。</p>
+
