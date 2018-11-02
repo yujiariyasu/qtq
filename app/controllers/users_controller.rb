@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
+
   def show
     category = [1,3,5,7]
     current_quantity = [1000,5000,3000,8000]
@@ -48,8 +51,35 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "プロフィールを更新しました。"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください。"
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_url unless current_user?(@user)
     end
 end
