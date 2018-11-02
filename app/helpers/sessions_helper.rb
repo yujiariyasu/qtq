@@ -22,11 +22,18 @@ module SessionsHelper
   def log_out
     session.delete(:user_id)
     @current_user = nil
+    forget(current_user)
   end
 
   def remember(user)
     user.remember
     cookies.parmanent.signed[:user_id] = user.id
     cookies.parmanent[:remember_token] = user.remember_token
+  end
+
+  def forget(user)
+    user.forget
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
   end
 end
