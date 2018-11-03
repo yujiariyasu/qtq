@@ -1,7 +1,4 @@
-<h1>ユーザー認証</h1>
-
-<p>こんにちは<%= @user.name %>さん</p>
-
+<h2>こんにちは<%= @user.name %>さん</h2>
 
 <p>新規登録をしていただき、ありがとうございます。</p>
 
@@ -12,7 +9,7 @@
 
 <p>■ユーザー認証アドレス</p>
 
-<p><%= edit_account_activation_url(@user.id, email: @user.email) %></p>
+<p><%= edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
 
 <p>このアドレスはお申し込みから1時間有効です。</p>
 <p>期限を過ぎた場合は、会員登録をやり直してください。</p>
