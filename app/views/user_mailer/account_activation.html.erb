@@ -1,16 +1,8 @@
-<h2>こんにちは<%= @user.name %>さん</h2>
-
-<p>新規登録をしていただき、ありがとうございます。</p>
-
-<p>ユーザー登録はまだ完了していません。</p>
-<p>以下のURL（アドレス）にアクセスしてユーザー登録を完了させてください。</p>
-
-<p>※このメールに心当たりがない場合はメールを破棄してください。</p>
-
-<p>■ユーザー認証アドレス</p>
-
-<p><%= edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
-
-<p>このアドレスはお申し込みから1時間有効です。</p>
-<p>期限を過ぎた場合は、会員登録をやり直してください。</p>
-
+<%= image_tag "https://ci4.googleusercontent.com/proxy/k6_2qriTXIHQ7TqiP8eIMeBBPqxvbRJoBJwcnp43uzfmxo_IlpcDMECgnkMLMVk4fzaE9xS3qSyGh0BXXdB5YYZ31bWf9ATgrmlzWkLHjckw5qWgbLOltg=s0-d-e1-ft#http://g-ecx.images-amazon.com/images/G/01/x-locale/cs/te/logo.png", alt: "RootedLearning", style: "border:0;height: 31px;margin-top: 10px;" %>
+<div style="margin-bottom: 5px;">
+  <h2 style="font-size: 21px;margin: 5px 0 0;font-weight: normal;">RootedLearningへようこそ</h2>
+</div>
+<h2 style="font-size: 19px;margin: 5px 0 0;font-weight: normal;"><%= @user.name %> さん</h2>
+<p style="font-size: 15px;">登録していただき、ありがとうございます。</p>
+<p style="font-size: 15px;"><%= link_to "ユーザー認証リンク", edit_account_activation_url(@user.activation_token, email: @user.email), style: "text-decoration: none;color: blue;" %> をクリックして、認証を完了させてください。
+</p>
