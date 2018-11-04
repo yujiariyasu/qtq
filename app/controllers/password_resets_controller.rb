@@ -2,11 +2,11 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
-  def edit
+  def create
     @user = User.find_by(email: params[:password_reset][:email])
     if @user
       @user.create_reset_digest
-      @user.password_send_reset_email
+      @user.send_password_reset_email if Rails.env.production?
       flash[:info] = "メールを送信しました。"
       redirect_to root_url
     else

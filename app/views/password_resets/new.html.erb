@@ -8,7 +8,7 @@
 <div class="signup-box">
   <h2>パスワードをお忘れの方</h2>
   <span class="reset-pass-text">メールアドレスを入力して、<br>リセットリンクを受け取ってください<br><br></span>
-  <%= form_for(:reset_password, url: password_resets_path) do |f| %>
+  <%= form_for(:password_reset, url: password_resets_path) do |f| %>
     <%= f.label :email, 'メールアドレス' %>
     <%= f.email_field :email, class: "form-control" %>
     <%= f.submit "送信", class: "signup-submit" %>
