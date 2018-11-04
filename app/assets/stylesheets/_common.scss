@@ -1,111 +1,111 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .inline-block {
-	display: inline-block;
+  display: inline-block;
 }
 
 .m0 {
-	margin: 0;
+  margin: 0;
 }
 
 .m0a {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .mt0 {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .mt10 {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .mr0 {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .mr10 {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .mb0 {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .mb10 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .ml0 {
-	margin-left: 0;
+  margin-left: 0;
 }
 
 .p0 {
-	padding: 0;
+  padding: 0;
 }
 
 .p10 {
-	padding: 10px;
+  padding: 10px;
 }
 
 .p20 {
-	padding: 20px;
+  padding: 20px;
 }
 
 .pt0 {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 .pr0 {
-	padding-right: 0;
+  padding-right: 0;
 }
 
 .pb0 {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .pl0 {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .w100 {
-	width: 100%;
+  width: 100%;
 }
 
 .h100 {
-	height: 100%;
+  height: 100%;
 }
 
 .height20 {
-	height: 20px;
+  height: 20px;
 }
 
 .white {
-	color: #ffffff;
+  color: #ffffff;
 }
 
-.thin-white {
-	color: rgba(255, 255, 255, 0.5);
+.purple {
+  color: #2f272d!important;
 }
 
 .nav-item {
-	height: 30px;
-	padding: 16px;
-	font-size: 16px;
-	height: 49px;
+  height: 30px;
+  padding: 16px;
+  font-size: 16px;
+  height: 49px;
 }
 
 .sidebar {
     width: 225px !important;
-    background-color: #212529;
+    background-color: #1d1a1c;
     min-height: calc(100vh - 50px);
     padding-top: 10px;
 }
 
 // .main-content {
-// 	min-width: calc(100vw - 250px);
+//  min-width: calc(100vw - 250px);
 // }
 
 .clearfix::after{
@@ -115,7 +115,7 @@
 }
 
 .sidebar-list {
-	padding: 18px;
+  padding: 18px;
 }
 
 .item-wrapper {
@@ -129,31 +129,31 @@
 }
 
 .left-item {
-	display: inline-block;
-	margin-right: 0.9%;
-	width: 49.3%;
+  display: inline-block;
+  margin-right: 0.9%;
+  width: 49.3%;
 }
 
 .right-item {
-	display: inline-block;
-	width: 49.3%;
+  display: inline-block;
+  width: 49.3%;
 }
 
 .sticky-footer {
-	background: #e9ecef;
-	font-size: 12px;
+  background: #e9ecef;
+  font-size: 12px;
 }
 
 .main {
-	min-width: calc(100vw - 250px);
+  min-width: calc(100vw - 250px);
 }
 
 .container {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .alert {
-	border-radius: 0px;
-	margin: 0;
+  border-radius: 0px;
+  margin: 0;
 }
