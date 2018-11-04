@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def show
+    @user = User.find(params[:id])
     category = [1,3,5,7]
     current_quantity = [1000,5000,3000,8000]
     months = [ 4, 5, 6, 7, 8, 9 ]
