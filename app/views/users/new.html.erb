@@ -1,0 +1,12 @@
+<% provide(:title, "RoootedLearningの登録") %>
+<% provide(:btn_text, 'アカウントを作成') %>
+<div class="link-to-root">
+  <%= link_to root_path do %>
+    <%= image_tag "tree.png" %>
+  <% end %>
+</div>
+<div class="signup-box">
+  <h2>アカウントを作成</h2>
+  <%= render 'form' %>
+  <p class="arleady-signup">すでにアカウントをお持ちですか?<br><%= link_to " サインイン", login_path %></p>
+</div>
