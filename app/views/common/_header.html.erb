@@ -18,19 +18,36 @@
 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class='white'>Link</span></a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class='white'>Dropdown</span><span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to 'ログイン', login_path %></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <% if logged_in? %>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+      <% if logged_in? %>
+        <li class='white'>
+          <%= link_to new_user_path do %>
+            <span class='white'>学習の登録</span>
           <% end %>
-        </ul>
-      </li>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class='white'>(サムネ)</span><span class="caret mr10"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'マイページ', login_path %></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <% if logged_in? %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </li>
+      <% else %>
+        <li class='white'>
+          <%= link_to new_user_path do %>
+            <span class='white'>ユーザー登録</span>
+          <% end %>
+        </li>
+        <li class='white'>
+          <%= link_to login_path do %>
+            <span class='white'>ログイン</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

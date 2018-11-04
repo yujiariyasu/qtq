@@ -1,19 +1,22 @@
-<% provide(:title, "Log in") %>
-<h1>Log in</h1>
+<% provide(:title, "RoootedLearningへのログイン") %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", root_path %></p>
-  </div>
+<div class="link-to-root">
+  <%= link_to root_path do %>
+    <%= image_tag "tree.png" %>
+  <% end %>
+</div>
+<div class="signup-box">
+  <h2>ログイン</h2>
+  <%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.email_field :email, class: "form-control" %>
+    <%= f.label :password, 'パスワード', class: "short-label" %>
+    <%= f.password_field :password, class: "form-control" %>
+    <%= f.submit "サインイン", class: "signup-submit" %>
+    <%= f.check_box :remember_me, class: "text-align-left", id: "remember-checkbox" %>
+    <%= f.label :ログインしたままにする, class: "font-weight-normal", for: "remember-checkbox" %>
+    <%= link_to "パスワードを忘れた場合", root_path, class: "text-align-right"%>
+  <% end %>
+  <div class="a-divider"><h5>新規登録はこちら</h5></div>
+  <%= link_to "アカウントを作成", new_user_path, class: "link-to-signup" %>
 </div>

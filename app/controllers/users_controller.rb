@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def show
+    @user = current_user || User.first
     category = [1,3,5,7]
     current_quantity = [1000,5000,3000,8000]
     months = [ 4, 5, 6, 7, 8, 9 ]
@@ -40,12 +41,21 @@ class UsersController < ApplicationController
    end
   end
 
+  def new
+    @user = User.new
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "ユーザー認証のためのメールを送信しました。"
-      redirect_to root_url
+      if Rails.env.production?
+        @user.send_activation_email
+        flash[:info] = "ユーザー認証のためのメールを送信しました。"
+      else
+        @user.activate
+        log_in @user
+      end
+      redirect_to @user
     else
       render 'new'
     end

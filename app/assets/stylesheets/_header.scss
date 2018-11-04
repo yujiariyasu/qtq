@@ -2,4 +2,12 @@
   background-color: #343a40;
   border: 0;
   border-radius: 0;
+
+  span {
+    color: #e9ffe5;
+  }
+}
+
+.navbar-default .navbar-nav .open a:focus {
+  background-color: #21ab18;
 }
