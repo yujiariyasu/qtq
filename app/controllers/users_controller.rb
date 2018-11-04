@@ -52,6 +52,7 @@ class UsersController < ApplicationController
         @user.send_activation_email
         flash[:info] = "ユーザー認証のためのメールを送信しました。"
       else
+        flash[:info] = "ユーザー登録に成功しました。"
         @user.activate
         log_in @user
       end
