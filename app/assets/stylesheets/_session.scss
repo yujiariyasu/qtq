@@ -29,11 +29,6 @@
     padding: 3px 7px;
   }
 
-  .text-align-right {
-    text-align: right;
-    display: inline-block;
-  }
-
   .text-align-left {
     display: inline-block;
     width: 19px;
@@ -43,15 +38,14 @@
   .font-weight-normal {
     display: inline-block;
     font-weight: normal;
-    margin-bottom: 25px;
   }
 
   .signup-submit {
-        background: linear-gradient(to bottom, #c6ffc5, #4abd4e);
-        border-color: #9ed09e #61b361 #288c28;
-        border-radius: 3px;
-        border-style: solid;
-        border-width: 1px;
+    background: linear-gradient(to bottom, #c6ffc5, #4abd4e);
+    border-color: #9ed09e #61b361 #288c28;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
   }
 
   .legal-text {
