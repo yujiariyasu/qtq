@@ -112,7 +112,7 @@ ja:
       accepted: を受諾してください
       blank: を入力してください
       present: は入力しないでください
-      confirmation: と%{attribute}の入力が一致しません
+      confirmation: に失敗しました。異なる文字列が入力されています。
       empty: を入力してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください
