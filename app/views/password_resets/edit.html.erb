@@ -1,2 +1,19 @@
-<h1>PasswordResets#edit</h1>
-<p>Find me in app/views/password_resets/edit.html.erb</p>
+<% provide(:title, "パスワードのリセット") %>
+
+<div class="link-to-root">
+  <%= link_to root_path do %>
+    <%= image_tag "tree.png" %>
+  <% end %>
+</div>
+<div class="signup-box">
+  <h2>パスワードの再設定をしてください</h2>
+  <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= hidden_field_tag :email, @user.email %>
+    <%= f.label :password, 'パスワード', class: "short-label" %>
+    <%= f.password_field :password, class: "form-control" %>
+    <%= f.label :password_confirmation, 'パスワードの確認' %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+    <%= f.submit "パスワードを再設定", class: "signup-submit" %>
+  <% end %>
+</div>
