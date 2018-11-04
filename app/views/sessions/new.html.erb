@@ -8,9 +8,9 @@
 <div class="signup-box">
   <h2>ログイン</h2>
   <%= form_for(:session, url: login_path) do |f| %>
-    <%= f.label :email %>
+    <%= f.label :email, 'メールアドレス' %>
     <%= f.email_field :email, class: "form-control" %>
-    <%= f.label :password, class: "short-label" %>
+    <%= f.label :password, 'パスワード', class: "short-label" %>
     <%= f.password_field :password, class: "form-control" %>
     <%= f.submit "サインイン", class: "signup-submit" %>
     <%= f.check_box :remember_me, class: "text-align-left", id: "remember-checkbox" %>
