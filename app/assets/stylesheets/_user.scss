@@ -1,9 +1,18 @@
 .upload-box {
   position: relative;
 
-  img {
-    height: 30px;
+  .upload-button {
+    height: 77px;
+    border: solid;
+    padding-top: 27px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
   }
+
+  #avatar-preview img{
+	  width: 100px;
+	}
 
   input[type=file] {
     height: 0px;
