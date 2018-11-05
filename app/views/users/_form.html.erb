@@ -5,9 +5,16 @@
     <%= f.text_field :name, class: "form-control" %>
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control" %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
+    <% if params[:action] == 'edit' %>
+      <div class="upload-box">
+        <%= image_tag "select-profile.png" %>
+        <input type="file" name="file">
+      </div>
+    <% else %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    <% end %>
     <%= f.submit yield(:btn_text), class: "signup-submit" %>
   <% end %>
