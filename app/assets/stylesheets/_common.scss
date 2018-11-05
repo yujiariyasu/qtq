@@ -82,12 +82,16 @@
   height: 20px;
 }
 
+.blue-black {
+  color: #2f3a40!important;
+}
+
 .white {
   color: #ffffff;
 }
 
-.purple {
-  color: #2f272d!important;
+.light-blue {
+  color: #169ae2!important;
 }
 
 .nav-item {
@@ -99,7 +103,7 @@
 
 .sidebar {
     width: 225px !important;
-    background-color: #1d1a1c;
+    background-color: #f5f5f5;
     min-height: calc(100vh - 50px);
     padding-top: 10px;
 }
