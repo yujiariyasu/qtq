@@ -3,9 +3,14 @@
   border: 0;
   border-radius: 0;
 
-  span {
-    color: #e9ffe5;
+  img {
+    height: 28px;
   }
+}
+
+.header-logo {
+    margin-top: 12px;
+    margin-left: 12px;
 }
 
 .navbar-default .navbar-nav .open a:focus {

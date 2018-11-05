@@ -28,6 +28,10 @@
   .right-item {
     width: 100%;
   }
+  .header-logo {
+    margin-top: 9px;
+    margin-left: 28px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -48,7 +52,6 @@
 
     img {
       height: 100px;
-      width: 100px;
       display: inline-block;
       margin-right: 5px;
     }
