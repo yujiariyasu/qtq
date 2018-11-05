@@ -7,8 +7,10 @@
     <%= f.email_field :email, class: "form-control" %>
     <% if params[:action] == 'edit' %>
       <div class="upload-box">
-        <%= image_tag "select-profile.png" %>
-        <input type="file" name="file">
+        <%= f.label :avatar, "プロフィール画像"%>
+        <h4 class="upload-button">クリックまたは画像をドロップ</h4>
+        <input type="file" name="file" id="avatar-file">
+        <div id="avatar-preview"></div>
       </div>
     <% else %>
       <%= f.label :password %>
