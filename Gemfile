@@ -19,6 +19,8 @@ gem 'font-awesome-rails'
 gem 'lazy_high_charts'
 gem 'i18n'
 gem 'bcrypt',  '3.1.11'
+gem 'carrierwave', '1.2.2'
+gem 'mini_magick', '4.7.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -46,6 +48,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'fog-aws'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
