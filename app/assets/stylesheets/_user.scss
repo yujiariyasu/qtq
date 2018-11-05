@@ -1,0 +1,13 @@
+.upload-box {
+  position: relative;
+
+  img {
+    height: 30px;
+  }
+
+  input[type=file] {
+    height: 0px;
+    visibility: hidden;
+    position: absolute;
+  }
+}
