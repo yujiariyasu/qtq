@@ -1,7 +1,10 @@
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require bootstrap-sprockets
+//= require material
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
-//= require turbolinks
-//= require_tree .
+//= require cable
+//= require top
+//= require user

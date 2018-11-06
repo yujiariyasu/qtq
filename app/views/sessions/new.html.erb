@@ -8,6 +8,10 @@
 <div class="signup-box">
   <h2>ログイン</h2>
   <%= form_for(:session, url: login_path) do |f| %>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="sample1">
+      <label class="mdl-textfield__label" for="sample1">Text...</label>
+    </div>
     <%= f.label :email, 'メールアドレス' %>
     <%= f.email_field :email, class: "form-control" %>
     <%= f.label :password, 'パスワード', class: "short-label" %>

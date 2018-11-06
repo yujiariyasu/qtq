@@ -5,7 +5,7 @@
       <nav id="sidebar" class='sidebar'>
           <ul class="list-unstyled components">
               <li class='sidebar-list'>
-                <%= link_to current_user do %>
+                <%= link_to current_user, 'data-turbolinks-track': false do %>
                   <%= fa_icon 'folder', class: 'blue-black' %>
                   <span class='blue-black'>Show</span>
                 <% end %>
