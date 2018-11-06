@@ -1,5 +1,4 @@
 <% provide(:title, "RoootedLearningへのログイン") %>
-
 <div class="link-to-root">
   <%= link_to root_path do %>
     <%= image_tag "logo-black.png" %>
@@ -9,13 +8,13 @@
   <h2>ログイン</h2>
   <%= form_for(:session, url: login_path) do |f| %>
     <div class="mdl-textfield mdl-js-textfield">
-      <input class="mdl-textfield__input" type="text" id="sample1">
-      <label class="mdl-textfield__label" for="sample1">Text...</label>
+      <input class="mdl-textfield__input" type="text" id='email' placeholder="メールアドレス...">
+      <label class="mdl-textfield__label" for="email"></label>
     </div>
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email, class: "form-control" %>
-    <%= f.label :password, 'パスワード', class: "short-label" %>
-    <%= f.password_field :password, class: "form-control" %>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" placeholder="パスワード...">
+      <label class="mdl-textfield__label"></label>
+    </div>
     <%= f.submit "サインイン", class: "signup-submit" %>
     <%= f.check_box :remember_me, class: "text-align-left", id: "remember-checkbox" %>
     <%= f.label :ログインしたままにする, class: "font-weight-normal", for: "remember-checkbox" %>

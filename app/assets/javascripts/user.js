@@ -1,4 +1,4 @@
-$(document).on('page:change', function() {
+$(document).on('turbolinks:load', function() {
   $(".upload-button").on("click", function() {
     if ($('.avatar-img').length) {
       $('.avatar-img').remove();
@@ -18,7 +18,6 @@ $(document).on('page:change', function() {
   });
 
   if($('.signup-box').length) {
-    componentHandler.upgradeDom();
-    console.log(33)
+    componentHandler.upgradeAllRegistered();
   }
 });
