@@ -15,11 +15,35 @@
       <input class="mdl-textfield__input" type="text" placeholder="パスワード...">
       <label class="mdl-textfield__label"></label>
     </div>
-    <%= f.submit "サインイン", class: "signup-submit" %>
-    <%= f.check_box :remember_me, class: "text-align-left", id: "remember-checkbox" %>
-    <%= f.label :ログインしたままにする, class: "font-weight-normal", for: "remember-checkbox" %>
-    <div class='mb10'><%= link_to "パスワードを忘れた場合", new_password_reset_path, class: "text-right mt10"%></div>
+    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect remember-me-checkbox" for="remember-checkbox" style='margin-left: 66px;'>
+      ログインを保持
+      <%= f.check_box :remember_me, class: "mdl-switch__input", id: "remember-checkbox", checked: true %>
+      <!-- <input type="checkbox" id="remember-checkbox" class="" checked> -->
+      <span class="mdl-switch__label"></span>
+    </label>
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored send-button" style="margin-bottom: 23px;">
+  ログイン
+</button>
+    <div class='mb10'><%= link_to "パスワードを忘れた場合", new_password_reset_path, class: "text-right mt10", style: "margin-left: 66px;" %></div>
   <% end %>
-  <div class="a-divider"><h5>新規登録はこちら</h5></div>
-  <%= link_to "アカウントを作成", new_user_path, class: "link-to-signup" %>
+  <div class="a-divider"><h5>アカウントを持っていない方は</h5></div>
+  <%= link_to new_user_path do %>
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style='margin-left: 89px;'>
+  新規登録画面へ
+</button>
+  <% end %>
 </div>
+<script>
+(function() {
+  'use strict';
+  window['counter'] = 0;
+  var snackbarContainer = document.querySelector('#demo-toast-example');
+  var showToastButton = document.querySelector('#demo-show-toast');
+  showToastButton.addEventListener('click', function() {
+    'use strict';
+    var data = {message: 'プロフィールを保存しました。'};
+    counter += 1;
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
+</script>

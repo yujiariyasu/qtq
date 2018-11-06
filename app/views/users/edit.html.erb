@@ -7,5 +7,34 @@
 </div>
 <div class="signup-box">
   <h2>プロフィール編集</h2>
-  <%= render 'form' %>
+
+  <%= form_for @user do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+    <div class="upload-box">
+      <%= f.label :avatar, "プロフィール画像"%>
+      <h4 class="upload-button">クリックまたは画像をドロップ</h4>
+      <input type="file" name="file" id="avatar-file">
+      <div id="avatar-preview"></div>
+    </div>
+    <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised" type="button">適用</button>
+  <% end %>
 </div>
+<script>
+(function() {
+  'use strict';
+  window['counter'] = 0;
+  var snackbarContainer = document.querySelector('#demo-toast-example');
+  var showToastButton = document.querySelector('#demo-show-toast');
+  showToastButton.addEventListener('click', function() {
+    'use strict';
+    var data = {message: 'プロフィールを保存しました。'};
+    counter += 1;
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
+</script>
