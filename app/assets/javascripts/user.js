@@ -1,11 +1,7 @@
 $(document).on('turbolinks:load', function() {
 console.log(3)
   $(".upload-button").on("click", function() {
-    // if ($('.avatar-img').length) {
-      // $('.avatar-img').remove();
-    // } else {
-      $("input[type=file]").click();
-    // }
+    $("input[type=file]").click();
   });
 
   // TODO: ajaxで画像保存
@@ -28,6 +24,9 @@ console.log(3)
   // });
 
   $('#avatar-file').change(function() {
+    if ($('.avatar-img').length) {
+      $('#avatar-preview').empty();
+    }
     var fr = new FileReader();
     fr.onload = function() {
       var img = $('<img>').attr('src', fr.result).addClass('avatar-img');
