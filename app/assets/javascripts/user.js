@@ -1,15 +1,34 @@
 $(document).on('turbolinks:load', function() {
+console.log(3)
   $(".upload-button").on("click", function() {
-    if ($('.avatar-img').length) {
-      $('.avatar-img').remove();
-    } else {
+    // if ($('.avatar-img').length) {
+      // $('.avatar-img').remove();
+    // } else {
       $("input[type=file]").click();
-    }
+    // }
   });
+
+  // TODO: ajaxで画像保存
+  // $("#demo-show-toast").on("click", function() {
+  //   var name = $('#edit-name').attr('value');
+  //   var email = $('#edit-email').attr('value');
+  //   var avatar = $('#avatar-img').attr('src');
+  //   var id = $('#user-id-for-js').text();
+  //   var url = '/users/' + id;
+  //   $.ajax({
+  //     url: url,
+  //     type: 'PATCH',
+  //     data: { name: name, email: email, avatar: avatar },
+  //     dataType: 'json'
+  //   })
+  //   .done(function(data) {
+  //   })
+  //   .fail(function() {
+  //   });
+  // });
 
   $('#avatar-file').change(function() {
     var fr = new FileReader();
-    console.log(fr.result)
     fr.onload = function() {
       var img = $('<img>').attr('src', fr.result).addClass('avatar-img');
       $('#avatar-preview').append(img);
