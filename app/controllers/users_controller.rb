@@ -67,7 +67,6 @@ class UsersController < ApplicationController
   end
 
   def update
-binding.pry
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash.now[:success] = "プロフィールを更新しました。"
