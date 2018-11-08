@@ -24,9 +24,6 @@ console.log(3)
   // });
 
   $('#avatar-file').change(function() {
-    if ($('.avatar-img').length) {
-      $('#avatar-preview').empty();
-    }
     var fr = new FileReader();
     fr.onload = function() {
       var img = $('<img>').attr('src', fr.result).addClass('avatar-img');
