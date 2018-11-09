@@ -31,7 +31,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><a href="#">Another action</a></li>
+            <li><%= link_to 'Facebookログイン', "/auth/facebook" %></li>
             <li><a href="#">Something else here</a></li>
             <% if logged_in? %>
               <li><%= link_to 'プロフィール編集', edit_user_path(current_user) %></li>
