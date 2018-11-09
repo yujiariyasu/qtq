@@ -58,6 +58,16 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def self.from_omniauth(auth)
+    user = User.find_by(email: auth.info.email) || Use.new
+    user.uid = auth.uid
+    user.name = auth.uid
+    user.email = auth.info.email
+    user.icon = auth.info.image
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  end
+
   private
     def downcase_email
       self.email = email.downcase
