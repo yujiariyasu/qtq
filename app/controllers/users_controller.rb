@@ -46,19 +46,32 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      if Rails.env.production?
-        @user.send_activation_email
-        flash[:info] = "ユーザー認証のためのメールを送信しました。"
-      else
-        flash[:info] = "ユーザー登録に成功しました。"
-        @user.activate
+    if env['omniauth.auth'].present?
+      # Facebookログイン
+      @user = User.from_omniauth(env['omniauth.auth'])
+      if @user.save(context: :facebook_login)
         log_in @user
+        flash[:info] = "Facebookログインしました。"
+        redirect_to @user && return
+      else
+        redirect_to auth_failure_path && return
       end
-      redirect_to @user
     else
-      render 'new'
+      @user = User.new(user_params)
+      result = @user.save
+      if @user.save
+        if Rails.env.production?
+          @user.send_activation_email
+          flash[:info] = "ユーザー認証のためのメールを送信しました。"
+        else
+          flash[:info] = "ユーザー登録に成功しました。"
+          @user.activate
+          log_in @user
+        end
+        redirect_to @user
+      else
+        render 'new'
+      end
     end
   end
 
