@@ -10,7 +10,7 @@
     </li>
   </ul>
   <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
-    <%= image_tag current_user.avatar.file ? current_user.avatar : "https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg", class: "avatar-img" %>
+    <%= image_tag current_user_avatar_or, class: "avatar-img" %>
     <span class="caret mr10 white"></span>
   </button>
 
@@ -28,6 +28,6 @@
   </ul>
 
   <ul class="pull-right header-link-list">
-    <li><%= link_to '学習の登録', user_path(current_user) %></li>
+    <li><%= link_to '学習の登録', root_path %></li>
   </ul>
 </div>
