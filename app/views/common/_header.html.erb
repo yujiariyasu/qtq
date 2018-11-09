@@ -1,56 +1,33 @@
-<nav class="navbar navbar-default mb0 header-nav">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <ul class="nav white navbar-nav navbar-right">
-      <li><a href="#" class='p0'><%= image_tag "logo-white.png", class: 'header-logo' %></a></li>
-      <li><button type="button" id="sidebarCollapse" class="navbar-btn pull-left hidden-xs">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button></li>
-    </ul>
-  </div>
+<div class="navbar navbar-default mb0 header-nav">
+  <ul class="nav white navbar-nav">
+    <li><a href="/" class='p0'><%= image_tag "logo-white.png", class: 'header-logo' %></a></li>
+    <li>
+      <button type="button" id="sidebarCollapse" class="navbar-btn pull-left hidden-xs">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </li>
+  </ul>
+  <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
+    <%= image_tag current_user.avatar.file ? current_user.avatar : "https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg", class: "avatar-img" %>
+    <span class="caret mr10 white"></span>
+  </button>
 
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-      <% if logged_in? %>
-        <li class='white'>
-          <%= link_to new_user_path do %>
-            <span class='white'>学習の登録</span>
-          <% end %>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle pt0 pb0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag current_user.avatar.file ? current_user.avatar : "https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg", class: "avatar-img" %>
-            <span class="caret mr10 white"></span>
-          </a>
-          <ul class="dropdown-menu header-dropdown">
-            <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><a href="#">Something else here</a></li>
-            <% if logged_in? %>
-              <li><%= link_to 'プロフィール編集', edit_user_path(current_user) %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-            <% end %>
-          </ul>
-        </li>
-      <% else %>
-        <li class='white'>
-          <%= link_to new_user_path do %>
-            <span class='white'>ユーザー登録</span>
-          <% end %>
-        </li>
-        <li class='white'>
-          <%= link_to login_path do %>
-            <span class='white'>ログイン</span>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect p0" style='border: solid 1px #169ae2' for="demo-menu-lower-right">
+    <% if logged_in? %>
+      <li><%= link_to 'マイページ', user_path(current_user), class: 'mdl-menu__item' %></li>
+      <li><%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'mdl-menu__item' %></li>
+      <li role="separator" class="divider" style="border: solid 0.3px #87b1c7;"></li>
+      <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
+    <% else %>
+      <li class="mdl-menu__item">Another Action</li>
+      <li disabled class="mdl-menu__item">Disabled Action</li>
+      <li class="mdl-menu__item">Yet Another Action</li>
+    <% end %>
+  </ul>
+
+  <ul class="pull-right header-link-list">
+    <li><%= link_to '学習の登録', user_path(current_user) %></li>
+  </ul>
+</div>
