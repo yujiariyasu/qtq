@@ -32,7 +32,5 @@ console.log(3)
     fr.readAsDataURL(this.files[0]);
   });
 
-  if($('.signup-box').length) {
-    componentHandler.upgradeAllRegistered();
-  }
+  componentHandler.upgradeAllRegistered();
 });
