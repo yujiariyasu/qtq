@@ -10,6 +10,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     allow_nil: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: false, on: :facebook_login
   has_secure_password
 
   def self.digest(string)
@@ -64,7 +65,7 @@ class User < ApplicationRecord
     user.uid = auth.uid
     user.name = auth.info.name
     user.email = auth.info.email
-    user.avatar = auth.info.image
+    user.remote_avatar_url = auth.info.image.gsub('http', 'https')
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     user
