@@ -28,6 +28,10 @@
   </ul>
 
   <ul class="pull-right header-link-list">
-    <li><%= link_to '学習の登録', root_path %></li>
+    <% if logged_in? %>
+      <li><%= link_to '学習の登録', root_path %></li>
+    <% else %>
+      <li><%= link_to 'ログイン', login_path %></li>
+    <% end %>
   </ul>
 </div>
