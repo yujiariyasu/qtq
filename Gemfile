@@ -51,6 +51,7 @@ end
 group :production do
   gem 'unicorn'
   gem 'fog'
+  gem 'mini_racer'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
