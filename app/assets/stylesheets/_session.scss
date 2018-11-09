@@ -124,7 +124,27 @@
 
 .remember-me-checkbox {
   padding-left: 43px!important;
-  margin-left: 66px;
+  margin-left: 10px;
+  margin-top: 3px;
+  width: 158px;
+  display: inline-block!important;
+}
+
+.login-send-button {
+  margin-bottom: 23px;
+  margin-left: 10px;
+}
+
+.facebook-button {
+  margin-left: 25px;
+  margin-bottom: 20px;
+  background: #4267b2!important;
+  color: white;
+}
+
+.login-to-signup-button {
+  background: #e23b4e!important;
+  color: white;
 }
 
 .mdl-button--colored {
@@ -135,12 +155,16 @@
   background: #26ab28!important;
 }
 
+.mdl-button {
+ text-transform: none;
+}
+
 .mdl-switch.is-checked .mdl-switch__thumb {
-  background: rgb(0, 152, 229)!important;
+  background: #26ab28!important;
 }
 
 .mdl-switch.is-checked .mdl-switch__track {
-  background: rgb(0, 152, 229)!important;
+  background: #26ab28!important;
 }
 
 .send-button {

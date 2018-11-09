@@ -2,6 +2,15 @@
   background-color: #169ae2;
   border: 0;
   border-radius: 0;
+
+  li a {
+    color: white
+  }
+
+  li a:hover {
+    color:white;
+    background-color: #6dbde4;
+  }
 }
 
 .header-logo {
@@ -10,12 +19,22 @@
   margin-left: 12px;
 }
 
+.navbar-default .navbar-nav > .open > a {
+  background-color: #6dbde4;
+}
+
 .navbar-default .navbar-nav .open a:focus {
-  background-color: #169ae2;
+  background-color: #6dbde4;
 }
 
 .avatar-img {
   height: 40px;
   margin-top: 5px;
   border-radius: 4px;
+}
+
+.header-dropdown {
+  background:#009be8;
+  color:white;
+  border: solid 1px white;
 }
