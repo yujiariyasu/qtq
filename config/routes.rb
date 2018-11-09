@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
+  get '/auth/failure',               to: 'users#auth_failure', as: :auth_failure
 end
