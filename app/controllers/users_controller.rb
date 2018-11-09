@@ -52,26 +52,26 @@ class UsersController < ApplicationController
       if @user.save(context: :facebook_login)
         log_in @user
         flash[:info] = "Facebookログインしました。"
-        redirect_to @user && return
+        redirect_to @user and return
       else
-        redirect_to auth_failure_path && return
+        flash[:danger] = 'Facebookログインに失敗しました。'
+        redirect_to root_path and return
       end
+    end
+    @user = User.new(user_params)
+    result = @user.save
+    if @user.save
+      if Rails.env.production?
+        @user.send_activation_email
+        flash[:info] = "ユーザー認証のためのメールを送信しました。"
+      else
+        flash[:info] = "ユーザー登録に成功しました。"
+        @user.activate
+        log_in @user
+      end
+      redirect_to @user
     else
-      @user = User.new(user_params)
-      result = @user.save
-      if @user.save
-        if Rails.env.production?
-          @user.send_activation_email
-          flash[:info] = "ユーザー認証のためのメールを送信しました。"
-        else
-          flash[:info] = "ユーザー登録に成功しました。"
-          @user.activate
-          log_in @user
-        end
-        redirect_to @user
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
 
