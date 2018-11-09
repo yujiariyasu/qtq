@@ -3,13 +3,15 @@
   border: 0;
   border-radius: 0;
 
-  li a {
-    color: white
+  .mdl-menu__item a {
+    color:black;
+    background-color: white;
   }
 
-  li a:hover {
-    color:white;
-    background-color: #6dbde4;
+  .mdl-menu__item a:hover {
+    color:black;
+    background-color: #f5f5f5;
+    text-decoration: none;
   }
 }
 
@@ -28,13 +30,34 @@
 }
 
 .avatar-img {
-  height: 40px;
-  margin-top: 5px;
+  height: 39px;
   border-radius: 4px;
 }
 
-.header-dropdown {
-  background:#009be8;
+.avatar-dropdown {
   color:white;
-  border: solid 1px white;
+  height: 42px;
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+.header-link-list {
+  margin-top: 17px;
+  margin-right: 5px;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.mdl-js-ripple-effect {
+  a:hover {
+    text-decoration: none;
+  }
 }
