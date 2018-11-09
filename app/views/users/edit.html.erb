@@ -1,0 +1,55 @@
+<% provide(:title, "プロフィール更新") %>
+<% provide(:btn_text, '更新する') %>
+<span class='dn' id='user-id-for-js'><%= current_user.id %></span>
+<div class="link-to-root">
+  <%= link_to root_path do %>
+    <%= image_tag "logo-black.png" %>
+  <% end %>
+</div>
+<div class="signup-box">
+  <h2>プロフィール編集</h2>
+
+  <%= form_for @user do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.text_field :name, class: 'mdl-textfield__input', id: 'edit-name', placeholder: 'ユーザーネーム...' %>
+      <% f.label :name, class: 'mdl-textfield__label' %>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.email_field :email, class: 'mdl-textfield__input', id: 'edit-email', placeholder: 'メールアドレス...' %>
+      <% f.label :email, class: 'mdl-textfield__label' %>
+    </div>
+
+    <div class="upload-box">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent upload-button" style="margin-bottom: 23px;color:white;cursor:pointer" type='button'>画像を選択する</button>
+      <%= f.file_field :avatar, id: 'avatar-file' %>
+      <div id="avatar-preview"></div>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored send-button" style="margin-bottom: 23px;">保存する</button>
+
+    <!-- TODO: ajaxで画像保存 -->
+<!--     <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored edit-send-button" type="button">適用</button>
+    <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div> -->
+  <% end %>
+</div>
+
+<!-- TODO: ajaxで画像保存 -->
+<!-- <script>
+(function() {
+  'use strict';
+  window['counter'] = 0;
+  var snackbarContainer = document.querySelector('#demo-toast-example');
+  var showToastButton = document.querySelector('#demo-show-toast');
+  showToastButton.addEventListener('click', function() {
+    'use strict';
+    var data = {message: "　　プロフィールを保存しました。"};
+    counter += 1;
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
+</script>
+ -->

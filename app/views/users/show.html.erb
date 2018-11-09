@@ -5,30 +5,33 @@
       <nav id="sidebar" class='sidebar'>
           <ul class="list-unstyled components">
               <li class='sidebar-list'>
-                <%= link_to current_user do %>
-                  <%= fa_icon 'folder', class: 'white' %>
-                  <span class='thin-white'>Show</span>
+                <%= link_to current_user, 'data-turbolinks-track': false do %>
+                  <%= fa_icon 'folder', class: 'blue-black' %>
+                  <span class='blue-black'>Show</span>
                 <% end %>
               </li>
               <li class='sidebar-list'><a href="#">
-                <%= fa_icon 'folder', class: 'white' %>
-                <span class='thin-white'>About</span></a></li>
-              <li class='sidebar-list'><a href="#">
-                <%= fa_icon 'folder', class: 'white' %>
-                <span class='thin-white'>About</span></a></li>
+                <%= fa_icon 'folder', class: 'blue-black' %>
+                <span class='blue-black'>About</span></a></li>
+              <li class='sidebar-list'>
+                <% if logged_in? %>
+
+                <% end %>
+              </li>
+
           </ul>
       </nav>
       <div id="content" class='p10 clearfix m0a main'>
         <ol class="breadcrumb p20">
           <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a class='blue-black' href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Charts</li>
+          <li class="breadcrumb-item active blue-black">Charts</li>
         </ol>
         <div class='item-wrapper'>
           <div class='item-header'>
             <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active">Chart1</li>
+              <li class="breadcrumb-item active blue-black">Chart1</li>
             </ol>
           </div>
           <%= high_chart("chart1", @chart) %>
@@ -36,7 +39,7 @@
         <div class='item-wrapper left-item'>
           <div class='item-header'>
             <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active">Chart2</li>
+              <li class="breadcrumb-item active blue-black">Chart2</li>
             </ol>
           </div>
           <%= high_chart("chart2", @chart2) %>
@@ -44,14 +47,14 @@
         <div class='item-wrapper right-item'>
           <div class='item-header'>
             <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active">Chart3</li>
+              <li class="breadcrumb-item active blue-black">Chart3</li>
             </ol>
           </div>
           <%= high_chart("chart3", @chart3) %>
         </div>
         <footer class="sticky-footer mb0">
           <p class="breadcrumb p20 text-center mb0">
-            <span href="#">Copyright © RootedLearning 2018</span>
+            <span class='blue-black' href="#">Copyright © RootedLearning 2018</span>
           </p>
         </footer>
       </div>

@@ -1,5 +1,5 @@
 .signup-box {
-  width: 350px;
+  width: 322px;
   margin: 0 auto;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -7,14 +7,15 @@
   padding: 14px 18px;
 
   h2 {
+    color: #314455;
     margin-bottom: 10px;
   }
 
   label {
     display: block;
-    padding-left: 2px;
-    padding-bottom: 2px;
-    font-weight: 700;
+    height: 48px;
+    padding-left: 8px;
+    padding-top: 2px;
   }
 
   .short-label {
@@ -29,20 +30,14 @@
     padding: 3px 7px;
   }
 
-  .text-align-left {
-    display: inline-block;
-    width: 19px;
-    height: 13px;
-  }
-
   .font-weight-normal {
     display: inline-block;
     font-weight: normal;
   }
 
   .signup-submit {
-    background: linear-gradient(to bottom, #c6ffc5, #4abd4e);
-    border-color: #9ed09e #61b361 #288c28;
+    background: linear-gradient(to bottom, #9ecfe8, #0098e5);
+    border-color: #7fb6d2 #77919e #698898;
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;
@@ -121,9 +116,43 @@
   margin: 18px 0;
 
   img {
-    height: 150px;
-    width: 150px;
+    height: 100px;
     display: inline-block;
     margin-right: 5px;
   }
+}
+
+.remember-me-checkbox {
+  padding-left: 43px!important;
+  margin-left: 66px;
+}
+
+.mdl-button--colored {
+  background: rgb(0, 152, 229)!important;
+}
+
+.mdl-button--accent {
+  background: #26ab28!important;
+}
+
+.mdl-switch.is-checked .mdl-switch__thumb {
+  background: rgb(0, 152, 229)!important;
+}
+
+.mdl-switch.is-checked .mdl-switch__track {
+  background: rgb(0, 152, 229)!important;
+}
+
+.send-button {
+  margin-bottom: 23px;
+  margin-left: 100px;
+}
+
+.mdl-js {
+  padding: 0;
+  margin: 0;
+}
+
+#error-explanation ul li {
+  padding: 10px;
 }

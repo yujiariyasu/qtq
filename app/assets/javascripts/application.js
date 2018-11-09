@@ -3,5 +3,8 @@
 //= require bootstrap-sprockets
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
+//= require material
 //= require turbolinks
-//= require_tree .
+//= require cable
+//= require top
+//= require user

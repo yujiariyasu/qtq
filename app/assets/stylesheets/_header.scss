@@ -1,13 +1,21 @@
 .header-nav {
-  background-color: #343a40;
+  background-color: #169ae2;
   border: 0;
   border-radius: 0;
+}
 
-  span {
-    color: #e9ffe5;
-  }
+.header-logo {
+  height: 28px;
+  margin-top: 12px;
+  margin-left: 12px;
 }
 
 .navbar-default .navbar-nav .open a:focus {
-  background-color: #21ab18;
+  background-color: #169ae2;
+}
+
+.avatar-img {
+  height: 40px;
+  margin-top: 5px;
+  border-radius: 4px;
 }

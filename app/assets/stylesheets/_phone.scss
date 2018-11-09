@@ -28,6 +28,19 @@
   .right-item {
     width: 100%;
   }
+
+  .navbar-default .navbar-nav > li, .navbar-default .navbar-nav > li > a {
+    display: inline-block;
+  }
+
+  .navbar-nav {
+    margin: 0;
+  }
+
+  .header-logo {
+    margin-top: 9px;
+    margin-left: 28px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -39,16 +52,16 @@
     margin-left: 10px;
   }
 
-  .header-nav {
-    width: 100vw;
+  .signup-box {
+    border: none;
   }
+
   .link-to-root {
     text-align: center;
     margin: 18px 0;
 
     img {
       height: 100px;
-      width: 100px;
       display: inline-block;
       margin-right: 5px;
     }

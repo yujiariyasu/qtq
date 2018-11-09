@@ -1,0 +1,33 @@
+.upload-box {
+  position: relative;
+
+  .upload-button {
+    margin-left: 80px;
+    cursor: pointer;
+  }
+
+  #avatar-preview img{
+    width: 100px;
+    margin-bottom: 10px;
+  }
+
+  input[type=file] {
+    height: 0px;
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+.edit-send-button {
+  margin-left: 117px;
+}
+
+.password-reset-button {
+  margin-bottom: 23px;
+  margin-left: 68px;
+}
+
+.user-new-button {
+  margin-bottom: 23px;
+  margin-left: 105px;
+}
