@@ -29,9 +29,8 @@
             <%= image_tag current_user.avatar.file ? current_user.avatar : "https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg", class: "avatar-img" %>
             <span class="caret mr10 white"></span>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu header-dropdown">
             <li><%= link_to 'マイページ', user_path(current_user) %></li>
-            <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <% if logged_in? %>
               <li><%= link_to 'プロフィール編集', edit_user_path(current_user) %></li>

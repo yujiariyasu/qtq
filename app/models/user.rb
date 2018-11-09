@@ -10,6 +10,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     allow_nil: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: false, on: :facebook_login
   has_secure_password
 
   def self.digest(string)
@@ -56,6 +57,18 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def self.from_omniauth(auth)
+    user = User.find_by(email: auth.info.email) || User.new
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.name = auth.info.name
+    user.email = auth.info.email
+    user.remote_avatar_url = auth.info.image.gsub('http', 'https')
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user
   end
 
   private
