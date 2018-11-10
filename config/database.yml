@@ -52,3 +52,4 @@ production:
   database: rootedlearning_production
   username: root
   password: 
+  socket: /var/lib/mysql/mysql.sock
