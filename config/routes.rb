@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   get '/auth/:provider/callback', to: 'users#create', as: :auth_callback
   resources :user_relationships, only: [:create, :destroy]
-  root to: 'errors#routing_error'
+  root to: 'sessions#new'
   get '*anything' => 'errors#routing_error'
 end
