@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  root 'users#show'
   resources :users do
     member do
       get :following, :followers
@@ -14,5 +9,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  get '/auth/:provider/callback',    to: 'users#create',       as: :auth_callback
+  get '/auth/:provider/callback', to: 'users#create', as: :auth_callback
+  resources :user_relationships, only: [:create, :destroy]
 end
