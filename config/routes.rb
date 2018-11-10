@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'sessions#new'
   resources :users do
     member do
       get :following, :followers
