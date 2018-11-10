@@ -61,3 +61,11 @@
     text-decoration: none;
   }
 }
+
+.img-hover-gray {
+  margin-bottom: 28px;
+
+  &:hover {
+    color: #ddd;
+  }
+}
