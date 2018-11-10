@@ -47,6 +47,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  body {
+    font-family: 'HigashiOme';
+  }
+
   .main {
     min-width: 100%;
   }
