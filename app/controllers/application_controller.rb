@@ -9,7 +9,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  class Forbidden < ActionController::ActionControllerError;end
+  class IpAddressRejected < ActionController::ActionControllerError; end
+
   rescue_from Exception, with: :rescue500
+  rescue_from Forbidden, with: :rescue403
+  rescue_from IpAddressRejected, with: :rescue403
+
+  def rescue403(e)
+    @exception = e
+    render 'errors/forbidden', status: 403
+  end
 
   def rescue500(e)
     @exception = e
