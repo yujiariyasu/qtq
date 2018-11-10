@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def show
-    @user = current_user || User.first
+    @user = User.find(params[:id])
     category = [1,3,5,7]
     current_quantity = [1000,5000,3000,8000]
     months = [ 4, 5, 6, 7, 8, 9 ]
@@ -87,6 +87,18 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
   end
 
   private
