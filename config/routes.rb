@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   root 'users#show'
-  resources :users, only: [:show, :new, :create, :edit, :update]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
