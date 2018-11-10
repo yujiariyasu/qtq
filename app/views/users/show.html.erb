@@ -40,7 +40,7 @@
           <div>
             <%= @user.name %>さんのページ
             フォロー：<%= @user.following.count %>人
-            <span id='followers'><%= @user.followers.count %></span>>
+            フォロワー：<span id='followers'><%= @user.followers.count %></span>人
           </div>
           <% unless current_user?(@user) %>
             <div id="follow_form">
