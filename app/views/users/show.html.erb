@@ -21,7 +21,7 @@
             フォロー：<%= @user.following.count %>人
             フォロワー：<span id='followers'><%= @user.followers.count %></span>人
           </div>
-          <% unless current_user?(@user) %>
+          <% if logged_in? && !current_user?(@user) %>
             <div id="follow_form">
             <% if current_user.following?(@user) %>
               <%= render 'unfollow' %>
