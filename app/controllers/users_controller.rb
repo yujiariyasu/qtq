@@ -50,6 +50,7 @@ class UsersController < ApplicationController
       # Facebookログイン
       @user = User.from_omniauth(env['omniauth.auth'])
       if @user.save(context: :facebook_login)
+        @user.activate
         log_in @user
         flash[:info] = "Facebookログインしました。"
         redirect_to @user and return
