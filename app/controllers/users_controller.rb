@@ -25,20 +25,67 @@ class UsersController < ApplicationController
     end
 
     @chart3 = LazyHighCharts::HighChart.new("graph") do |c|
-      c.title(text: "製品別上期売上")
-      c.series({
-        colorByPoint: true,
-        # ここでは各月の売上額合計をグラフの値とする
-        data: [{name: 'A',y: product_A_sales.reduce{|sum,e| sum + e}},
-               {name: 'B',y: product_B_sales.reduce{|sum,e| sum + e}}]
-      })
-      c.plotOptions(pie: {allowPointSelect: true,cursor: 'pointer',dataLabels: {
-          enabled: true, format: '{point.name}: {point.percentage:.1f} %',
+      c.chart(type: "pie")
+      c.title(text: "復習の予定")
+      c.subtitle(text: "Click the slices to view detail!!")
+      c.plotOptions(series: {allowPointSelect: true,cursor: 'pointer',dataLabels: {
+          enabled: true, format: '{point.name}',
         }
       })
-      # グラフの種類として「パイチャート」を指定
-      c.chart(type: "pie")
-   end
+      c.tooltip(
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+      )
+      c.series({
+        name: '復習時間',
+        colorByPoint: true,
+        data: [
+          {
+              "name": "明日：3時間",
+              "y": 3,
+              "drilldown": "明日"
+          },
+          {
+              "name": "あさって：2時間",
+              "y": 3,
+              "drilldown": "あさって"
+          },
+          {
+              "name": "しあさって：2時間",
+              "y": 2,
+              "drilldown": "しあさって"
+          },
+          {
+              "name": "4日後〜1ヶ月後：2時間",
+              "y": 3,
+              "drilldown": "4日後〜1ヶ月後"
+          },
+          {
+              "name": "1ヶ月後以降：2時間",
+              "y": 4,
+              "drilldown": "1ヶ月後以降"
+          }
+        ]
+      })
+      c.drilldown( { series: [
+          { "name": "明日",
+            "id": "明日",
+            "data": [
+              ["PerfectRuby：2時間", 2],
+              ["プログラムはなぜ動くのか：10分", 0.18],
+              ["jsの本：1時間", 1],
+            ]
+          },
+          { "name": "あさって",
+            "id": "あさって",
+            "data": [
+              ["PerfectRuby：2時間", 2],
+              ["プログラムはなぜ動くのか：50分", 0.83],
+            ]
+          },
+        ]
+      })
+    end
   end
 
   def new

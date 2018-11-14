@@ -3,6 +3,7 @@
 //= require bootstrap-sprockets
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
+//= require highcharts/modules/drilldown
 //= require material
 //= require turbolinks
 //= require cable

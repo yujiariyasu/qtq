@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-console.log(3)
   $(".upload-button").on("click", function() {
     $("input[type=file]").click();
   });
