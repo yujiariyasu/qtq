@@ -1,34 +1,13 @@
 @media screen and (max-width: 1325px) {
-  .left-item {
-    margin-right: 0.7%;
-  }
 }
 
 @media screen and (max-width: 1024px) {
-  .left-item {
-    margin-right: 0.5%;
-  }
 }
 
 @media screen and (max-width: 857px) {
-  .left-item {
-    width: 100%;
-  }
-
-  .right-item {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 768px) {
-  .left-item {
-    width: 100%;
-  }
-
-  .right-item {
-    width: 100%;
-  }
-
   .navbar-nav {
     margin: 0;
     display: inline-block;
