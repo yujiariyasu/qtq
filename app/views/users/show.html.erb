@@ -2,56 +2,85 @@
 
 <div id="page-top">
   <div id="wrapper" class='wrapper'>
-      <%= render partial: 'common/sidebar' %>
-      <div id="content" class='p10 clearfix m0a main'>
-        <ol class="breadcrumb p20">
-          <li class="breadcrumb-item">
-            <a class='blue-black' href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active blue-black">Charts</li>
-        </ol>
-        <div class='item-wrapper'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">Chart1</li>
-            </ol>
-          </div>
-          <div>
-            <%= @user.name %>さんのページ
-            フォロー：<%= @user.following.count %>人
-            フォロワー：<span id='followers'><%= @user.followers.count %></span>人
-          </div>
-          <% if logged_in? && !current_user?(@user) %>
-            <div id="follow_form">
-            <% if current_user.following?(@user) %>
-              <%= render 'unfollow' %>
-            <% else %>
-              <%= render 'follow' %>
-            <% end %>
-            </div>
+    <nav id="sidebar" class='sidebar'>
+        <ul class="list-unstyled components">
+            <li class='sidebar-list'>
+              <%= link_to root_path, 'data-turbolinks-track': false do %>
+                <%= fa_icon 'folder', class: 'blue-black' %>
+                <span class='blue-black'>Show</span>
+              <% end %>
+            </li>
+            <li class='sidebar-list'><a href="#">
+              <%= fa_icon 'folder', class: 'blue-black' %>
+              <span class='blue-black'>About</span></a></li>
+            <li class='sidebar-list'>
+              <% if logged_in? %>
+                <%= link_to root_path, 'data-turbolinks-track': false do %>
+                  <%= fa_icon 'folder', class: 'blue-black' %>
+                  <span class='blue-black'>ログインしている場合</span>
+                <% end %>
+              <% end %>
+            </li>
+
+        </ul>
+    </nav>
+    <div id="content" class='p10 clearfix m0a main'>
+      <ol class="breadcrumb p20">
+        <li class="breadcrumb-item">
+          <a class='blue-black' href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active blue-black">Charts</li>
+      </ol>
+      <div class='item-wrapper'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black">Chart1</li>
+          </ol>
+        </div>
+        <div>
+          <%= @user.name %>さんのページ
+          フォロー：<%= @user.following.count %>人
+          フォロワー：<span id='followers'><%= @user.followers.count %></span>人
+        </div>
+        <% if logged_in? && !current_user?(@user) %>
+          <div id="follow_form">
+          <% if current_user.following?(@user) %>
+            <%= render 'unfollow' %>
+          <% else %>
+            <%= render 'follow' %>
           <% end %>
-        </div>
-        <div class='item-wrapper left-item'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">Chart2</li>
-            </ol>
           </div>
-          <%= high_chart("chart2", @chart2) %>
-        </div>
-        <div class='item-wrapper right-item'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">Chart3</li>
-            </ol>
-          </div>
-          <%= high_chart("chart3", @chart3) %>
-        </div>
-        <footer class="sticky-footer mb0">
-          <p class="breadcrumb p20 text-center mb0">
-            <span class='blue-black' href="#">Copyright © RootedLearning 2018</span>
-          </p>
-        </footer>
+        <% end %>
       </div>
+      <div class='item-wrapper left-item'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              Comparison
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
+        </div>
+        <%= high_chart("比較", @chart2) %>
+      </div>
+      <div class='item-wrapper right-item'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              Schedule
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
+        </div>
+        <%= high_chart("予定", @chart3) %>
+      </div>
+      <footer class="sticky-footer mb0">
+        <p class="breadcrumb p20 text-center mb0">
+          <span class='blue-black' href="#">Copyright © RootedLearning 2018</span>
+        </p>
+      </footer>
+    </div>
   </div>
 </div>
