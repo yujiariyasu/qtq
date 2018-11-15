@@ -106,15 +106,10 @@
 }
 
 .sidebar {
-    width: 225px !important;
     background-color: #f5f5f5;
     min-height: calc(100vh - 50px);
     padding-top: 10px;
 }
-
-// .main-content {
-//  min-width: calc(100vw - 250px);
-// }
 
 .clearfix::after{
   content: "";
@@ -142,7 +137,8 @@
 }
 
 .main {
-  min-width: calc(100vw - 250px);
+  background-color: white;
+  min-width: calc(100vw - 300px);
 }
 
 .container {
@@ -154,7 +150,19 @@
   border-radius: 0px;
   margin: 0;
 }
-
 label {
   font-weight: normal;
+}
+
+#main-wrapper {
+  background-color: #f6f6f6;
+}
+
+#main-container {
+  max-width: 1280px;
+  width: calc(100% - 50px);
+  margin-right: auto;
+  margin-left: auto;
+  grid-template-columns: calc(100% - 300px) 300px;
+  display: grid;
 }

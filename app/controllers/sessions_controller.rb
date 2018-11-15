@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
+    if user.password_digest.nil?
+      flash.now[:danger] = 'パスワードが設定されていないユーザーです。'
+      render 'new' and return
+    end
     if user && user.authenticate(params[:session][:password])
       if user.activated?
         log_in user

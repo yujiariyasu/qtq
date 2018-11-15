@@ -18,7 +18,6 @@ class UsersController < ApplicationController
         categories: date_category,
         crosshair: true
     })
-      c.yAxis(min: 0, title: {text: '勉強量'})
       c.tooltip( {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
