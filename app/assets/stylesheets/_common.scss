@@ -106,9 +106,10 @@
 }
 
 .sidebar {
-    background-color: #f5f5f5;
-    min-height: calc(100vh - 50px);
-    padding-top: 10px;
+    background-color: white;
+    float: right;
+    width: 300px;
+    margin-left: 10px;
 }
 
 .clearfix::after{
@@ -138,7 +139,8 @@
 
 .main {
   background-color: white;
-  min-width: calc(100vw - 300px);
+  float: left;
+  width: calc(100% - 326px);
 }
 
 .container {
@@ -159,10 +161,10 @@ label {
 }
 
 #main-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
   max-width: 1280px;
   width: calc(100% - 50px);
   margin-right: auto;
   margin-left: auto;
-  grid-template-columns: calc(100% - 300px) 300px;
-  display: grid;
 }
