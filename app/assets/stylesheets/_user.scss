@@ -31,3 +31,57 @@
   margin-bottom: 23px;
   margin-left: 105px;
 }
+
+.side-user-name {
+  font-size: 20px;
+  text-align: center;
+}
+
+.profile-stats-list {
+  display: inline-block;
+  width: 67px;
+  margin-left: 19px;
+}
+
+.profile-stats-list-follower {
+  display: inline-block;
+  width: 83px;
+  margin-left: 19px;
+}
+
+.profile-stats-link {
+  color: #777;
+  text-decoration:none;
+}
+
+.profile-stats-span {
+  width: 70px;
+}
+
+.follow-btn {
+  margin-left: 105px;
+}
+
+.unfollow-btn {
+  margin-left: 98px;
+}
+
+.unfollow-now {
+  display: none;
+}
+
+.follow-now {
+  display: inline-block;
+}
+
+.unfollow-btn:hover {
+  background: #cc4453!important;
+}
+
+.unfollow-btn:hover span:nth-child(1) {
+  display: inline-block;
+}
+
+.unfollow-btn:hover span:nth-child(2) {
+  display: none;
+}
