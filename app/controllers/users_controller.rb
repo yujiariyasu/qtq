@@ -4,41 +4,107 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    category = [1,3,5,7]
-    current_quantity = [1000,5000,3000,8000]
-    months = [ 4, 5, 6, 7, 8, 9 ]
-    product_A_sales = [ 1_000_000, 1_200_000, 1_300_000,
-      1_400_000, 1_200_000, 1_100_000 ]
-    product_B_sales = [   300_000,   500_000,   750_000,
-      1_150_000, 1_350_000, 1_600_000 ]
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(text: 'ItemXXXの在庫の推移')
-      f.xAxis(categories: category)
-      f.series(name: '在庫数', data: current_quantity)
-    end
-
-
-    @chart2 = LazyHighCharts::HighChart.new("graph") do |f|
-      f.title(text: 'ItemXXXの在庫の推移')
-      f.xAxis(categories: category)
-      f.series(name: '在庫数', data: current_quantity)
-    end
-
-    @chart3 = LazyHighCharts::HighChart.new("graph") do |c|
-      c.title(text: "製品別上期売上")
-      c.series({
-        colorByPoint: true,
-        # ここでは各月の売上額合計をグラフの値とする
-        data: [{name: 'A',y: product_A_sales.reduce{|sum,e| sum + e}},
-               {name: 'B',y: product_B_sales.reduce{|sum,e| sum + e}}]
+    category = (1..30).to_a
+    date_category = category.map{ |date| "#{date}日" }
+    day_array = [4, 2, 4, 6, 1, 4, 2, 1, 5, 4, 3, 4, 2, 1, 5, 8, 4, 2, 4, 6, 1, 4, 2, 1, 5, 4, 3, 4, 2, 1]
+    days1 = day_array.sample(day_array.size)
+    days2 = days1.sample(days1.size)
+    days3 = days2.sample(days2.size)
+    text = 'いい調子!!'
+    @chart2 = LazyHighCharts::HighChart.new("graph") do |c|
+      c.chart(type: "column")
+      c.subtitle(text: text)
+      c.xAxis( {
+        categories: date_category,
+        crosshair: true
+    })
+      c.tooltip( {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y} 時間</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
       })
-      c.plotOptions(pie: {allowPointSelect: true,cursor: 'pointer',dataLabels: {
-          enabled: true, format: '{point.name}: {point.percentage:.1f} %',
+      c.plotOptions( {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
         }
       })
-      # グラフの種類として「パイチャート」を指定
+      c.series(type: 'spline', name: '目標', data: [2]*30,
+               marker: {
+                 lineWidth: 1,
+                 lineColor: 'white',
+                 fillColor: 'white'
+               })
+      c.series(name: 'あなた', data: days1)
+      c.series(name: 'ライバル1', data: days2)
+      c.series(name: 'ライバル2', data: days3)
+
+    end
+
+    text = '明日は3時間分の復習です!!'
+    @chart3 = LazyHighCharts::HighChart.new("graph") do |c|
       c.chart(type: "pie")
-   end
+      c.subtitle(text: text)
+      c.plotOptions(series:{allowPointSelect: true, cursor: 'pointer',
+          dataLabels: {enabled: true, format: '{point.name}'}}
+      )
+      c.tooltip(
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+      )
+      c.series({
+        name: '復習',
+        colorByPoint: true,
+        data: [
+          {
+              "name": "明日：3時間",
+              "y": 3,
+              "drilldown": "明日"
+          },
+          {
+              "name": "あさって：2時間",
+              "y": 3,
+              "drilldown": "あさって"
+          },
+          {
+              "name": "しあさって：2時間",
+              "y": 2,
+              "drilldown": "しあさって"
+          },
+          {
+              "name": "4日後〜1ヶ月後：2時間",
+              "y": 3,
+              "drilldown": "4日後〜1ヶ月後"
+          },
+          {
+              "name": "1ヶ月後以降：2時間",
+              "y": 4,
+              "drilldown": "1ヶ月後以降"
+          }
+        ]
+      })
+      c.drilldown( { series: [
+          { "name": "明日",
+            "id": "明日",
+            "data": [
+              ["PerfectRuby：2時間", 2],
+              ["プログラムはなぜ動くのか：10分", 0.18],
+              ["jsの本：1時間", 1],
+            ]
+          },
+          { "name": "あさって",
+            "id": "あさって",
+            "data": [
+              ["PerfectRuby：2時間", 2],
+              ["プログラムはなぜ動くのか：50分", 0.83],
+            ]
+          },
+        ]
+      })
+    end
   end
 
   def new

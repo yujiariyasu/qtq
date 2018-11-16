@@ -1,13 +1,16 @@
 <div class="navbar navbar-default mb0 header-nav">
   <ul class="nav white navbar-nav">
     <li><a href="/" class='p0'><%= image_tag "logo-white.png", class: 'header-logo' %></a></li>
-    <li>
+
+<!--
+サイドバー隠すボタン、とりあえずはお蔵入り
+     <li>
       <button type="button" id="sidebarCollapse" class="navbar-btn pull-left hidden-xs">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </li>
+    </li> -->
   </ul>
   <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
     <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
