@@ -32,4 +32,37 @@ $(document).on('turbolinks:load', function() {
   });
 
   componentHandler.upgradeAllRegistered();
+
+    $(".side-user-image").on({"click":function(){
+            $(this).addClass("animated pulse");
+        },
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
+            $(this).removeClass("animated pulse");
+        }
+    });
+
+    $(".side-user-name").on({"click":function(){
+            $(this).addClass("animated rotateIn");
+        },
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
+            $(this).removeClass("animated rotateIn");
+        }
+    });
+
+    $(".user-main-comparison").on({"click":function(){
+            $(this).addClass("animated jackInTheBox");
+        },
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
+            $(this).removeClass("animated jackInTheBox");
+        }
+    });
+
+    $(".user-main-schedule").on({"click":function(){
+            $(this).addClass("animated swing");
+        },
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
+            $(this).removeClass("animated swing");
+        }
+    });
+
 });
