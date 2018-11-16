@@ -1,68 +1,81 @@
 <% provide(:title, "#{@user.name}さんのページ") %>
 <div class='row m0 p0' id="main-wrapper">
-  <div id='main-container'>
-    <div id="wrapper" class='wrapper'>
-      <div id="content" class='p10 clearfix m0a main'>
-        <ol class="breadcrumb p20">
-          <li class="breadcrumb-item">
-            <a class='blue-black' href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active blue-black">Charts</li>
-        </ol>
-        <div class='item-wrapper'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">Chart1</li>
-            </ol>
-          </div>
-          <div>
-            <%= @user.name %>さんのページ
-            フォロー：<%= @user.following.count %>人
-            フォロワー：<span id='followers'><%= @user.followers.count %></span>人
-          </div>
-          <% if logged_in? && !current_user?(@user) %>
-            <div id="follow_form">
-            <% if current_user.following?(@user) %>
-              <%= render 'unfollow' %>
-            <% else %>
-              <%= render 'follow' %>
-            <% end %>
-            </div>
-          <% end %>
+  <div id='main-container' class='clearfix'>
+    <div id="content" class='p10 m0a main'>
+      <!-- <ol class="breadcrumb p20">
+        <li class="breadcrumb-item">
+          <a class='blue-black' href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active blue-black">Charts</li>
+      </ol> -->
+      <div class='item-wrapper'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              Comparison
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
         </div>
-        <div class='item-wrapper'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">
-                <%= fa_icon 'smile-o', class: 'blue-black' %>
-                Comparison
-                <%= fa_icon 'smile-o', class: 'blue-black' %>
-              </li>
-            </ol>
-          </div>
-          <%= high_chart("比較", @chart2) %>
-        </div>
-        <div class='item-wrapper'>
-          <div class='item-header'>
-            <ol class="breadcrumb p20 mb0">
-              <li class="breadcrumb-item active blue-black">
-                <%= fa_icon 'smile-o', class: 'blue-black' %>
-                Schedule
-                <%= fa_icon 'smile-o', class: 'blue-black' %>
-              </li>
-            </ol>
-          </div>
-          <%= high_chart("予定", @chart3) %>
-        </div>
-        <footer class="sticky-footer mb0">
-          <p class="breadcrumb p20 text-center mb0">
-            <span class='blue-black' href="#">Copyright © RootedLearning 2018</span>
-          </p>
-        </footer>
+        <%= high_chart("比較", @chart2) %>
       </div>
-      <nav id="sidebar" class='sidebar'>
-        
-      </nav>
+      <div class='item-wrapper'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              Schedule
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
+        </div>
+        <%= high_chart("予定", @chart3) %>
+      </div>
+    </div>
+    <div id="sidebar" class='sidebar'>
+      <div class='mb10'>
+        <%= image_tag user_avatar_or_default(current_user), style: "border-radius: 4px;height:300px;" %>
+      </div>
+      <div>
+        <h2 class='side-user-name'>@<%= @user.name %></h2>
+        <div class="profile-stats mb10">
+          <ul class="">
+            <li class="profile-stats-list">
+              <a class='profile-stats-link'>
+                <span class="profile-stats-span">ツイート</span>
+                <span class="profile-stats-span">7,106</span>
+              </a>
+            </li>
+            <li class="profile-stats-list">
+              <a class='profile-stats-link'>
+                <span class="profile-stats-span">フォロー</span>
+                <span class="profile-stats-span"><%= @user.following.count %></span>
+              </a>
+            </li>
+            <li class="profile-stats-list-follower">
+              <a class='profile-stats-link'>
+                <span class="profile-stats-span">フォロワー</span>
+                <span class="profile-stats-span" id='followers'><%= @user.followers.count %></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <% if logged_in? && !current_user?(@user) %>
+          <div id="follow_form">
+          <% if current_user.following?(@user) %>
+            <%= render 'unfollow' %>
+          <% else %>
+            <%= render 'follow' %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
+  <footer class="sticky-footer mb0">
+    <p class="breadcrumb p20 text-center mb0">
+      <span class='blue-black' href="#">Copyright © RootedLearning 2018</span>
+    </p>
+  </footer>
 </div>
