@@ -1,22 +1,21 @@
 <nav id="sidebar" class='sidebar'>
-    <ul class="list-unstyled components">
-        <li class='sidebar-list'>
+  <ul class="list-unstyled components">
+      <li class='sidebar-list'>
+        <%= link_to root_path, 'data-turbolinks-track': false do %>
+          <%= fa_icon 'folder', class: 'blue-black' %>
+          <span class='blue-black'>Show</span>
+        <% end %>
+      </li>
+      <li class='sidebar-list'><a href="#">
+        <%= fa_icon 'folder', class: 'blue-black' %>
+        <span class='blue-black'>About</span></a></li>
+      <li class='sidebar-list'>
+        <% if logged_in? %>
           <%= link_to root_path, 'data-turbolinks-track': false do %>
             <%= fa_icon 'folder', class: 'blue-black' %>
-            <span class='blue-black'>Show</span>
+            <span class='blue-black'>ログインしている場合</span>
           <% end %>
-        </li>
-        <li class='sidebar-list'><a href="#">
-          <%= fa_icon 'folder', class: 'blue-black' %>
-          <span class='blue-black'>About</span></a></li>
-        <li class='sidebar-list'>
-          <% if logged_in? %>
-            <%= link_to root_path, 'data-turbolinks-track': false do %>
-              <%= fa_icon 'folder', class: 'blue-black' %>
-              <span class='blue-black'>ログインしている場合</span>
-            <% end %>
-          <% end %>
-        </li>
-
-    </ul>
+        <% end %>
+      </li>
+  </ul>
 </nav>
