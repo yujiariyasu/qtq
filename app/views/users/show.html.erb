@@ -11,7 +11,7 @@
       <div class='item-wrapper'>
         <div class='item-header'>
           <ol class="breadcrumb p20 mb0">
-            <li class="breadcrumb-item active blue-black">
+            <li class="breadcrumb-item active blue-black user-main-comparison">
               <%= fa_icon 'smile-o', class: 'blue-black' %>
               Comparison
               <%= fa_icon 'smile-o', class: 'blue-black' %>
@@ -23,7 +23,7 @@
       <div class='item-wrapper'>
         <div class='item-header'>
           <ol class="breadcrumb p20 mb0">
-            <li class="breadcrumb-item active blue-black">
+            <li class="breadcrumb-item active blue-black user-main-schedule">
               <%= fa_icon 'smile-o', class: 'blue-black' %>
               Schedule
               <%= fa_icon 'smile-o', class: 'blue-black' %>
@@ -36,7 +36,7 @@
     <div id="sidebar" class='sidebar'>
       <div class='back-white pb10'>
         <div class='mb10'>
-          <%= image_tag user_avatar_or_default(current_user) %>
+          <%= image_tag user_avatar_or_default(current_user), class: 'side-user-image animated pulse' %>
         </div>
         <div class='mb10'>
           <h2 class='side-user-name'>@<%= @user.name %></h2>
