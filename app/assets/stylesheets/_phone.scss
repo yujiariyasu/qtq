@@ -23,44 +23,6 @@
     margin-right: 0;
     padding-right: 0;
   }
-  /* Reversing the behavior of the sidebar:
-     it'll be rotated vertically and off canvas by default,
-     collapsing in on toggle button click with removal of
-     the vertical rotation.   */
-  #sidebar {
-      margin-right: -300px;
-      transform: rotateY(100deg);
-  }
-  #sidebar.active {
-      margin-left: 0;
-      transform: none;
-  }
-
-  /* Reversing the behavior of the bars:
-     Removing the rotation from the first,
-     last bars and reappear the second bar on default state,
-     and giving them a vertical margin */
-  #sidebarCollapse span:first-of-type,
-  #sidebarCollapse span:nth-of-type(2),
-  #sidebarCollapse span:last-of-type {
-      transform: none;
-      opacity: 1;
-      margin: 5px auto;
-  }
-
-  /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
-  #sidebarCollapse.active span {
-      margin: 0 auto;
-  }
-  #sidebarCollapse.active span:first-of-type {
-      transform: rotate(45deg) translate(2px, 2px);
-  }
-  #sidebarCollapse.active span:nth-of-type(2) {
-      opacity: 0;
-  }
-  #sidebarCollapse.active span:last-of-type {
-      transform: rotate(-45deg) translate(1px, -1px);
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -68,8 +30,35 @@
     font-family: 'HigashiOme';
   }
 
+  #main-container {
+      margin-top: 0;
+      margin-bottom: 10px;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+  }
+
   .main {
     min-width: 100%;
+    float: none;
+    padding-bottom: 10px;
+  }
+
+  .sidebar {
+    min-width: 100%;
+    float: none;
+    margin-left: 0;
+
+    img {
+      margin-top: 10px;
+      width: 94%;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .profile-stats-list {
+      margin-left: 42px;
+    }
   }
 
   .app-title {
@@ -89,5 +78,13 @@
       display: inline-block;
       margin-right: 5px;
     }
+  }
+
+  .phone-header {
+    display: block;
+  }
+
+  .mdl-textfield {
+    padding: 10px 0;
   }
 }
