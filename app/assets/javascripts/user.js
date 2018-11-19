@@ -39,12 +39,6 @@ $(document).on('turbolinks:load', function() {
     $(this).removeClass("animated pulse");
   }});
 
-  $(".side-user-name").on({"click":function(){
-    $(this).addClass("animated rotateIn");
-  },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
-    $(this).removeClass("animated rotateIn");
-  }});
-
   $(".user-main-comparison").on({"click":function(){
     $(this).addClass("animated jackInTheBox");
   },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
