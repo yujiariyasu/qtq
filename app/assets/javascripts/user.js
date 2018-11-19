@@ -40,9 +40,9 @@ $(document).on('turbolinks:load', function() {
   }});
 
   $(".user-main-comparison").on({"click":function(){
-    $(this).addClass("animated jackInTheBox");
+    $(this).addClass("animated bounce");
   },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
-    $(this).removeClass("animated jackInTheBox");
+    $(this).removeClass("animated bounce");
   }});
 
   $(".user-main-schedule").on({"click":function(){
