@@ -13,29 +13,28 @@
         </button>
       </li> -->
     </ul>
-    <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
-      <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
-      <span class="caret mr10 white img-hover-gray"></span>
-    </button>
+    <% if logged_in? %>
+      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
+        <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
+        <span class="caret mr10 white img-hover-gray"></span>
+      </button>
 
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect p0" style='border: solid 1px #169ae2' for="demo-menu-lower-right">
-      <% if logged_in? %>
-        <li><%= link_to 'マイページ', user_path(current_user), class: 'mdl-menu__item' %></li>
-        <li><%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'mdl-menu__item' %></li>
-        <li role="separator" class="divider" style="border: solid 0.3px #87b1c7;"></li>
-        <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
-      <% else %>
-        <li class="mdl-menu__item">Another Action</li>
-        <li disabled class="mdl-menu__item">Disabled Action</li>
-        <li class="mdl-menu__item">Yet Another Action</li>
-      <% end %>
-    </ul>
-
+      <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right">
+          <li><%= link_to 'マイページ', user_path(current_user), class: 'mdl-menu__item' %></li>
+          <li><%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'mdl-menu__item' %></li>
+          <li role="separator" class="divider" style="border: solid 0.3px #87b1c7;"></li>
+          <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
+      </ul>
+    <% else %>
+      <ul class="pull-right header-link-list">
+        <li><%= link_to 'ログイン', login_path %></li>
+      </ul>
+    <% end %>
     <ul class="pull-right header-link-list">
       <% if logged_in? %>
         <li><%= link_to '学習の登録', root_path %></li>
       <% else %>
-        <li><%= link_to 'ログイン', login_path %></li>
+        <li><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
       <% end %>
     </ul>
   </div>

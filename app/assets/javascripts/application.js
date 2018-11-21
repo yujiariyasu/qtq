@@ -7,5 +7,6 @@
 //= require material
 //= require turbolinks
 //= require cable
+//= require header
 //= require top
 //= require user
