@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def show
-    @user = User.find(params[:id])
+    @user = params[:id] ? User.find(params[:id]) : User.find(4)
     category = (1..30).to_a
     date_category = category.map{ |date| "#{date}日" }
     day_array = [4, 2, 4, 6, 1, 4, 2, 1, 5, 4, 3, 4, 2, 1, 5, 8, 4, 2, 4, 6, 1, 4, 2, 1, 5, 4, 3, 4, 2, 1]
