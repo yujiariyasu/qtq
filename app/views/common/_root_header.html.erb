@@ -1,0 +1,46 @@
+<div class="navbar navbar-default mb0 root-header-nav">
+<div class='root-header-mask'>
+  <div class='header-inner-box'>
+    <div class='common-header '>
+      <ul class="nav white navbar-nav">
+        <li><a href="/" class='p0'><%= image_tag "logo-white.png", class: 'header-logo' %></a></li>
+      </ul>
+      <ul class="pull-right header-link-list">
+        <li><%= link_to 'ログイン', login_path, style: 'margin-right:10px;' %></li>
+      </ul>
+      <ul class="pull-right header-link-list">
+      <li><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
+      </ul>
+    </div>
+    <div class='root-header-downer clearfix'>
+      <div class='pull-left root-header-downer-left-box'>
+        <h1 class='white root-header-downer-title'>Hello hackers !</h1>
+        <p class='white'>Rootedlearningは、学習を記録・共有するためのサービスです。<br>あなたの学習を定着させましょう ;)</p>
+      </div>
+      <div class="root-signup-box white pull-right">
+        <%= form_for(User.new) do |f| %>
+          <%= render 'shared/error_messages' %>
+          <div class="mdl-textfield mdl-js-textfield">
+            <%= f.text_field :name, class: 'mdl-textfield__input', placeholder: 'ユーザーネーム...' %>
+            <% f.label :name, class: 'mdl-textfield__label' %>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <%= f.email_field :email, class: 'mdl-textfield__input', placeholder: 'メールアドレス...' %>
+            <% f.label :email, class: 'mdl-textfield__label' %>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <%= f.password_field :password, class: 'mdl-textfield__input root-downer-header-pass', placeholder: 'パスワード...' %>
+            <% f.label :password, class: 'mdl-textfield__label' %>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--green user-new-button back-white light-blue root-user-new-button" style="margin-bottom: 23px;">
+            登録
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
