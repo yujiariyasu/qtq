@@ -111,7 +111,7 @@
 }
 
 .back-white {
-  background-color: #ffffff;
+  background-color: #ffffff!important;
 }
 
 .light-blue {
@@ -198,4 +198,8 @@ label {
 
 .phone-header {
   display: none;
+}
+
+.root-user-new-button {
+  font-size: 15px;
 }
