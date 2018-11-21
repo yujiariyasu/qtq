@@ -16,7 +16,7 @@
     <% if logged_in? %>
       <button id="demo-menu-lower-right" class="mdl-button mdl-js-button pull-right avatar-dropdown" style='margin-top:6px;'>
         <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
-        <span class="caret mr10 white img-hover-gray"></span>
+        <span class="caret mr10 img-hover-gray"></span>
       </button>
 
       <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right">
@@ -27,15 +27,18 @@
       </ul>
     <% else %>
       <ul class="pull-right header-link-list">
-        <li><%= link_to 'ログイン', login_path %></li>
+        <li><%= link_to 'ログイン', login_path, style: 'margin-right:10px;' %></li>
       </ul>
     <% end %>
     <ul class="pull-right header-link-list">
       <% if logged_in? %>
         <li><%= link_to '学習の登録', root_path %></li>
       <% else %>
-        <li><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
+        <li style='margin-bottom: 18px;'><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
       <% end %>
     </ul>
   </div>
 </div>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>

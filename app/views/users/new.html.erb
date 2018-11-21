@@ -1,11 +1,12 @@
 <% provide(:title, "RoootedLearningの登録") %>
+<%= render partial: 'common/header' %>
 <div class="link-to-root">
   <%= link_to root_path do %>
     <%= image_tag "logo-black.png" %>
   <% end %>
 </div>
 <div class="signup-box">
-  <h2>アカウントを作成</h2>
+  <h2>ユーザー登録</h2>
   <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
     <div class="mdl-textfield mdl-js-textfield">
@@ -25,12 +26,12 @@
       <% f.label :password_confirmation, class: 'mdl-textfield__label' %>
     </div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored user-new-button" style="margin-bottom: 23px;">
-      作成
+      登録
     </button>
   <% end %>
   <div class="a-divider"><h5>アカウントを持っている方は</h5></div>
   <%= link_to login_path do %>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style='margin-left: 81px;'>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style='margin-left: 84px;'>
       ログイン画面
     </button>
   <% end %>

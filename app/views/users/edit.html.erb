@@ -1,5 +1,6 @@
 <% provide(:title, "プロフィール更新") %>
 <% provide(:btn_text, '更新する') %>
+<%= render partial: 'common/header' %>
 <span class='dn' id='user-id-for-js'><%= current_user.id %></span>
 <div class="link-to-root">
   <%= link_to root_path do %>
