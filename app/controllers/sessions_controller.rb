@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
   def new
+    session[:path_info] = request.path_info
   end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user.password_digest.nil?
+    if user && user.password_digest.nil?
       flash.now[:danger] = 'パスワードが設定されていないユーザーです。'
       render 'new' and return
     end

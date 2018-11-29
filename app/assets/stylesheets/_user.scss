@@ -28,7 +28,6 @@
 }
 
 .user-new-button {
-  margin-bottom: 23px;
   margin-left: 110px;
 }
 
@@ -84,4 +83,11 @@
 
 .unfollow-btn:hover span:nth-child(2) {
   display: none;
+}
+
+.user-new-or {
+  text-align: center;
+  color: #767676;
+  margin-top:10px;
+  margin-bottom:10px;
 }

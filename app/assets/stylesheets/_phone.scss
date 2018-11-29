@@ -23,6 +23,19 @@
     margin-right: 0;
     padding-right: 0;
   }
+
+  // 迷っているが、一旦隠す仕様に。
+  .root-signup-box {
+    display: none;
+  }
+
+  .root-header-downer-left-box {
+    width: 100%;
+  }
+
+  .root-header-nav {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -91,13 +104,27 @@
     margin-right: 2px;
   }
   .root-signup-box {
-    margin-right: 25px!important;
     margin-top: -38px!important;
-  }
-  .root-header-nav {
-    height: 567px;
+    float: none;
   }
   .root-header-nav {
     background-image: url(https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/phone-header.png),linear-gradient(-45deg,#169ae2,#169ae2);
+  }
+  .root-header-downer-title{
+    text-align: center;
+  }
+  .root-facebook-button {
+    margin-top:40px;
+  }
+}
+@media screen and (max-width: 359px) {
+  .header-logo {
+    height: 19px;
+  }
+  .avatar-img {
+    max-width: 50px;
+  }
+  .avatar-dropdown {
+    padding-left: 5px;
   }
 }

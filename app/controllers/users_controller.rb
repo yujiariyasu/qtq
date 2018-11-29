@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def show
+    session[:path_info] = request.path_info
     @user = params[:id] ? User.find(params[:id]) : User.find(4)
     category = (1..30).to_a
     date_category = category.map{ |date| "#{date}日" }
@@ -108,10 +109,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    session[:path_info] = request.path_info
     @user = User.new
   end
 
   def create
+    params[:password_confirmation] = params[:password]
     if env['omniauth.auth'].present?
       # Facebookログイン
       @user = User.from_omniauth(env['omniauth.auth'])
@@ -122,7 +125,13 @@ class UsersController < ApplicationController
         redirect_to @user and return
       else
         flash[:danger] = 'Facebookログインに失敗しました。'
+        if session[:path_info] == '/'
         redirect_to root_path and return
+        elsif session[:path_info] == '/login'
+        redirect_to login_path and return
+        elsif session[:path_info] == '/users/new'
+        redirecto_to new_user_path and return
+        end
       end
     end
     @user = User.new(user_params)

@@ -1,4 +1,4 @@
-<div class="navbar navbar-default mb0 root-header-nav">
+<div class="navbar navbar-default root-header-nav">
 <div class='root-header-mask'>
   <div class='header-inner-box'>
     <div class='common-header '>
@@ -17,7 +17,14 @@
         <h1 class='white root-header-downer-title'>Hello hackers !</h1>
         <p class='white'>Rootedlearningは、学習を記録・共有するためのサービスです。<br>あなたの学習を定着させましょう ;)</p>
       </div>
-      <div class="root-signup-box white pull-right">
+      <div class="root-signup-box white">
+        <%= link_to "/auth/facebook" do %>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--green root-facebook-button">
+            <%= image_tag "facebook-logo.png", class: 'root-facebook-image' %>
+            <span class='root-facebook-letter'>Facebook</span>
+          </button>
+        <% end %>
+        <p class='text-center mt10'>or</p>
         <%= form_for(User.new) do |f| %>
           <%= render 'shared/error_messages' %>
           <div class="mdl-textfield mdl-js-textfield">
