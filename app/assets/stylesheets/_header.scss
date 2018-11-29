@@ -17,11 +17,11 @@
 
 .root-header-nav {
   background-repeat: repeat,no-repeat;
-  height: 400px;
   background-image: url(https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/root-header.png),linear-gradient(-45deg,#169ae2,#169ae2);
   animation: nl-Hero_Gradient 15s ease infinite;
   border: 0;
   border-radius: 0;
+  min-width: 320px;
 }
 
 .header-inner-box {
@@ -29,6 +29,13 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
+}
+
+.root-facebook-image {
+  height: 20px;
+  position: absolute;
+  bottom: 8px;
+  left: 17px;
 }
 
 .header-link-new-user {
@@ -44,6 +51,20 @@
   height: 28px;
   margin-top: 12px;
   margin-left: 12px;
+}
+
+.root-facebook-button {
+  margin-left: 81px;
+  background: white;
+  color: #4d74bf;
+  position: relative;
+  width: 127px;
+}
+
+.root-facebook-letter {
+  position: absolute;
+  bottom: 0;
+  left: 48px;
 }
 
 .navbar-default .navbar-nav > .open > a {
@@ -101,44 +122,59 @@
 }
 
 .root-header-mask {
-  background: #169ae2;
   opacity: 0.9;
+  background-color: #169ae2;
+  animation: bg-color 25s infinite;
+  -webkit-animation: bg-color 25s infinite;
+}
+
+@-webkit-keyframes bg-color {
+  0% { background-color: #169ae2; }
+  50% { background-color: #1bbdd2; }
+  100% { background-color: #169ae2; }
+}
+@keyframes bg-color {
+  0% { background-color: #169ae2; }
+  50% { background-color: #1bbdd2; }
+  100% { background-color: #169ae2; }
 }
 
 .root-header-downer {
   margin-top: 27px;
-  margin-bottom: 100px;
+}
+.root-signup-box {
+  width: 322px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  padding: 14px 18px;
+  border: none;
+  float: right;
+  margin-right: 20px;
 
-  .root-signup-box {
-    width: 322px;
-    margin: 0 auto;
-    border: 1px solid #ddd;
+
+  input {
+    padding: 10px;
     border-radius: 4px;
-    position: relative;
-    padding: 14px 18px;
-    border: none;
-
-    input {
-      padding: 10px;
-      border-radius: 4px;
-    }
-
-    .mdl-textfield__input {
-      border-bottom: 1px solid white;
-    }
-
-    input::placeholder {
-      color: white;
-      opacity: 0.6;
-    }
-  }
-  .root-header-downer-left-box {
-    padding: 40px;
   }
 
-  .root-header-downer-title {
-    text-align: left;
-    font-weight: bold!important;
-    margin-bottom: 50px;
+  .mdl-textfield__input {
+    border-bottom: 1px solid white;
   }
+
+  input::placeholder {
+    color: white;
+    opacity: 0.6;
+  }
+}
+.root-header-downer-left-box {
+  padding: 40px;
+  width: calc(100% - 380px)
+}
+
+.root-header-downer-title {
+  text-align: left;
+  font-weight: bold!important;
+  margin-bottom: 50px;
 }

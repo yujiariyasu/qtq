@@ -25,8 +25,14 @@
       <%= f.password_field :password_confirmation, class: 'mdl-textfield__input', placeholder: 'パスワードの確認...' %>
       <% f.label :password_confirmation, class: 'mdl-textfield__label' %>
     </div>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored user-new-button" style="margin-bottom: 23px;">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored user-new-button">
       登録
+    </button>
+  <% end %>
+  <div class='user-new-or'>or</div>
+  <%= link_to "/auth/facebook" do %>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--green facebook-button">
+      Facebookアカウントでログイン
     </button>
   <% end %>
   <div class="a-divider"><h5>アカウントを持っている方は</h5></div>
