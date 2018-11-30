@@ -1,6 +1,3 @@
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
 <div class="navbar navbar-default root-header-nav">
 <div class='root-header-mask'>
   <div class='header-inner-box'>
@@ -51,3 +48,6 @@
   </div>
 </div>
 </div>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
