@@ -1,7 +1,4 @@
-<div style="margin-bottom: 5px;">
-  <h2 style="font-size: 21px;margin: 5px 0 0;font-weight: normal;">RootedLearningへようこそ</h2>
-</div>
-<h2 style="font-size: 19px;margin: 5px 0 0;font-weight: normal;"><%= @user.name %> さん</h2>
+<p style="font-size: 19px;margin: 5px 0 0;font-weight: normal;"><%= @user.name %> さんこんにちは、RootedLearningへようこそ。</p>
 <p style="font-size: 15px;">登録していただき、ありがとうございます。</p>
 <p style="font-size: 15px;"><%= link_to "ユーザー認証リンク", edit_account_activation_url(@user.activation_token, email: @user.email), style: "text-decoration: none;color: blue;" %> をクリックして、認証を完了させてください。
 </p>

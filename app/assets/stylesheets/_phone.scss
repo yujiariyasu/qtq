@@ -117,7 +117,7 @@
     margin-top:40px;
   }
   div#error {
-    width: 100%;
+    width: calc(100% - 40px)
   }
 
 }
