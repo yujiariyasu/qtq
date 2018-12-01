@@ -1,8 +1,6 @@
 <% provide(:title, "#{@user.name}さんのページ") %>
 <% if logged_in? %>
-<div>
   <%= render partial: 'common/header' %>
-</div>
 <% else %>
   <%= render partial: 'common/root_header' %>
 <% end %>
@@ -14,7 +12,6 @@
         <li class="breadcrumb-item">
           <span class='blue-black' href="#">@<%= @user.name %>さんのページ</span>
         </li>
-        <!-- <li class="breadcrumb-item active blue-black">Charts</li> -->
       </ol>
       <div class='item-wrapper'>
         <div class='item-header'>
