@@ -9,7 +9,7 @@ if Rails.env.production?
         :provider              => 'AWS',
         :aws_access_key_id     => ENV['S3_IAM_ACCESS_KEY'],
         :aws_secret_access_key => ENV['S3_IAM_SECRET_KEY'],
-        :region                => ENV['AWS_REGION'],
+        :region                => ENV['AWS_REGION']
     }
 
     config.fog_directory = 'rootedlearning'

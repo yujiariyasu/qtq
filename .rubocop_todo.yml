@@ -507,13 +507,6 @@ Style/RedundantReturn:
   Exclude:
     - 'app/helpers/application_helper.rb'
 
-# Offense count: 121
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
@@ -521,34 +514,11 @@ Style/StringLiterals:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'app/controllers/users_controller.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/carrierwave.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/TrailingMethodEndStatement:
-  Exclude:
-    - 'db/migrate/20181110040645_create_user_relationships.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/UnneededCondition:
   Exclude:
-    - 'app/uploaders/avatar_uploader.rb'
+    # - 'app/uploaders/avatar_uploader.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

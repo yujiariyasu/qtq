@@ -69,7 +69,7 @@ Rails.application.configure do
     domain:               'smtp.gmail.com',
     user_name:            ENV['MAIL'],
     password:             ENV['MAIL_PASS'],
-    authentication:       'login',
+    authentication:       'login'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

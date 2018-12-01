@@ -93,16 +93,16 @@ class UsersController < ApplicationController
             data: [
               ['PerfectRuby：2時間', 2],
               ['プログラムはなぜ動くのか：10分', 0.18],
-              ['jsの本：1時間', 1],
+              ['jsの本：1時間', 1]
             ]
           },
           { name: 'あさって',
             id: 'あさって',
             data: [
               ['PerfectRuby：2時間', 2],
-              ['プログラムはなぜ動くのか：50分', 0.83],
+              ['プログラムはなぜ動くのか：50分', 0.83]
             ]
-          },
+          }
         ]
       })
     end
