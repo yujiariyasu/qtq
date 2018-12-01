@@ -186,3 +186,18 @@
 .learning-new-modal {
   cursor: pointer;
 }
+
+.learning-new-modal-body {
+  background-color: #1DA1F2;
+  background: rgba(29,161,242,0.1);
+
+  .modal-inner-box {
+    padding: 10px;
+    display: flex;
+    min-width: 300px;
+  }
+
+  .modal-form-box {
+    margin: 0 64px 20px 10px;
+  }
+}
