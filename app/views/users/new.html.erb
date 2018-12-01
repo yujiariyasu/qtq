@@ -11,19 +11,12 @@
     <%= render 'shared/error_messages' %>
     <div class="mdl-textfield mdl-js-textfield">
       <%= f.text_field :name, class: 'mdl-textfield__input', placeholder: 'ユーザーネーム...' %>
-      <% f.label :name, class: 'mdl-textfield__label' %>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
       <%= f.email_field :email, class: 'mdl-textfield__input', placeholder: 'メールアドレス...' %>
-      <% f.label :email, class: 'mdl-textfield__label' %>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
       <%= f.password_field :password, class: 'mdl-textfield__input', placeholder: 'パスワード...' %>
-      <% f.label :password, class: 'mdl-textfield__label' %>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield">
-      <%= f.password_field :password_confirmation, class: 'mdl-textfield__input', placeholder: 'パスワードの確認...' %>
-      <% f.label :password_confirmation, class: 'mdl-textfield__label' %>
     </div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored user-new-button">
       登録

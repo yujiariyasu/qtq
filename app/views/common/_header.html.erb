@@ -32,7 +32,42 @@
     <% end %>
     <ul class="pull-right header-link-list">
       <% if logged_in? %>
-        <li><%= link_to '学習の登録', root_path %></li>
+        <li class='white learning-new-modal' data-toggle="modal" data-target="#exampleModal">
+          学習の登録
+        </li>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title text-center" id="exampleModalLabel">日々の学習を記録しましょう！</h5>
+      </div>
+      <div class='learning-new-modal-body'>
+        <div class='modal-inner-box'>
+          <div class='modal-image-box'>
+            <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
+          </div>
+          <div class='modal-form-box'>
+            <%= form_for(Learning.new) do |f| %>
+              <%= hidden_field_tag :url, request.url %>
+              <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
+                <%= f.text_field :title, class: 'mdl-textfield__input p10', style: 'width: 70%;', placeholder: 'タイトル...' %>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
+                <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '詳細...' %>
+              </div>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                登録
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       <% elsif !(params[:controller] == 'users' && params[:action] == 'new') %>
         <li style='margin-bottom: 18px;'><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
       <% end %>
