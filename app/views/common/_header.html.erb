@@ -49,6 +49,9 @@
           <div class='modal-image-box'>
             <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
           </div>
+          <div>
+            <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
+          </div>
           <div class='modal-form-box'>
             <%= form_for(Learning.new) do |f| %>
               <%= hidden_field_tag :url, request.url %>
