@@ -3,7 +3,7 @@ class LearningsController < ApplicationController
 
     @learning = Learning.new(learning_params)
     if @learning.save
-      flash[:info] = '学習の登録しました。'
+      flash[:info] = '学習を登録しました。'
     else
       flash[:danger] = '学習の登録に失敗しました。'
     end
