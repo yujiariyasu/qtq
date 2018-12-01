@@ -1,6 +1,10 @@
 class LearningsController < ApplicationController
-  def create
+  def show
+    @learning = Learning.find(params[:id])
+    @user = @learning.user
+  end
 
+  def create
     @learning = Learning.new(learning_params)
     if @learning.save
       flash[:info] = '学習を登録しました。'

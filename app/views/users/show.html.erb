@@ -1,8 +1,6 @@
 <% provide(:title, "#{@user.name}さんのページ") %>
 <% if logged_in? %>
-<div>
   <%= render partial: 'common/header' %>
-</div>
 <% else %>
   <%= render partial: 'common/root_header' %>
 <% end %>
@@ -14,7 +12,6 @@
         <li class="breadcrumb-item">
           <span class='blue-black' href="#">@<%= @user.name %>さんのページ</span>
         </li>
-        <!-- <li class="breadcrumb-item active blue-black">Charts</li> -->
       </ol>
       <div class='item-wrapper'>
         <div class='item-header'>
@@ -41,51 +38,7 @@
         <%= high_chart("予定", @chart3) %>
       </div>
     </div>
-    <div id="sidebar" class='sidebar'>
-      <div class='back-white pb10'>
-        <div class='mb10'>
-          <%= image_tag user_avatar_or_default(@user), class: 'side-user-image animated pulse' %>
-        </div>
-        <div class='mb10'>
-          <h2 class='side-user-name'>@<%= @user.name %></h2>
-          <div class="profile-stats mb10">
-            <ul class="">
-              <li class="profile-stats-list">
-                <a class='profile-stats-link'>
-                  <span class="profile-stats-span">学習時間</span>
-                  <span class="profile-stats-span">1,106</span>
-                </a>
-              </li>
-              <li class="profile-stats-list">
-                <a class='profile-stats-link'>
-                  <span class="profile-stats-span">フォロー</span>
-                  <span class="profile-stats-span"><%= @user.following.count %></span>
-                </a>
-              </li>
-              <li class="profile-stats-list-follower">
-                <a class='profile-stats-link'>
-                  <span class="profile-stats-span">フォロワー</span>
-                  <span class="profile-stats-span" id='followers'><%= @user.followers.count %></span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <% if logged_in? && !current_user?(@user) %>
-            <div id="follow_form">
-            <% if current_user.following?(@user) %>
-              <%= render 'unfollow' %>
-            <% else %>
-              <%= render 'follow' %>
-            <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class='mb10 back-white mt10 pb10'>
-        <%= image_tag 'ex.png' %>
-      </div>
-    </div>
-    <!-- sidebar -->
+    <%= render partial: 'shared/sidebar' %>
   </div>
   <footer class="sticky-footer mb0">
     <p class="breadcrumb p20 text-center mb0">
