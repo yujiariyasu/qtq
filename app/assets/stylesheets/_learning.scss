@@ -1,0 +1,49 @@
+.learning-main {
+  padding: 30px;
+
+  .user-name {
+    line-height: 39px;
+    color: black;
+    margin-left: 10px;
+    font-size: 18px;
+
+    &:hover {
+      color: #000000ba;
+    }
+  }
+
+  h1 {
+    margin-top: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .learning-tag-list {
+    display: flex;
+    margin-bottom: 30px;
+
+    a {
+      margin-right: 8px;
+      align-items: center;
+      background-color: #eee;
+      color: #666;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  }
+  .learning-img {
+    height: 300px;
+    margin-bottom: 20px;
+    border: solid 1px #eee;
+    max-width: 100%;
+  }
+
+  .learning-main-header {
+    display: flex;
+  }
+
+  .learning-main-header >:last-child {
+    margin-left: auto;
+  }
+}
