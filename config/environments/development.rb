@@ -34,8 +34,8 @@ Rails.application.configure do
     port:                 465,
     address:              'smtp.gmail.com',
     domain:               'smtp.gmail.com',
-    user_name:            ENV["ROOTED_MAIL"],
-    password:             ENV["ROOTED_MAIL_PASS"],
+    user_name:            ENV['ROOTED_MAIL'],
+    password:             ENV['ROOTED_MAIL_PASS'],
     authentication:       'login',
     tls:                  true
   }

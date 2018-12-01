@@ -67,9 +67,9 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'smtp.gmail.com',
-    user_name:            ENV["MAIL"],
-    password:             ENV["MAIL_PASS"],
-    authentication:       'login',
+    user_name:            ENV['MAIL'],
+    password:             ENV['MAIL_PASS'],
+    authentication:       'login'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -86,7 +86,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)

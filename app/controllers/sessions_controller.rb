@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user
       else
-        flash[:warning] = "アカウントの認証が済んでいません。メールをチェックしてください。"
+        flash[:warning] = 'アカウントの認証が済んでいません。メールをチェックしてください。'
         redirect_to root_url
       end
     else
