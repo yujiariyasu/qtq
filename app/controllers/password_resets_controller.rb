@@ -11,10 +11,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email if Rails.env.production?
-      flash[:info] = "メールを送信しました。"
+      flash[:info] = 'メールを送信しました。'
       redirect_to root_url
     else
-      flash[:info] = "無効なメールアドレスです。"
+      flash[:info] = '無効なメールアドレスです。'
       render 'new'
     end
   end
@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
     elsif @user.update_attributes(user_params)
       log_in @user
       @user.update_attribute(:reset_digest, nil)
-      flash[:success] = "パスワードがリセットされました。"
+      flash[:success] = 'パスワードがリセットされました。'
       redirect_to @user
     else
       render 'edit'
@@ -54,7 +54,7 @@ class PasswordResetsController < ApplicationController
 
     def check_expiration
       if @user.password_reset_expired?
-        flash[:danger] = "Password reset has expired."
+        flash[:danger] = 'Password reset has expired.'
         redirect_to new_password_reset_url
       end
     end
