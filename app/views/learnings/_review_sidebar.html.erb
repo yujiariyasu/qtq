@@ -1,12 +1,41 @@
 <div id="sidebar" class='sidebar'>
-  <div class='back-white pb10 review-sidebar'>
-    <div class='mb10'>
-      <h2 class='text-center'>復習をしましょう！</h2>
-        <%= form_for(Review.new) do |f| %>
-          <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="0" tabindex="0" id='review-slider'>
-          <span id='understanding-level' class='blue-black pull-left'>0%</span>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">復習完了!!</button>
-        <% end %>
+  <div class='mb10 back-light-blue review-modal' data-toggle="modal" data-target="#review-modal">
+    <%= image_tag 'review.png', class: 'review-modal-button' %>
+  </div>
+  <div class="modal fade review-sidebar" id="review-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="modal-title text-center" id="exampleModalLabel">日々の学習を記録しましょう！</h5>
+        </div>
+        <div class='learning-new-modal-body'>
+          <div class='modal-inner-box'>
+            <div class='modal-image-box'>
+              <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
+            </div>
+            <div>
+              <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
+            </div>
+            <div class='modal-form-box'>
+              <%= form_for(Learning.new) do |f| %>
+                <%= hidden_field_tag :url, request.url %>
+                <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
+                  <%= f.text_field :title, class: 'mdl-textfield__input p10', style: 'width: 70%;', placeholder: 'タイトル...' %>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
+                  <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  登録
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class='mb10 back-white mt10 pb10'>
