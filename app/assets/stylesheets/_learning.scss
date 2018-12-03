@@ -47,3 +47,20 @@
     margin-left: auto;
   }
 }
+
+.review-sidebar {
+  padding-top: 30px;
+
+  h2 {
+    text-align: center;
+  }
+
+  button {
+    float: right;
+  }
+
+  .review-form {
+    display: flex;
+
+  }
+}

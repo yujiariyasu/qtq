@@ -1,0 +1,15 @@
+<div id="sidebar" class='sidebar'>
+  <div class='back-white pb10 review-sidebar'>
+    <div class='mb10'>
+      <h2 class='text-center'>復習をしましょう！</h2>
+        <%= form_for(Review.new) do |f| %>
+          <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="0" tabindex="0" id='review-slider'>
+          <span id='understanding-level' class='blue-black pull-left'>0%</span>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">復習完了!!</button>
+        <% end %>
+    </div>
+  </div>
+  <div class='mb10 back-white mt10 pb10'>
+    <%= image_tag 'ex.png' %>
+  </div>
+</div>
