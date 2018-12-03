@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       c.xAxis( {
         categories: date_category,
         crosshair: true
-    })
+      })
       c.tooltip( {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -42,7 +42,6 @@ class UsersController < ApplicationController
       c.series(name: 'あなた', data: days1)
       c.series(name: 'ライバル1', data: days2)
       c.series(name: 'ライバル2', data: days3)
-
     end
 
     text = '明日は3時間分の復習です!!'

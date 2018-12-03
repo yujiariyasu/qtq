@@ -23,8 +23,22 @@
           <%= image_tag 'https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg', class: 'learning-img' %>
         <% end %>
       <%# end %>
-      <div class='blue-black'>
+      <div class='blue-black learning-description'>
         <%= simple_format(@learning.description) %>
+      </div>
+      <div class='item-wrapper'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black user-main-comparison">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              復習履歴
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
+        </div>
+        <div class='pt10'>
+          <%= high_chart("復習", @chart) %>
+        </div>
       </div>
     </div>
     <%= render partial: 'shared/sidebar' %>
