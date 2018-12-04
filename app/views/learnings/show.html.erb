@@ -6,7 +6,7 @@
       <div class='learning-main-header'>
         <%= image_tag user_avatar_or_default(current_user), class: 'avatar-img' %>
         <%= link_to "@#{@user.name}", user_path(@user), class: 'user-name' %>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent learning-new-modal learning-edit-modal pull-right" data-toggle="modal" data-target="#learning-new-modal">
+        <button class="mdl-button mdl-js-button mdl-button--raised learning-new-modal learning-edit-modal pull-right white" data-toggle="modal" data-target="#learning-new-modal">
           編集
         </button>
       </div>
