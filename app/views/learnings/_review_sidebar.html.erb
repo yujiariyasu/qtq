@@ -11,12 +11,12 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h5 class="modal-title text-center" id="exampleModalLabel">日々の学習を記録しましょう！</h5>
+          <h5 class="modal-title text-center blue-black" id="exampleModalLabel">新しい学びを記録しましょう！</h5>
         </div>
         <div class='learning-new-modal-body'>
           <div class='modal-inner-box'>
             <div class='modal-image-box'>
-              <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
+              <%= image_tag user_avatar_or_default(current_user), class: "avatar-img review-avatar" %>
             </div>
             <div>
               <%= fa_icon 'angle-left', class: 'modal-angle-left' %>

@@ -76,4 +76,16 @@
 
 .learning-edit-modal {
   background: #cc4453;
+  width: 77px;
+  border-radius: 4px;
+
+  &:hover {
+    background: #cc4453;
+  }
+}
+
+.review-sidebar {
+  .review-avatar {
+    width: auto;
+  }
 }
