@@ -23,7 +23,7 @@
             </div>
             <div class='modal-form-box'>
               <%= form_for(@review) do |f| %>
-                <%= hidden_field_tag :url, request.url %>
+                <%= hidden_field_tag :learning_id, @learning.id %>
                 <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                   <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '復習の気づきをメモしましょう...' %>
                 </div>

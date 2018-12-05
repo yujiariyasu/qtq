@@ -6,8 +6,8 @@ class LearningsController < ApplicationController
   end
 
   def create
-    @learning = Learning.new(learning_params)
-    if @learning.save
+    learning = Learning.new(learning_params)
+    if learning.save
       flash[:info] = '学習を登録しました。'
     else
       flash[:danger] = '学習の登録に失敗しました。'
