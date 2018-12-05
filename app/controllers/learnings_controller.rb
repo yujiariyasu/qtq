@@ -2,6 +2,7 @@ class LearningsController < ApplicationController
   def show
     @learning = Learning.find(params[:id])
     @user = @learning.user
+    @review = Review.new
   end
 
   def create
