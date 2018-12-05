@@ -19,19 +19,16 @@
               <%= image_tag user_avatar_or_default(current_user), class: "avatar-img review-avatar" %>
             </div>
             <div>
-              <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
+              <%= fa_icon 'angle-left', class: 'review-modal-angle-left' %>
             </div>
             <div class='modal-form-box'>
-              <%= form_for(Learning.new) do |f| %>
+              <%= form_for(@review) do |f| %>
                 <%= hidden_field_tag :url, request.url %>
-                <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
-                  <%= f.text_field :title, class: 'mdl-textfield__input p10', style: 'width: 70%;', placeholder: 'タイトル...' %>
-                </div>
                 <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
-                  <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
+                  <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '復習の気づきをメモしましょう...' %>
                 </div>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                  登録
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-left">
+                  復習完了!!
                 </button>
               <% end %>
             </div>
