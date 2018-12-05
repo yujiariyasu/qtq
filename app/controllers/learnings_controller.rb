@@ -5,24 +5,32 @@ class LearningsController < ApplicationController
     reviews = @learning.reviews
     review_data = [100]
     decrease_speed = 67
-    date_array = []
+    review_date_proficiency_map = {}
     reviews.each do |review|
-      date_array << review.created_at.to_date.next_day
+      review_date_proficiency_map[review.created_at.to_date.next_day] = review.proficiency
     end
-    (@learning.created_at.to_date..reviews.last.created_at.to_date.next_day).each do |date|
-      if date_array.include?(date)
+    (@learning.created_at.to_date..Time.now.to_date).each do |date|
+      if review_date_proficiency_map.keys.include?(date)
         review_data << 100
+        decrease_speed /= (1 + review_date_proficiency_map[date] * 2 / 100)
         next
       end
-      last_data = review_date[-1] - decrease_speed
+      last_data = review_data[-1] - decrease_speed
       last_data = 0 if last_data < 0
       review_data << last_data
     end
-    review_data = [100, 70, 100, 80, 70, 60,-10,-20,-30,nil]
     elapsed_days_num = reviews.present? ? @learning.elapsed_days_num : 1
     range = elapsed_days_num > 9 ? 1..elapsed_days_num : 1..10
     date_category = range.to_a.map{ |date| "#{date}日目" }
-    text = 'そろそろ復習..'
+    if review_data[-1] > 70
+      text = 'イイ感じ..'
+    elsif review_data[-1] > 40
+      text = 'そろそろ復習..'
+    elsif review_data[-1] > 10
+      text = '頑張ろう..'
+    else
+      text = 'ヤバいよヤバいよ..'
+    end
     @chart = LazyHighCharts::HighChart.new('graph') do |c|
       c.subtitle(text: text)
       c.xAxis(categories: date_category)
