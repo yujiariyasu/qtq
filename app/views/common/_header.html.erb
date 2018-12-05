@@ -18,7 +18,6 @@
         <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
         <span class="caret mr10 img-hover-gray"></span>
       </button>
-
       <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right">
           <li><%= link_to 'マイページ', user_path(current_user), class: 'mdl-menu__item' %></li>
           <li><%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'mdl-menu__item' %></li>
@@ -47,7 +46,7 @@
               <div class='learning-new-modal-body'>
                 <div class='modal-inner-box'>
                   <div class='modal-image-box'>
-                    <%= image_tag user_avatar_or_default(current_user), class: "avatar-img" %>
+                    <%= image_tag user_avatar_or_default(current_user), class: "avatar-img learning-new-modal-img" %>
                   </div>
                   <div>
                     <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
@@ -56,13 +55,13 @@
                     <%= form_for(Learning.new) do |f| %>
                       <%= hidden_field_tag :url, request.url %>
                       <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
-                        <%= f.text_field :title, class: 'mdl-textfield__input p10', style: 'width: 70%;', placeholder: 'タイトル...' %>
+                        <%= f.text_field :title, class: 'mdl-textfield__input p10', placeholder: 'タイトル...' %>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                         <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
                       </div>
                       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                        登録
+                        記録をつける
                       </button>
                     <% end %>
                   </div>
