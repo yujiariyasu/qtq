@@ -60,7 +60,12 @@
                       <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                         <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
                       </div>
-                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                      <div id="learning-images-preview"></div>
+                      <div class="upload-box pull-left">
+                        <%= fa_icon 'image', class: 'learning-upload-button learning-image-icon' %>
+                        <%= f.file_field :images, id: 'learning-image-files' %>
+                      </div>
+                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10">
                         記録をつける
                       </button>
                     <% end %>

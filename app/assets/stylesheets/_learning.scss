@@ -94,7 +94,7 @@
   }
 }
 
-.modal {
+.modal-title {
   font-family: 'HigashiOme';
 }
 
@@ -107,4 +107,18 @@
     font-size: 14px;
     font-family: 'HigashiOme';
   }
+}
+
+.learning-image-icon {
+  font-size: 28px;
+}
+
+.learning-image {
+  height: 70px;
+}
+
+.learning-upload-button {
+  margin-left: 22px;
+  cursor: pointer;
+  margin-top: 6px;
 }
