@@ -27,7 +27,7 @@
                 <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                   <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '復習の気づきをメモしましょう...' %>
                 </div>
-                <input class="mdl-slider mdl-js-slider" type="range" name='proficiency' min="0" max="100" value="80" tabindex="0" id='review-slider'>
+                <%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, value: 80, tabindex: 0, id: 'review-slider' %>
                 <div class='modal-form-button-box clearfix'>
                   <div class='pull-left blue-black proficiency-level'><span>習熟度</span><span id='review-level'>80%</span></div>
                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
