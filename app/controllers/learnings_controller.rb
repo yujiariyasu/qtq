@@ -15,6 +15,17 @@ class LearningsController < ApplicationController
     redirect_to params[:url]
   end
 
+  def update
+    learning = Learning.find(params[:id])
+    params[:learning][:title] = learning.title if params[:learning][:title].blank?
+    params[:learning][:description] = learning.description if params[:learning][:description].blank?
+    params[:learning][:image] = learning.image if params[:learning][:image].blank?
+    unless learning.update(learning_params)
+      flash[:danger] = '学習の登録に失敗しました。'
+    end
+    redirect_to learning_url(learning)
+  end
+
   private
   def learning_params
     params.require(:learning).permit(:title, :description, :image).merge(user_id: current_user.id)
