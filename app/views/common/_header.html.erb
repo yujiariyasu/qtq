@@ -63,7 +63,7 @@
                       <div id="learning-images-preview"></div>
                       <div class="upload-box pull-left">
                         <%= fa_icon 'image', class: 'learning-upload-button learning-image-icon' %>
-                        <%= f.file_field :images, id: 'learning-image-files' %>
+                        <%= f.file_field :images, id: 'learning-image-files', multiple: true %>
                       </div>
                       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10">
                         記録をつける
