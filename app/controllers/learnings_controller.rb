@@ -6,7 +6,6 @@ class LearningsController < ApplicationController
   end
 
   def create
-binding.pry
     learning = Learning.new(learning_params)
     if learning.save
       flash[:info] = '学習を登録しました。'
