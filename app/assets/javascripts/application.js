@@ -8,6 +8,5 @@
 //= require turbolinks
 //= require cable
 //= require learning
-//= require header
 //= require top
 //= require user
