@@ -197,15 +197,11 @@
     min-width: 300px;
   }
 
-  .modal-form-box {
-    margin: 0 79px 20px 10px;
-  }
-
   .learning-modal-text-area {
     border-radius: 8px;
   }
 
-  img {
+  .learning-new-modal-img {
     margin-top: 100px;
   }
 
@@ -214,4 +210,9 @@
     margin-top: 111px;
     margin-left: 7px;
   }
+}
+
+.modal-form-box {
+  width: 100%;
+  margin: 0 79px 20px 10px;
 }

@@ -2,6 +2,9 @@ class Learning < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :user
 
+  mount_uploaders :images, AvatarUploader
+  validates :title, presence: true, length: { maximum: 50 }
+
   def review_chart
     review_data = [100]
     decrease_speed = 67
