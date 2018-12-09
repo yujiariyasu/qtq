@@ -15,7 +15,11 @@
   h1 {
     margin-top: 30px;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-feature-settings: "palt";
+    line-height: 1.4;
   }
 
   .learning-tag-list {
