@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :user_relationships, only: [:create, :destroy]
   resources :learnings
+  resources :reviews
   root to: 'users#show'
   get '*anything' => 'errors#routing_error'
 end

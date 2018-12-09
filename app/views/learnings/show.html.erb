@@ -3,16 +3,52 @@
 <div class='row m0 p0' id="main-wrapper">
   <div id='main-container' class='clearfix'>
     <div id="content" class='m0a main learning-main'>
+        <div class="modal fade" id="learning-edit-modal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title text-center" id="reviewModalLabel">学習内容の編集</h5>
+              </div>
+              <div class='learning-new-modal-body'>
+                <div class='modal-inner-box'>
+                  <div class='modal-image-box'>
+                    <%= image_tag user_avatar_or_default(current_user), class: "avatar-img learning-new-modal-img" %>
+                  </div>
+                  <div>
+                    <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
+                  </div>
+                  <div class='modal-form-box'>
+                    <%= form_for(@learning) do |f| %>
+                      <%= hidden_field_tag :url, request.url %>
+                      <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
+                        <%= f.text_field :title, class: 'mdl-textfield__input p10', placeholder: 'タイトル...' %>
+                      </div>
+                      <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
+                        <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
+                      </div>
+                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10">
+                        編集する
+                      </button>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       <div class='learning-main-header'>
         <%= image_tag user_avatar_or_default(current_user), class: 'avatar-img' %>
         <%= link_to "@#{@user.name}", user_path(@user), class: 'user-name' %>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent learning-new-modal learning-edit-modal pull-right" data-toggle="modal" data-target="#learning-new-modal">
+        <button class="learning-new-modal learning-edit-modal pull-right white" data-toggle="modal" data-target="#learning-edit-modal">
           編集
         </button>
       </div>
       <h1 class='text-left'><%= @learning.title %></h1>
       <div class='learning-tag-list'>
-        <% ['rails', 'ruby', 'オブジェクト指向'].each do |tag| %>
+        <% ['タグ機能', 'いずれ', 'つける'].each do |tag| %>
         <!-- TODO: tag作成したら置き換える -->
         <%# @learning.tags.each do |tag| %>
           <%= link_to tag, '#' %>
@@ -20,14 +56,14 @@
       </div>
       <%# if @learning.image %>
         <%= link_to 'https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg', target: '_blank' do %>
-          <%= image_tag 'https://s3-ap-northeast-1.amazonaws.com/rootedlearning/uploads/default/avatar.jpg', class: 'learning-img' %>
+          <%= image_tag 'eigo.png', class: 'learning-img' %>
         <% end %>
       <%# end %>
       <div class='blue-black'>
         <%= simple_format(@learning.description) %>
       </div>
     </div>
-    <%= render partial: 'shared/sidebar' %>
+    <%= render 'review_sidebar' %>
   </div>
   <footer class="sticky-footer mb0">
     <p class="breadcrumb p20 text-center mb0">

@@ -15,7 +15,11 @@
   h1 {
     margin-top: 30px;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-feature-settings: "palt";
+    line-height: 1.4;
   }
 
   .learning-tag-list {
@@ -37,6 +41,7 @@
     margin-bottom: 20px;
     border: solid 1px #eee;
     max-width: 100%;
+    border-radius: 10px;
   }
 
   .learning-main-header {
@@ -46,4 +51,78 @@
   .learning-main-header >:last-child {
     margin-left: auto;
   }
+}
+
+.review-sidebar {
+  padding-top: 30px;
+
+  h2 {
+    text-align: center;
+  }
+
+  button {
+    float: right;
+  }
+}
+.review-modal {
+  background-color: #4c8c4d;
+  cursor: pointer;
+
+  .review-modal-button {
+    width: 79%;
+    padding: 10px 10px 3px 56px;
+    margin: 0;
+  }
+}
+
+.learning-edit-modal {
+  background: #cc4453;
+  width: 77px;
+  border-radius: 4px;
+
+  &:hover {
+    background: #cc4453;
+  }
+}
+
+.review-sidebar {
+  .review-avatar {
+    width: auto;
+    margin-top: 21px;
+  }
+
+  .review-modal-angle-left {
+    color: #c5c4c5;
+    margin-top: 32px;
+    margin-left: 7px;
+  }
+}
+
+.modal-title {
+  font-family: 'HigashiOme';
+}
+
+.modal-form-button-box {
+  margin-top: 17px;
+
+  .proficiency-level {
+    margin-left: 33px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'HigashiOme';
+  }
+}
+
+.learning-image-icon {
+  font-size: 28px;
+}
+
+.learning-image {
+  height: 70px;
+}
+
+.learning-upload-button {
+  margin-left: 22px;
+  cursor: pointer;
+  margin-top: 6px;
 }
