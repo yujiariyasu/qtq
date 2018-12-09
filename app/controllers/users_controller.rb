@@ -14,78 +14,35 @@ class UsersController < ApplicationController
     text = 'いい調子!!'
 
     @chart2 = LazyHighCharts::HighChart.new('graph') do |c|
-      c.subtitle(text: 'test...')
-      c.xAxis(categories: (1..30).to_a.map{ |date| "#{date}日目" }, labels: {style: { fontSize: '10px' }})
-      c.legend(layout: 'vertical', align: 'right', verticalAlign: 'top')
-      c.plotOptions(line: { dataLabels: { enabled: true } },
-        spline: {
-            marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 1
-            }
-        })
-      c.series(type: 'spline', name: 'test', data: days1)
-      c.chart(defaultSeriesType: "column")
-      c.legend(maxHeight: 80)
-    # c.subtitle(text: 'Source: thesolarfoundation.com')
-
-    # c.yAxis(title: {text: nil})
-    # c.legend(
-    #     layout: 'vertical',
-    #     align: 'right',
-    #     verticalAlign: 'middle'
-    # )
-    # c.xAxis( {
-    #   categories: date_category,
-    #   crosshair: true
-    # })
-    # c.plotOptions(
-    #     series: {
-    #         label: {
-    #             connectorAllowed: false
-    #         },
-    #         pointStart: 2010
-    #     }
-    # )
-    # c.series(name: 'Installation',data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175])
-    # c.responsive(rules: [{condition: {maxWidth: 500},
-    #                       chartOptions: {legend: {layout: 'horizontal',
-    #                                               align: 'center',
-    #                                               verticalAlign: 'bottom'}}}]
-    # )
-
-
-    #   c.chart(type: 'column')
-    #   c.subtitle(text: text)
-    #   c.xAxis( {
-    #     categories: date_category,
-    #     crosshair: true
-    #   })
-    #   c.tooltip( {
-    #     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-    #     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-    #         '<td style="padding:0"><b>{point.y} 時間</b></td></tr>',
-    #     footerFormat: '</table>',
-    #     shared: true,
-    #     useHTML: true
-    #   })
-    #   c.plotOptions( {
-    #     column: {
-    #       pointPadding: 0.2,
-    #       borderWidth: 0
-    #     }
-    #   })
-    #   c.series(type: 'spline', name: '目標', data: [2]*30,
-    #            marker: {
-    #              lineWidth: 1,
-    #              lineColor: 'white',
-    #              fillColor: 'white'
-    #            })
-    #   c.series(name: 'あなた', data: days1)
-    #   c.series(name: 'ライバル1', data: days2)
-    #   c.series(name: 'ライバル2', data: days3)
-
+      c.chart(type: 'column')
+      c.subtitle(text: text)
+      c.xAxis( {
+        categories: date_category,
+        crosshair: true
+      })
+      c.tooltip( {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y} 時間</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      })
+      c.plotOptions( {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      })
+      c.series(type: 'spline', name: '目標', data: [2]*30,
+               marker: {
+                 lineWidth: 1,
+                 lineColor: 'white',
+                 fillColor: 'white'
+               })
+      c.series(name: 'あなた', data: days1)
+      c.series(name: 'ライバル1', data: days2)
+      c.series(name: 'ライバル2', data: days3)
     end
 
     text = '明日は3時間分の復習です!!'

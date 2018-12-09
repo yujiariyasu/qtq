@@ -59,8 +59,22 @@
           <%= image_tag 'eigo.png', class: 'learning-img' %>
         <% end %>
       <%# end %>
-      <div class='blue-black'>
+      <div class='blue-black learning-description'>
         <%= simple_format(@learning.description) %>
+      </div>
+      <div class='item-wrapper'>
+        <div class='item-header'>
+          <ol class="breadcrumb p20 mb0">
+            <li class="breadcrumb-item active blue-black user-main-comparison">
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              定着率の推移
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+          </ol>
+        </div>
+        <div class='pt10'>
+          <%= high_chart("復習", @chart) %>
+        </div>
       </div>
     </div>
     <%= render 'review_sidebar' %>
