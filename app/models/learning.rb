@@ -9,11 +9,12 @@ class Learning < ApplicationRecord
     review_data = [0, 100]
     decrease_speed = 67
     review_date_proficiency_map = set_review_date_proficiency
-    unless created_at.to_date == Time.now.to_date
-      (created_at.to_date..Time.now.to_date).each do |date|
+    range = chart_date_range(review_date_proficiency_map)
+    if created_at.to_date != Time.now.to_date
+      (created_at.to_date.tomorrow..Time.now.to_date).each do |date|
         if review_date_proficiency_map.keys.include?(date)
           review_data << 100
-          decrease_speed /= (1 + review_date_proficiency_map[date] * 2 / 100)
+          decrease_speed /= review_date_proficiency_map[date] == 100 ? 6 : (1 + review_date_proficiency_map[date] * 2 / 100)
           next
         end
         last_data = review_data[-1] - decrease_speed
@@ -21,7 +22,6 @@ class Learning < ApplicationRecord
         review_data << last_data
       end
     end
-    range = chart_date_range(review_date_proficiency_map)
     date_category = range.to_a.map{ |date| "#{date}日目" }
     text = review_text(review_data[-1])
     return generate_chart(text, date_category, review_data)
@@ -51,25 +51,25 @@ class Learning < ApplicationRecord
 
   def chart_date_range(review_date_proficiency_map)
     days_num = review_date_proficiency_map.present? ? elapsed_days_num : 1
-    days_num > 9 ? 0..elapsed_days_num : 0..10
+    days_num > 10 ? 0..elapsed_days_num : 0..10
   end
 
   def set_review_date_proficiency
     review_date_proficiency_map = {}
     reviews.each do |review|
-      review_date_proficiency_map[review.created_at.to_date.next_day] = review.proficiency
+      review_date_proficiency_map[review.created_at.to_date] = review.proficiency
     end
     review_date_proficiency_map
   end
 
   def elapsed_days_num
-    (created_at.to_date - reviews.order('created_at desc').first.created_at.to_date).to_i
+    (reviews.order('created_at desc').first.created_at.to_date - created_at.to_date).to_i + 1
   end
 
   def review_text(point)
     return case point
     when 0..9
-      'ヤバいよヤバいよ'
+      'ヤバいよ'
     when 10..39
       '頑張ろう'
     when 40..69
