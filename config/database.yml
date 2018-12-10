@@ -50,9 +50,9 @@ test:
 production:
   <<: *default
   reconnect: false
-  database: rootedlearning
+  database: rooted-learning
   pool: 5
-  username: root
-  password: 
+  username: yujiariyasu
+  password: <%= ENV['RDS_PASS'] %>
   socket: /var/lib/mysql/mysql.sock
   host: <%= ENV['RDS_HOST'] %>
