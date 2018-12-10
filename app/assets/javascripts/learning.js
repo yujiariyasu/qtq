@@ -7,12 +7,27 @@ $(document).on('turbolinks:load', function() {
     $("input[type=file]").click();
   });
 
-  $('#learning-image-files').change(function() {
-    var fr = new FileReader();
-    fr.onload = function() {
-      var img = $('<img>').attr('src', fr.result).addClass('learning-image');
-      $('#learning-images-preview').append(img);
-    };
-    fr.readAsDataURL(this.files[0]);
-  });
+  document.getElementById('learning-image-files').onchange = function(event){
+    initializeFiles();
+
+    var files = event.target.files;
+
+    for (var i = 0, f; f = files[i]; i++) {
+      var reader = new FileReader;
+      reader.readAsDataURL(f);
+
+      reader.onload = (function(theFile) {
+        return function (e) {
+          var img = document.createElement('img');
+          img.className = 'learning-image';
+          img.src = e.target.result;
+          document.getElementById('learning-images-preview').insertBefore(img, null);
+        }
+      })(f);
+    }
+  };
+
+  function initializeFiles() {
+    document.getElementById('learning-images-preview').innerHTML = '';
+  }
 });
