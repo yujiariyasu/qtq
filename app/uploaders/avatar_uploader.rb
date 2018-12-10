@@ -1,11 +1,10 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_limit: [200, 200]
   # 画像の形式をJPGに変換
   process :convert => 'jpg'
 
   # 画像のサイズを変更
-  process :resize_to_limit => [500, 500]
+  process :resize_to_limit => [1000, 1000]
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::MiniMagick
