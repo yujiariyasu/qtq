@@ -55,4 +55,4 @@ production:
   username: root
   password: 
   socket: /var/lib/mysql/mysql.sock
-  host: ENV['RDS_HOST']
+  host: <%= ENV['RDS_HOST'] %>
