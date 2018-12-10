@@ -49,7 +49,10 @@ test:
 #
 production:
   <<: *default
-  database: rootedlearning_production
+  reconnect: false
+  database: rootedlearning
+  pool: 5
   username: root
   password: 
   socket: /var/lib/mysql/mysql.sock
+  host: ENV['RDS_HOST']
