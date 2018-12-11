@@ -10,6 +10,7 @@ class Learning < ApplicationRecord
   scope :not_finished, -> { where(finish_flag: false) }
 
   INITIAL_DECREASE_SPEED = 67
+  REVIEW_NOTIFICATION_LINE = 51
 
   def review_chart
     review_data = [0, 100]
@@ -66,5 +67,13 @@ class Learning < ApplicationRecord
     else
       'イイ感じ'
     end
+  end
+
+  def update_next_review_date_and_speed(proficiency)
+    params = {}
+    params[:decrease_speed] = calc_next_decrease_speed(decrease_speed ,proficiency)
+    days_until_review = REVIEW_NOTIFICATION_LINE / decrease_speed + 1
+    params[:next_review_date] = next_review_date + days_until_review
+    self.update_attributes = params
   end
 end

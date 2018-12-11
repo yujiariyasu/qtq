@@ -22,8 +22,6 @@ class User < ApplicationRecord
   validates :password, length: (6..32), presence: true, confirmation: true, allow_nil: true
   validates :password, presence: false, on: :facebook_login
 
-  REVIEW_NOTIFICATION_LINE = 50
-
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
