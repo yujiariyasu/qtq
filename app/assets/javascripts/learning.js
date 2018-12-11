@@ -3,8 +3,12 @@ $(document).on('turbolinks:load', function() {
     $('#review-level').text($(this).val() + '%')
   });
 
-  $(".learning-upload-button").on("click", function() {
-    $("input[type=file]").click();
+  $(".learning-image-button").on("click", function() {
+    $("#learning-image-files").click();
+  });
+
+  $(".edit-learning-image-button").on("click", function() {
+    $("#edit-learning-image-files").click();
   });
 
   document.getElementById('learning-image-files').onchange = function(event){
@@ -29,5 +33,30 @@ $(document).on('turbolinks:load', function() {
 
   function initializeFiles() {
     document.getElementById('learning-images-preview').innerHTML = '';
+  }
+
+  document.getElementById('edit-learning-image-files').onchange = function(event){
+console.log(3);
+    initializeFiles();
+
+    var files = event.target.files;
+
+    for (var i = 0, f; f = files[i]; i++) {
+      var reader = new FileReader;
+      reader.readAsDataURL(f);
+
+      reader.onload = (function(theFile) {
+        return function (e) {
+          var img = document.createElement('img');
+          img.className = 'learning-image';
+          img.src = e.target.result;
+          document.getElementById('edit-learning-images-preview').insertBefore(img, null);
+        }
+      })(f);
+    }
+  };
+
+  function initializeFiles() {
+    document.getElementById('edit-learning-images-preview').innerHTML = '';
   }
 });
