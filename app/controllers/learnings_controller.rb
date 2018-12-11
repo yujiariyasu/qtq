@@ -28,6 +28,6 @@ class LearningsController < ApplicationController
 
   private
   def learning_params
-    params.require(:learning).permit(:title, :description, {images: []}).merge(user_id: current_user.id)
+    params.require(:learning).permit(:title, :description, {images: []}, :study_time).merge(user_id: current_user.id)
   end
 end
