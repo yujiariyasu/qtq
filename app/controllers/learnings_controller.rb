@@ -1,4 +1,5 @@
 class LearningsController < ApplicationController
+  INITIAL_DECREASE_SPEED = 67
   def show
     @learning = Learning.find(params[:id])
     @user = @learning.user
@@ -7,6 +8,8 @@ class LearningsController < ApplicationController
   end
 
   def create
+    params[:proficiency_decrease_speed] = INITIAL_DECREASE_SPEED
+    params[:next_review_date] = Time.current.to_date.tomorrow
     learning = Learning.new(learning_params)
     if learning.save
       flash[:info] = '学習を登録しました。'
@@ -28,6 +31,7 @@ class LearningsController < ApplicationController
 
   private
   def learning_params
-    params.require(:learning).permit(:title, :description, {images: []}, :study_time).merge(user_id: current_user.id)
+    params.require(:learning).permit(:title, :description, {images: []}, :study_time,
+      :proficiency_decrease_speed, :next_review_date).merge(user_id: current_user.id)
   end
 end
