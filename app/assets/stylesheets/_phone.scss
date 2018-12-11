@@ -123,7 +123,12 @@
   div#error {
     width: calc(100% - 40px)
   }
-
+  .header-study-time {
+    margin-left: 86px;
+    margin-top: 14px;
+    font-size: 15px;
+    font-family: 'HigashiOme';
+  }
 }
 @media screen and (max-width: 359px) {
   .header-logo {

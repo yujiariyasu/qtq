@@ -3,6 +3,14 @@ $(document).on('turbolinks:load', function() {
     $('#review-level').text($(this).val() + '%')
   });
 
+  $("#learning-slider").on("change", function() {
+    $('#study-time').text($(this).val() + '分')
+  });
+
+  $("#edit-learning-slider").on("change", function() {
+    $('#edit-study-time').text($(this).val() + '分')
+  });
+
   $(".learning-image-button").on("click", function() {
     $("#learning-image-files").click();
   });
