@@ -5,16 +5,19 @@ class Learning < ApplicationRecord
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }
 
+  INITIAL_DECREASE_SPEED = 67
+  REVIEW_NOTIFICATION_LINE = 50
+
   def review_chart
     review_data = [0, 100]
-    decrease_speed = 67
+    decrease_speed = INITIAL_DECREASE_SPEED
     review_date_proficiency_map = set_review_date_proficiency
     range = chart_date_range(review_date_proficiency_map)
     if created_at.to_date != Time.now.to_date
       (created_at.to_date.tomorrow..Time.now.to_date).each do |date|
         if review_date_proficiency_map.keys.include?(date)
           review_data << 100
-          decrease_speed /= review_date_proficiency_map[date] == 100 ? 6 : (1 + review_date_proficiency_map[date] * 2 / 100)
+          decrease_speed = calc_next_decrease_speed(decrease_speed, review_date_proficiency_map[date])
           next
         end
         last_data = review_data[-1] - decrease_speed
@@ -25,6 +28,10 @@ class Learning < ApplicationRecord
     date_category = range.to_a.map{ |date| "#{date}日目" }
     text = review_text(review_data[-1])
     return generate_chart(text, date_category, review_data)
+  end
+
+  def calc_next_decrease_speed(decrease_speed, proficiency)
+    decrease_speed / proficiency == 100 ? 6 : (1 + proficiency * 2 / 100)
   end
 
   def generate_chart(text, date_category, review_data)
