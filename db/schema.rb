@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211052149) do
+ActiveRecord::Schema.define(version: 20181211062706) do
 
   create_table "learnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "description", limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.json     "images"
     t.integer  "study_time"
+    t.boolean  "finish_flag",               default: false
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
   end
 
