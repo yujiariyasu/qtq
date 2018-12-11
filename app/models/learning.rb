@@ -1,12 +1,15 @@
 class Learning < ApplicationRecord
+  include Chart
+
   has_many :reviews, dependent: :destroy
   belongs_to :user
 
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }
 
+  scope :not_finished, -> { where(finish_flag: false) }
+
   INITIAL_DECREASE_SPEED = 67
-  REVIEW_NOTIFICATION_LINE = 50
 
   def review_chart
     review_data = [0, 100]
@@ -27,33 +30,12 @@ class Learning < ApplicationRecord
     end
     date_category = range.to_a.map{ |date| "#{date}日目" }
     text = review_text(review_data[-1])
-    return generate_chart(text, date_category, review_data)
+    return generate_review_chart(text, date_category, review_data)
   end
 
   def calc_next_decrease_speed(decrease_speed, proficiency)
-    decrease_speed / proficiency == 100 ? 6 : (1 + proficiency * 2 / 100)
-  end
-
-  def generate_chart(text, date_category, review_data)
-    LazyHighCharts::HighChart.new('graph') do |c|
-      c.subtitle(text: text)
-      c.xAxis(categories: date_category)
-      c.yAxis(title: { text: nil },
-              labels: { format: '{value}%' },
-              max: 100, min: 0)
-      c.legend(layout: 'vertical', align: 'right', verticalAlign: 'top')
-      c.plotOptions(line: { dataLabels: { enabled: true } },
-        spline: {marker: {radius: 4,
-                          lineColor: '#666666',
-                          lineWidth: 1}})
-      c.series(type: 'spline', name: title,
-               data: review_data
-      )
-      c.chart(defaultSeriesType: "column")
-      c.legend(maxHeight: 80)
-      c.tooltip(shared: true,
-                pointFormat: '<b>{point.y} %</b>',)
-    end
+    speed = decrease_speed / proficiency == 100 ? 6 : (1 + proficiency * 2 / 100)
+    return speed == 0 ? 1 : speed
   end
 
   def chart_date_range(review_date_proficiency_map)

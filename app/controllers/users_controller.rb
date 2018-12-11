@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include Chart
+
   before_action :logged_in_user,   only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
 
@@ -44,68 +46,7 @@ class UsersController < ApplicationController
       c.series(name: 'ライバル1', data: days2)
       c.series(name: 'ライバル2', data: days3)
     end
-
-    text = '明日は3時間分の復習です!!'
-    @chart3 = LazyHighCharts::HighChart.new('graph') do |c|
-      c.chart(type: 'pie')
-      c.subtitle(text: text)
-      c.plotOptions(series:{allowPointSelect: true, cursor: 'pointer',
-          dataLabels: {enabled: true, format: '{point.name}'}}
-      )
-      c.tooltip(
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
-      )
-      c.series({
-        name: '復習',
-        colorByPoint: true,
-        data: [
-          {
-              name: '明日：3時間',
-              y: 3,
-              drilldown: '明日'
-          },
-          {
-              name: 'あさって：2時間',
-              y: 3,
-              drilldown: 'あさって'
-          },
-          {
-              name: 'しあさって：2時間',
-              y: 2,
-              drilldown: 'しあさって'
-          },
-          {
-              name: '4日後〜1ヶ月後：2時間',
-              y: 3,
-              drilldown: '4日後〜1ヶ月後'
-          },
-          {
-              name: '1ヶ月後以降：2時間',
-              y: 4,
-              drilldown: '1ヶ月後以降'
-          }
-        ]
-      })
-      c.drilldown( { series: [
-          { name: '明日',
-            id: '明日',
-            data: [
-              ['PerfectRuby：2時間', 2],
-              ['プログラムはなぜ動くのか：10分', 0.18],
-              ['jsの本：1時間', 1]
-            ]
-          },
-          { name: 'あさって',
-            id: 'あさって',
-            data: [
-              ['PerfectRuby：2時間', 2],
-              ['プログラムはなぜ動くのか：50分', 0.83]
-            ]
-          }
-        ]
-      })
-    end
+    @chart3 = schedule_chart(@user)
   end
 
   def new

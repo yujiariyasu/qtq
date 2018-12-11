@@ -22,6 +22,8 @@ class User < ApplicationRecord
   validates :password, length: (6..32), presence: true, confirmation: true, allow_nil: true
   validates :password, presence: false, on: :facebook_login
 
+  REVIEW_NOTIFICATION_LINE = 50
+
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -97,12 +99,12 @@ class User < ApplicationRecord
   end
 
   private
-    def downcase_email
-      self.email = email.downcase
-    end
+  def downcase_email
+    self.email = email.downcase
+  end
 
-    def create_activation_digest
-      self.activation_token  = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end
