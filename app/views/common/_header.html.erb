@@ -60,7 +60,7 @@
                       <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                         <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
                       </div>
-                      <div class='clearfix'><%= f.range_field :study_time, class: "mdl-slider mdl-js-slider", min: 0, max: 120, value: 10, tabindex: 0, id: 'learning-slider' %>
+                      <div class='clearfix'><%= f.range_field :study_time, class: "mdl-slider mdl-js-slider", min: 1, max: 120, value: 10, tabindex: 0, id: 'learning-slider' %>
                       <div class='blue-black header-study-time'><span>勉強時間</span><span id='study-time'>10分</span></div></div>
                       <div id="learning-images-preview"></div>
                       <div class="upload-box pull-left">
