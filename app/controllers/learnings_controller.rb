@@ -20,7 +20,6 @@ class LearningsController < ApplicationController
     learning = Learning.find(params[:id])
     params[:learning][:title] = learning.title if params[:learning][:title].blank?
     params[:learning][:description] = learning.description if params[:learning][:description].blank?
-    params[:learning][:images] = learning.images if params[:learning][:images].blank?
     unless learning.update(learning_params)
       flash[:danger] = '学習の登録に失敗しました。'
     end
