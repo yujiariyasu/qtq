@@ -24,7 +24,6 @@ gem 'mini_magick', '4.7.0'
 gem 'material_design_lite-sass'
 gem 'omniauth-facebook'
 gem 'redcarpet', '~> 2.3.0'
-gem 'coderay'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -52,7 +51,7 @@ end
 
 group :production do
   gem 'unicorn'
-  gem 'fog'
+  gem 'fog-aws'
   gem 'mini_racer'
 end
 
