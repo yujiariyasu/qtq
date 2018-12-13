@@ -13,10 +13,11 @@ class LearningsController < ApplicationController
     learning = Learning.new(learning_params)
     if learning.save
       flash[:info] = '学習を登録しました。'
+      redirect_to learning_url(learning)
     else
       flash[:danger] = '学習の登録に失敗しました。'
+      redirect_to params[:url]
     end
-    redirect_to params[:url]
   end
 
   def update
