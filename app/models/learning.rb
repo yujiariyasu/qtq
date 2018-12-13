@@ -71,33 +71,33 @@ class Learning < ApplicationRecord
 
   def update_next_review_date_and_speed(proficiency)
     params = {}
-    params[:decrease_speed] = calc_next_decrease_speed(decrease_speed ,proficiency)
-    days_until_review = REVIEW_NOTIFICATION_LINE / decrease_speed + 1
+    params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed ,proficiency)
+    days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
     params[:next_review_date] = next_review_date + days_until_review
-    self.update_attributes = params
+    self.update_attributes(params)
   end
 
-  def set_review_data(review_detail_data, days_until_review_hash)
+  def set_review_data(review_detail_data, days_until_review_hash, unit)
     days_until_review = (next_review_date - Time.current.to_date).to_i
     time = study_time
     case days_until_review
     when 1
-      review_detail_data[:tomorrow] << ["#{title}：#{time}", time]
+      review_detail_data[:tomorrow] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:tomorrow] += time
     when 2
-      review_detail_data[:two_days_later] << ["#{title}：#{time}", time]
+      review_detail_data[:two_days_later] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:two_days_later] += time
     when 3
-      review_detail_data[:three_days_later] << ["#{title}：#{time}", time]
+      review_detail_data[:three_days_later] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:three_days_later] += time
     when 4..30
-      review_detail_data[:four_days_later] << ["#{title}：#{time}", time]
+      review_detail_data[:four_days_later] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:four_days_later] += time
     when (31..Float::INFINITY)
-      review_detail_data[:one_month_later] << ["#{title}：#{time}", time]
+      review_detail_data[:one_month_later] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:one_month_later] += time
     else
-      review_detail_data[:today] << ["#{title}：#{time}", time]
+      review_detail_data[:today] << ["#{title}：#{time}#{unit}", time]
       days_until_review_hash[:today] += time
     end
   end

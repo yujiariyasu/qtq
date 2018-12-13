@@ -5,10 +5,10 @@ class ReviewsController < ApplicationController
     if review.save
       learning = Learning.find(params[:id])
       learning.update_next_review_date_and_speed(review.proficiency)
-      redirect_to learning_url(params[:learning_id])
+      redirect_to learning_url(params[:id])
     else
       flash[:danger] = '復習の記録に失敗しました。'
-      redirect_to learning_url(params[:learning_id])
+      redirect_to learning_url(params[:id])
     end
   end
 

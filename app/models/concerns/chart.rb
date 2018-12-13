@@ -5,7 +5,7 @@ module Chart
     days_until_review_hash = Hash.new(0)
     review_detail_data = Hash.new { |h, k| h[k] = [] }
     user.learnings.not_finished.each do |learning|
-      learning.set_review_data(review_detail_data, days_until_review_hash)
+      learning.set_review_data(review_detail_data, days_until_review_hash, '分')
     end
     text = days_until_review_hash[:today] == 0 ? '今日の復習はありません。' :
       "復習で学習を定着させましょう!!"
@@ -82,6 +82,55 @@ module Chart
           }
         ]
       })
+    end
+  end
+
+  def comparison_chart(user)
+    today = Time.current.to_date
+    range = (today - 13)..today
+    date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
+    if params[:data_type] == 'study_time'
+      learning_for_each_day = user.learning_for_each_day(range, true)
+      unit = '分'
+      goal = 120
+    else
+      learning_for_each_day = user.learning_for_each_day(range)
+      unit = '件'
+      goal = 10
+    end
+    days1 = learning_for_each_day.sample(learning_for_each_day.size)
+    days2 = days1.sample(learning_for_each_day.size)
+    text = 'いい調子!!'
+    return LazyHighCharts::HighChart.new('graph') do |c|
+      c.chart(type: 'column')
+      c.subtitle(text: text)
+      c.xAxis( {
+        categories: date_category,
+        crosshair: true
+      })
+      c.tooltip( {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            "<td style='padding:0'><b>{point.y} #{unit}</b></td></tr>",
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      })
+      c.plotOptions( {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      })
+      c.series(type: 'spline', name: '目標', data: [goal]*14,
+               marker: {
+                 lineWidth: 1,
+                 lineColor: 'white',
+                 fillColor: 'white'
+               })
+      c.series(name: 'あなた', data: learning_for_each_day)
+      c.series(name: 'ライバル1', data: days1)
+      c.series(name: 'ライバル2', data: days2)
     end
   end
 
