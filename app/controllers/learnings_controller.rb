@@ -8,8 +8,8 @@ class LearningsController < ApplicationController
   end
 
   def create
-    params[:proficiency_decrease_speed] = INITIAL_DECREASE_SPEED
-    params[:next_review_date] = Time.current.to_date.tomorrow
+    params[:learning][:proficiency_decrease_speed] = INITIAL_DECREASE_SPEED
+    params[:learning][:next_review_date] = Time.current.to_date.tomorrow
     learning = Learning.new(learning_params)
     if learning.save
       flash[:info] = '学習を登録しました。'
