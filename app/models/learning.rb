@@ -35,8 +35,9 @@ class Learning < ApplicationRecord
   end
 
   def calc_next_decrease_speed(decrease_speed, proficiency)
-    speed = decrease_speed / proficiency == 100 ? 6 : (1 + proficiency * 2 / 100)
-    return speed == 0 ? 1 : speed
+    divider = proficiency == 100 ? 6 : 1 + proficiency * 2 / 100.0
+    speed = decrease_speed / divider
+    return speed == 0 ? 1 : speed.round(0)
   end
 
   def chart_date_range(review_date_proficiency_map)
@@ -69,11 +70,13 @@ class Learning < ApplicationRecord
     end
   end
 
-  def update_with_review(proficiency, review_description)
+  def update_with_review(proficiency, review_description, first_in_the_day_flag)
     params = {}
-    params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed ,proficiency)
-    days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
-    params[:next_review_date] = next_review_date + days_until_review
+    if first_in_the_day_flag
+      params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
+      days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
+      params[:next_review_date] = next_review_date + days_until_review
+    end
     params[:description] = add_review_description(review_description) if review_description.present?
     self.update_attributes(params)
   end

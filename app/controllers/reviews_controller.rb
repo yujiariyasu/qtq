@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
       flash[:info] = '復習を記録しました。'
     if review.save
       learning = Learning.find(params[:id])
-      learning.update_with_review(review.proficiency, params[:description])
+      learning.update_with_review(review.proficiency, params[:description], review.first_in_the_day?)
       redirect_to learning_url(params[:id])
     else
       flash[:danger] = '復習の記録に失敗しました。'
