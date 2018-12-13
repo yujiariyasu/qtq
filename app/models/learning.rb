@@ -1,20 +1,27 @@
 class Learning < ApplicationRecord
+  include Chart
+
   has_many :reviews, dependent: :destroy
   belongs_to :user
 
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }
 
+  scope :not_finished, -> { where(finish_flag: false) }
+
+  INITIAL_DECREASE_SPEED = 67
+  REVIEW_NOTIFICATION_LINE = 51
+
   def review_chart
     review_data = [0, 100]
-    decrease_speed = 67
+    decrease_speed = INITIAL_DECREASE_SPEED
     review_date_proficiency_map = set_review_date_proficiency
     range = chart_date_range(review_date_proficiency_map)
     if created_at.to_date != Time.now.to_date
       (created_at.to_date.tomorrow..Time.now.to_date).each do |date|
         if review_date_proficiency_map.keys.include?(date)
           review_data << 100
-          decrease_speed /= review_date_proficiency_map[date] == 100 ? 6 : (1 + review_date_proficiency_map[date] * 2 / 100)
+          decrease_speed = calc_next_decrease_speed(decrease_speed, review_date_proficiency_map[date])
           next
         end
         last_data = review_data[-1] - decrease_speed
@@ -24,29 +31,12 @@ class Learning < ApplicationRecord
     end
     date_category = range.to_a.map{ |date| "#{date}日目" }
     text = review_text(review_data[-1])
-    return generate_chart(text, date_category, review_data)
+    return generate_review_chart(text, date_category, review_data)
   end
 
-  def generate_chart(text, date_category, review_data)
-    LazyHighCharts::HighChart.new('graph') do |c|
-      c.subtitle(text: text)
-      c.xAxis(categories: date_category)
-      c.yAxis(title: { text: nil },
-              labels: { format: '{value}%' },
-              max: 100, min: 0)
-      c.legend(layout: 'vertical', align: 'right', verticalAlign: 'top')
-      c.plotOptions(line: { dataLabels: { enabled: true } },
-        spline: {marker: {radius: 4,
-                          lineColor: '#666666',
-                          lineWidth: 1}})
-      c.series(type: 'spline', name: title,
-               data: review_data
-      )
-      c.chart(defaultSeriesType: "column")
-      c.legend(maxHeight: 80)
-      c.tooltip(shared: true,
-                pointFormat: '<b>{point.y} %</b>',)
-    end
+  def calc_next_decrease_speed(decrease_speed, proficiency)
+    speed = decrease_speed / proficiency == 100 ? 6 : (1 + proficiency * 2 / 100)
+    return speed == 0 ? 1 : speed
   end
 
   def chart_date_range(review_date_proficiency_map)
@@ -76,6 +66,39 @@ class Learning < ApplicationRecord
       'そろそろ復習'
     else
       'イイ感じ'
+    end
+  end
+
+  def update_next_review_date_and_speed(proficiency)
+    params = {}
+    params[:decrease_speed] = calc_next_decrease_speed(decrease_speed ,proficiency)
+    days_until_review = REVIEW_NOTIFICATION_LINE / decrease_speed + 1
+    params[:next_review_date] = next_review_date + days_until_review
+    self.update_attributes = params
+  end
+
+  def set_review_data(review_detail_data, days_until_review_hash)
+    days_until_review = (next_review_date - Time.current.to_date).to_i
+    time = study_time
+    case days_until_review
+    when 1
+      review_detail_data[:tomorrow] << ["#{title}：#{time}", time]
+      days_until_review_hash[:tomorrow] += time
+    when 2
+      review_detail_data[:two_days_later] << ["#{title}：#{time}", time]
+      days_until_review_hash[:two_days_later] += time
+    when 3
+      review_detail_data[:three_days_later] << ["#{title}：#{time}", time]
+      days_until_review_hash[:three_days_later] += time
+    when 4..30
+      review_detail_data[:four_days_later] << ["#{title}：#{time}", time]
+      days_until_review_hash[:four_days_later] += time
+    when (31..Float::INFINITY)
+      review_detail_data[:one_month_later] << ["#{title}：#{time}", time]
+      days_until_review_hash[:one_month_later] += time
+    else
+      review_detail_data[:today] << ["#{title}：#{time}", time]
+      days_until_review_hash[:today] += time
     end
   end
 end
