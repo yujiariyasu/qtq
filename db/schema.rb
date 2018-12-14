@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181213131048) do
+ActiveRecord::Schema.define(version: 20181214133203) do
 
   create_table "learnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20181213131048) do
     t.boolean  "finish_flag",                              default: false
     t.integer  "proficiency_decrease_speed"
     t.date     "next_review_date"
+    t.boolean  "public_flag"
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
   end
 
