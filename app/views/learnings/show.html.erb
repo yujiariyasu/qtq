@@ -53,6 +53,7 @@
       <div class='learning-main-header'>
         <%= image_tag user_avatar_or_default(current_user), class: 'avatar-img' %>
         <%= link_to "@#{@user.name}", user_path(@user), class: 'user-name' %>
+        <span class='learning-created-at'><%= @learning.created_at.strftime('%Y年%m月%d日') %>に追加</span>
         <button class="learning-new-modal learning-edit-modal pull-right white" data-toggle="modal" data-target="#learning-edit-modal">
           編集
         </button>

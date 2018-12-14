@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
       flash[:info] = '復習を記録しました。'
     if review.save
       learning = Learning.find(params[:id])
-      learning.update_next_review_date_and_speed(review.proficiency)
+      learning.update_with_review(review.proficiency, params[:description], review.first_in_the_day?)
       redirect_to learning_url(params[:id])
     else
       flash[:danger] = '復習の記録に失敗しました。'
@@ -14,6 +14,6 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:description, :proficiency).merge(learning_id: params[:id])
+    params.require(:review).permit(:proficiency).merge(learning_id: params[:id])
   end
 end
