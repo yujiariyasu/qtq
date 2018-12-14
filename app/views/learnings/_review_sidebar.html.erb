@@ -1,9 +1,11 @@
 <div id="sidebar" class='sidebar'>
-  <div class='back-white p10'>
-    <div class='review-modal br4' data-toggle="modal" data-target="#review-modal">
-      <%= image_tag 'review.png', class: 'review-modal-button' %>
+  <% if current_user?(@user) %>
+    <div class='back-white p10 mb10'>
+      <div class='review-modal br4' data-toggle="modal" data-target="#review-modal">
+        <%= image_tag 'review.png', class: 'review-modal-button' %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="modal fade review-sidebar" id="review-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -41,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div class='mb10 back-white mt10 pb10'>
+  <div class='mb10 back-white pb10'>
     <%= image_tag 'ex.png' %>
   </div>
 </div>
