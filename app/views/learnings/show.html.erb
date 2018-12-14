@@ -54,6 +54,7 @@
         <%= image_tag user_avatar_or_default(current_user), class: 'avatar-img' %>
         <%= link_to "@#{@user.name}", user_path(@user), class: 'user-name' %>
         <span class='learning-created-at'><%= @learning.created_at.strftime('%Y年%m月%d日') %>に追加</span>
+        <span class='learning-created-at'></span>
         <button class="learning-new-modal learning-edit-modal pull-right white" data-toggle="modal" data-target="#learning-edit-modal">
           編集
         </button>
@@ -79,7 +80,7 @@
           <ol class="breadcrumb p20 mb0">
             <li class="breadcrumb-item active blue-black user-main-comparison">
               <%= fa_icon 'smile-o', class: 'blue-black' %>
-              定着率の推移
+              次回復習予定日：<%= @learning.next_review_date.strftime('%Y年%m月%d日') %>
               <%= fa_icon 'smile-o', class: 'blue-black' %>
             </li>
           </ol>
