@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function() {
   }
   if(document.getElementById("edit-learning-image-files") != null) {
     document.getElementById('edit-learning-image-files').onchange = function(event){
-      initializeFiles();
+      initializeEditFiles();
 
       var files = event.target.files;
 
@@ -65,6 +65,9 @@ $(document).on('turbolinks:load', function() {
     };
   };
   function initializeFiles() {
+    document.getElementById('learning-images-preview').innerHTML = '';
+  }
+  function initializeEditFiles() {
     document.getElementById('edit-learning-images-preview').innerHTML = '';
   }
 });
