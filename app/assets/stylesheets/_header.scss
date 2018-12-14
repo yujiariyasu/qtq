@@ -218,7 +218,7 @@
 }
 
 .header-study-time {
-  margin-left: 21px;
+  margin-left: 32px;
   margin-top: 14px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -230,4 +230,15 @@
 
 #learning-images-preview {
   padding: 0 20px;
+}
+
+.public-checkbox {
+  width: 80px;
+  margin-top: 9px;
+  margin-left: 32px;
+
+
+  .public-letter {
+    margin-left: 11px;
+  }
 }

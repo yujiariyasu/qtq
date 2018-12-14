@@ -33,6 +33,6 @@ class LearningsController < ApplicationController
   private
   def learning_params
     params.require(:learning).permit(:title, :description, {images: []}, :study_time,
-      :proficiency_decrease_speed, :next_review_date).merge(user_id: current_user.id)
+      :proficiency_decrease_speed, :next_review_date, :public_flag).merge(user_id: current_user.id)
   end
 end

@@ -71,6 +71,7 @@ class Learning < ApplicationRecord
   end
 
   def update_with_review(proficiency, review_description, first_in_the_day_flag)
+    params = {}
     if first_in_the_day_flag
       params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
       days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
