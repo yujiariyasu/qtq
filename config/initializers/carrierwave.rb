@@ -12,7 +12,7 @@ if Rails.env.production?
         :region                => ENV['AWS_REGION']
     }
 
-    config.fog_directory = 'rootedlearning'
+    config.fog_directory = 'rootedlearning' # バケット名
     config.fog_public = true
 
   end
