@@ -49,11 +49,11 @@
 }
 
 .profile-stats-link {
-  color: #777;
   text-decoration:none;
 }
 
 .profile-stats-span {
+  color: #777;
   width: 70px;
 }
 
@@ -91,3 +91,22 @@
   margin-top:10px;
   margin-bottom:10px;
 }
+
+.user-learning-index {
+  margin-top: 10px;
+  padding: 10px;
+
+  a {
+    display: block;
+    padding: 3px 10px;
+    line-height: 1.4;
+    color: #777;
+
+    &:hover {
+      color: #585454;
+      background-color: #e4e4e4;
+      text-decoration: underline;
+    }
+  }
+}
+
