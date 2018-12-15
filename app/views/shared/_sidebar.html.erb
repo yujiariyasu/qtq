@@ -1,5 +1,5 @@
 <div id="sidebar" class='sidebar'>
-  <div class='back-white pb10'>
+  <div class='pb10'>
     <div class='mb10'>
       <%= image_tag user_avatar_or_default(@user), class: 'side-user-image animated pulse' %>
     </div>
@@ -38,7 +38,10 @@
       <% end %>
     </div>
   </div>
-  <div class='mb10 back-white mt10 pb10'>
-    <%= image_tag 'ex.png' %>
+  <div class='user-learning-index'>
+    <% @user.learnings.each do |learning| %>
+      <%= link_to learning.title, learning_path(learning) %>
+    <% end %>
   </div>
+  <%= image_tag 'ex.png' %>
 </div>
