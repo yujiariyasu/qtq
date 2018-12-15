@@ -51,7 +51,7 @@ end
 
 group :production do
   gem 'unicorn'
-  gem 'fog-aws'
+  gem 'fog'
   gem 'mini_racer'
 end
 
