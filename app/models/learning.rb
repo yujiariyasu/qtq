@@ -85,29 +85,4 @@ class Learning < ApplicationRecord
     prefix = "\n***\n[復習メモ]\n"
     description + prefix + review_description
   end
-
-  def set_review_data(review_detail_data, days_until_review_hash, unit)
-    days_until_review = (next_review_date - Time.current.to_date).to_i
-    time = study_time
-    case days_until_review
-    when 1
-      review_detail_data[:tomorrow] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:tomorrow] += time
-    when 2
-      review_detail_data[:two_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:two_days_later] += time
-    when 3
-      review_detail_data[:three_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:three_days_later] += time
-    when 4..30
-      review_detail_data[:four_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:four_days_later] += time
-    when (31..Float::INFINITY)
-      review_detail_data[:one_month_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:one_month_later] += time
-    else
-      review_detail_data[:today] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:today] += time
-    end
-  end
 end
