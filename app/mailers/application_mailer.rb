@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'qtq.work',
-          reply_to: ENV['ROOTED_MAIL']
+          reply_to: ENV['MAIL']
   layout 'mailer'
 end
