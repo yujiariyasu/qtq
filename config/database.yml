@@ -50,7 +50,7 @@ test:
 production:
   <<: *default
   reconnect: false
-  database: rootedlearning
+  database: qtq
   pool: 5
   username: yujiariyasu
   password: <%= ENV['RDS_PASS'] %>
