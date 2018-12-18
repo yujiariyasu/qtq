@@ -10,14 +10,9 @@ class SessionsController < ApplicationController
       render 'new' and return
     end
     if user && user.authenticate(params[:session][:password])
-      if user.activated?
-        log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_back_or user
-      else
-        flash[:warning] = 'アカウントの認証が済んでいません。メールをチェックしてください。'
-        redirect_to root_url
-      end
+      log_in user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      redirect_back_or user
     else
       flash.now[:danger] = 'メールアドレスとパスワードの組み合わせが正しくありません。'
       render 'new'
