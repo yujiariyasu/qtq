@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     session[:path_info] = request.path_info
-    @user = params[:id] ? User.find(params[:id]) : User.find(4)
+    @user = params[:id] ? User.find(params[:id]) : User.find(1)
     @comparison_chart = comparison_chart(@user)
     @schedule_chart = schedule_chart(@user)
   end
