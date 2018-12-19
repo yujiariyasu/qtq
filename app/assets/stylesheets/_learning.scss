@@ -121,13 +121,6 @@
 
 .modal-form-button-box {
   margin-top: 17px;
-
-  .proficiency-level {
-    margin-left: 33px;
-    margin-top: 10px;
-    font-size: 14px;
-    font-family: 'HigashiOme';
-  }
 }
 
 .learning-image-icon {
@@ -144,4 +137,45 @@
   margin-left: 22px;
   cursor: pointer;
   margin-top: 6px;
+}
+
+.proficiency-level {
+  margin-left: 33px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: 'HigashiOme';
+  position: relative;
+}
+
+.proficiency-level .proficiency-level-box {
+  position:absolute;
+  width: 246px;
+  height: 34px;
+  top: -43px;
+  left: -11px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #bfd6a5;
+  display: none;
+}
+.proficiency-level .proficiency-level-box:after { /* 三角形を作成 */
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 28px;
+  left: 21px;
+  border: 9px solid transparent;
+  border-top: 10px solid #bfd6a5;
+  border-radius: 6px
+}
+.proficiency-level .proficiency-level-comment {
+  font-size: 14px;
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  color: #2f3a40;
+}
+.proficiency-level:hover .proficiency-level-box {
+  z-index: 2;
+  display: block;
 }

@@ -31,7 +31,12 @@
                 </div>
                 <%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, value: 80, tabindex: 0, id: 'review-slider' %>
                 <div class='modal-form-button-box clearfix'>
-                  <div class='pull-left blue-black proficiency-level'><span>習熟度</span><span id='review-level'>80%</span></div>
+                  <div class='pull-left blue-black proficiency-level'>
+                    <span>習熟度</span><span id='review-level'>80%</span>
+                    <div class="proficiency-level-box">
+                      <p class="proficiency-level-comment">習熟度によって復習日が変わります</p>
+                    </div>
+                  </div>
                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
                     復習完了!!
                   </button>
