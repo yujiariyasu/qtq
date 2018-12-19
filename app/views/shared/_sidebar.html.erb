@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class='user-learning-index'>
-    <% @user.learnings.each do |learning| %>
+    <% @user.learnings.reverse_each do |learning| %>
       <%= link_to learning.title, learning_path(learning) %>
     <% end %>
   </div>
