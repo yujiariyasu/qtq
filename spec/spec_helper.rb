@@ -16,16 +16,27 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'factory_bot_rails'
+require 'factory_girl_rails'
+require 'database_cleaner'
+require 'selenium-webdriver'
 require 'capybara/poltergeist'
+require 'capybara/rspec'
 require 'turnip'
 require 'turnip/capybara'
 
-Capybara.javascript_driver = :poltergeist
-Capybara.default_driver = :poltergeist
+Capybara.configure do |capybara_config|
+  capybara_config.default_driver = :selenium
+end
+
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 60)
 end
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :selenium
 
 # デバッグ用
 # seleniumで動かして実際のブラウザで目視挙動確認したい場合にコメントアウトする
@@ -57,8 +68,23 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  # FactoryBot configuration
-  config.include FactoryBot::Syntax::Methods
+  # FactoryGirl configuration
+  config.include FactoryGirl::Syntax::Methods
+
+  # DatabaseCleaner
+  # https://github.com/DatabaseCleaner/database_cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.
