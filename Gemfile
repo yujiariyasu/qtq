@@ -47,6 +47,7 @@ group :test do
   gem 'turnip', '2.1.0'
   gem 'poltergeist', '1.6.0'
   gem 'selenium-webdriver', '2.47.1'
+  gem 'chromedriver-helper'
 end
 
 group :production do
