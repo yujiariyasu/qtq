@@ -153,12 +153,12 @@
 
 .proficiency-level .proficiency-level-box {
   position:absolute;
-  width: 246px;
+  width: 220px;
   height: 34px;
   top: -43px;
   left: -11px;
   border-radius: 10px 10px 10px 10px;
-  background-color: #bfd6a5;
+  background-color: #2f3a40;
   display: none;
 }
 .proficiency-level .proficiency-level-box:after { /* 三角形を作成 */
@@ -169,15 +169,15 @@
   top: 28px;
   left: 21px;
   border: 9px solid transparent;
-  border-top: 10px solid #bfd6a5;
+  border-top: 10px solid #2f3a40;
   border-radius: 6px
 }
 .proficiency-level .proficiency-level-comment {
-  font-size: 14px;
+  font-size: 12px;
   position: absolute;
-  top: 6px;
-  left: 10px;
-  color: #2f3a40;
+  top: 7px;
+  left: 14px;
+  color: white;
 }
 .proficiency-level:hover .proficiency-level-box {
   z-index: 2;
