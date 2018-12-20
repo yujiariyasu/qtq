@@ -15,10 +15,20 @@
       </ol>
       <div class='item-wrapper'>
         <div class='item-header'>
-          <ol class="breadcrumb p20 mb0">
-            <li class="breadcrumb-item active blue-black user-main-comparison">
+          <ol class="breadcrumb p20 mb0 flex">
+            <li class="active blue-black user-main-comparison" id='change-unit-button'>
               <%= fa_icon 'smile-o', class: 'blue-black' %>
-              Quantity teaches Quality
+              change unit
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+            <li class="active blue-black user-main-comparison" id='prev-comparison-chart-button'>
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              prev
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+            </li>
+            <li class="active blue-black user-main-comparison" id='next-comparison-chart-button'>
+              <%= fa_icon 'smile-o', class: 'blue-black' %>
+              next
               <%= fa_icon 'smile-o', class: 'blue-black' %>
             </li>
           </ol>
