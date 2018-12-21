@@ -13,7 +13,7 @@ if Rails.env.production?
         :region                => ENV['AWS_REGION']
     }
 
-    config.fog_directory = 'qtq' # バケット名
+    config.fog_directory = 'quantity-teaches-quality' # バケット名
     config.fog_public = true
 
   end
