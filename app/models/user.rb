@@ -96,13 +96,13 @@ class User < ApplicationRecord
     followers.include?(other_user)
   end
 
-  def learning_for_each_day(range, study_time_flag = false)
+  def learning_for_each_day(range)
     study_times = {}
     range.each do |date|
       study_times[date] = 0
     end
     learnings.where(created_at: range.first.strftime('%Y-%m-%d 00:00:00')..range.last.strftime('%Y-%m-%d 23:59:59')).each do |learning|
-      study_times[learning.created_at.to_date] += study_time_flag ? learning.study_time : 1
+      study_times[learning.created_at.to_date] += 1
     end
     study_times.values
   end

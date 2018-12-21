@@ -5,7 +5,7 @@ class Learning < ApplicationRecord
   belongs_to :user
 
   mount_uploaders :images, AvatarUploader
-  validates :title, presence: true, length: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
   scope :not_finished, -> { where(finish_flag: false) }
 
@@ -71,14 +71,15 @@ class Learning < ApplicationRecord
   end
 
   def update_with_review(proficiency, review_description, first_in_the_day_flag)
-    params = {}
+    update_params = {}
     if first_in_the_day_flag
-      params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
+      update_params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
       days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
-      params[:next_review_date] = next_review_date + days_until_review
+      update_params[:next_review_date] = next_review_date + days_until_review
     end
-    params[:description] = add_review_description(review_description) if review_description.present?
-    self.update_attributes(params)
+    update_params[:proficiency] = proficiency
+    update_params[:description] = add_review_description(review_description) if review_description.present?
+    self.update_attributes(update_params)
   end
 
   def add_review_description(review_description)

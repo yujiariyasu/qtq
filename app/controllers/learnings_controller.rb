@@ -8,9 +8,12 @@ class LearningsController < ApplicationController
   end
 
   def create
-    params[:learning][:proficiency_decrease_speed] = INITIAL_DECREASE_SPEED
-    params[:learning][:next_review_date] = Time.current.to_date.tomorrow
-    learning = Learning.new(learning_params)
+    if params[:learning][:proficiency].to_i = 100
+      speed = 16
+    else
+      speed = (70 - params[:learning][:proficiency].to_i / 2)
+    end
+    learning = Learning.new(learning_params(speed))
     if learning.save
       flash[:info] = '学習を登録しました。'
       redirect_to learning_url(learning)
@@ -22,17 +25,22 @@ class LearningsController < ApplicationController
 
   def update
     learning = Learning.find(params[:id])
-    params[:learning][:title] = learning.title if params[:learning][:title].blank?
-    params[:learning][:description] = learning.description if params[:learning][:description].blank?
-    unless learning.update(learning_params)
-      flash[:danger] = '学習の登録に失敗しました。'
+    difference = learning.proficiency - params[:learning][:proficiency].to_i / 2
+    speed = difference + learning.proficiency_decrease_speed
+    speed = 100 if speed > 100
+    speed = 1 if speed < 1
+    update_params = learning_params(speed)
+    update_params[:title] = update_params[:title].presence || learning.title
+    unless learning.update(update_params)
+      flash[:danger] = '学習の編集に失敗しました。'
     end
     redirect_to learning_url(learning)
   end
 
   private
-  def learning_params
-    params.require(:learning).permit(:title, :description, {images: []}, :study_time,
-      :proficiency_decrease_speed, :next_review_date, :public_flag).merge(user_id: current_user.id)
+  def learning_params(speed)
+    params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
+      :proficiency_decrease_speed, :next_review_date, :public_flag)
+      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: Time.current.to_date.tomorrow)
   end
 end

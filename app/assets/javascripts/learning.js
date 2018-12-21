@@ -4,11 +4,11 @@ $(document).on('turbolinks:load', function() {
   });
 
   $("#learning-slider").on("change", function() {
-    $('#study-time').text($(this).val() + '分')
+    $('#study-time').text($(this).val() + '%')
   });
 
   $("#edit-learning-slider").on("change", function() {
-    $('#edit-study-time').text($(this).val() + '分')
+    $('#edit-study-time').text($(this).val() + '%')
   });
 
   $(".learning-image-button").on("click", function() {

@@ -5,10 +5,9 @@ module Chart
     days_until_review_hash = Hash.new(0)
     review_detail_data = Hash.new { |h, k| h[k] = [] }
     user.learnings.not_finished.each do |learning|
-      set_review_data(learning, review_detail_data, days_until_review_hash, '分')
+      set_review_data(learning, review_detail_data, days_until_review_hash)
     end
-    text = days_until_review_hash[:today] == 0 ? '今日の復習はありません。' :
-      "復習で学習を定着させましょう!!"
+    text = "復習で学習を定着させましょう!!"
     return LazyHighCharts::HighChart.new('graph') do |c|
       c.chart(type: 'pie')
       c.subtitle(text: text)
@@ -24,32 +23,32 @@ module Chart
         colorByPoint: true,
         data: [
           {
-              name: "今日：#{days_until_review_hash[:today]}分",
+              name: "今日：#{days_until_review_hash[:today]}件",
               y: days_until_review_hash[:today],
               drilldown: '今日'
           },
           {
-              name: "明日：#{days_until_review_hash[:tomorrow]}分",
+              name: "明日：#{days_until_review_hash[:tomorrow]}件",
               y: days_until_review_hash[:tomorrow],
               drilldown: '明日'
           },
           {
-              name: "あさって：#{days_until_review_hash[:two_days_later]}分",
+              name: "あさって：#{days_until_review_hash[:two_days_later]}件",
               y: days_until_review_hash[:two_days_later],
               drilldown: 'あさって'
           },
           {
-              name: "しあさって：#{days_until_review_hash[:three_days_later]}分",
+              name: "しあさって：#{days_until_review_hash[:three_days_later]}件",
               y: days_until_review_hash[:three_days_later],
               drilldown: 'しあさって'
           },
           {
-              name: "4日後〜1ヶ月後：#{days_until_review_hash[:four_days_later]}分",
+              name: "4日後〜1ヶ月後：#{days_until_review_hash[:four_days_later]}件",
               y: days_until_review_hash[:four_days_later],
               drilldown: '4日後〜1ヶ月後'
           },
           {
-              name: "1ヶ月後以降：#{days_until_review_hash[:one_month_later]}分",
+              name: "1ヶ月後以降：#{days_until_review_hash[:one_month_later]}件",
               y: days_until_review_hash[:one_month_later],
               drilldown: '1ヶ月後以降'
           }
@@ -85,29 +84,28 @@ module Chart
     end
   end
 
-  def set_review_data(learning, review_detail_data, days_until_review_hash, unit)
+  def set_review_data(learning, review_detail_data, days_until_review_hash)
     title = learning.title
-    days_until_review = (learning.next_review_date - Time.current.to_date).to_i
-    time = learning.study_time
+    days_until_review = (Time.current.to_date - learning.next_review_date).to_i
     case days_until_review
     when 1
-      review_detail_data[:tomorrow] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:tomorrow] += time
+      review_detail_data[:tomorrow] << [title, 1]
+      days_until_review_hash[:tomorrow] += 1
     when 2
-      review_detail_data[:two_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:two_days_later] += time
+      review_detail_data[:two_days_later] << [title, 1]
+      days_until_review_hash[:two_days_later] += 1
     when 3
-      review_detail_data[:three_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:three_days_later] += time
+      review_detail_data[:three_days_later] << [title, 1]
+      days_until_review_hash[:three_days_later] += 1
     when 4..30
-      review_detail_data[:four_days_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:four_days_later] += time
+      review_detail_data[:four_days_later] << [title, 1]
+      days_until_review_hash[:four_days_later] += 1
     when (31..Float::INFINITY)
-      review_detail_data[:one_month_later] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:one_month_later] += time
+      review_detail_data[:one_month_later] << [title, 1]
+      days_until_review_hash[:one_month_later] += 1
     else
-      review_detail_data[:today] << ["#{title}：#{time}#{unit}", time]
-      days_until_review_hash[:today] += time
+      review_detail_data[:today] << [title, 1]
+      days_until_review_hash[:today] += 1
     end
   end
 
@@ -115,15 +113,9 @@ module Chart
     today = Time.current.to_date
     range = (today - 13)..today
     date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
-    if params[:data_type] == 'study_time'
-      learning_for_each_day = user.learning_for_each_day(range, true)
-      unit = '分'
-      goal = 120
-    else
-      learning_for_each_day = user.learning_for_each_day(range)
-      unit = '件'
-      goal = 10
-    end
+    learning_for_each_day = user.learning_for_each_day(range)
+    unit = '件'
+    goal = 10
     days1 = learning_for_each_day.sample(learning_for_each_day.size)
     days2 = days1.sample(learning_for_each_day.size)
     text = 'いい調子!!'
