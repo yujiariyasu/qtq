@@ -8,7 +8,7 @@ class LearningsController < ApplicationController
   end
 
   def create
-    if params[:learning][:proficiency].to_i = 100
+    if params[:learning][:proficiency].to_i == 100
       speed = 16
     else
       speed = (70 - params[:learning][:proficiency].to_i / 2)
