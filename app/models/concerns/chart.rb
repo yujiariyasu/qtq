@@ -111,14 +111,14 @@ module Chart
 
   def comparison_chart(user)
     today = Time.current.to_date
-    range = (today - 13)..today
+    range = (today - 29)..today
     date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
     learning_for_each_day = user.learning_for_each_day(range)
     unit = '件'
     goal = 10
     days1 = learning_for_each_day.sample(learning_for_each_day.size)
     days2 = days1.sample(learning_for_each_day.size)
-    text = 'いい調子!!'
+    text = '1日10件!!'
     return LazyHighCharts::HighChart.new('graph') do |c|
       c.chart(type: 'column')
       c.subtitle(text: text)
@@ -140,15 +140,15 @@ module Chart
           borderWidth: 0
         }
       })
-      c.series(type: 'spline', name: '目標', data: [goal]*14,
+      c.series(type: 'spline', name: '目標', data: [goal]*30,
                marker: {
                  lineWidth: 1,
                  lineColor: 'white',
                  fillColor: 'white'
                })
-      c.series(name: 'あなた', data: learning_for_each_day)
-      c.series(name: 'ライバル1', data: days1)
-      c.series(name: 'ライバル2', data: days2)
+      c.series(name: '件数', data: learning_for_each_day)
+      # c.series(name: 'ライバル1', data: days1)
+      # c.series(name: 'ライバル2', data: days2)
     end
   end
 
