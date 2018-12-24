@@ -1,5 +1,6 @@
 .learning-main {
   padding: 30px;
+  position: relative;
 
   .user-name {
     line-height: 39px;
@@ -194,4 +195,74 @@
 
 .modal-form-box .mdl-switch.is-checked .mdl-switch__track {
   background: #169ae2;
+}
+
+.divide-main {
+  height: 30px;
+  background-color: #f6f6f6;
+  position: absolute;
+  width: 150%;
+  left: 0;
+}
+
+.comment-header-space {
+  height: 50px;
+}
+
+.comment-wrapper {
+  margin-top: 30px;
+}
+
+.each-comment-box {
+  height: 400px;
+}
+
+.comment-user-image {
+  border-radius: 4px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.comment-user-info {
+  margin-left: 10px;
+  line-height: 20px;
+}
+
+.comment-user-name {
+  color: #337ab7;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.comment-user-learning-num {
+  font-size: 13px;
+  color: #6f6f6f;
+}
+
+.comment-user-leanring-unit {
+  font-size: 11px;
+  margin-left: 3px;
+  color: #999;
+}
+
+.comment-time-box {
+  margin-left: auto;
+  line-height: 20px;
+}
+
+.comment-time {
+  font-size: 13px;
+  color: #7b7b7b;
+}
+
+.comment-contribution {
+  color: #6f6f74;
+  font-size: 15px;
+}
+
+.comment-body {
+  padding: 18px 32px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
 }

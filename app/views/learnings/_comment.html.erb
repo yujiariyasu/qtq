@@ -1,0 +1,33 @@
+<div class='divide-main'></div>
+<div class='comment-header-space'></div>
+<div class='comment-wrapper'>
+  <div class='each-comment-box'>
+    <div class='comment-header flex'>
+      <%= image_tag user_avatar_or_default(current_user), class: 'comment-user-image' %>
+      <div class='comment-user-info'>
+        <div class='comment-user-name-box'>
+          <%= link_to user_path(@user), class: 'comment-user-name' do %>
+            <%= @user.name %>
+          <% end %>
+        </div>
+        <div class='comment-user-learning-num'>
+          <%= @user.learnings.count %><span class='comment-user-leanring-unit'>learnings</span>
+        </div>
+      </div>
+      <div class='comment-time-box'>
+        <div class='comment-time'>
+          <%= @user.created_at.strftime('%Y-%m-%d %H:%M') %>
+        </div>
+        <div class='comment-contribution'>
+          いいね：3
+        </div>
+      </div>
+    </div>
+    <div class='comment-body'>
+      <p>fdasf</p>
+      <p>dfsafd</p>
+      <p>fdafd</p>
+      <p>fdafsd</p>
+    </div>
+  </div>
+</div>
