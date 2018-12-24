@@ -107,6 +107,10 @@ class User < ApplicationRecord
     study_times.values
   end
 
+  def number_of_learnings(range_last_date, date_range_num)
+    learnings.where(created_at: (range_last_date - date_range_num).midnight..range_last_date.end_of_day).count
+  end
+
   private
   def downcase_email
     self.email = email.downcase

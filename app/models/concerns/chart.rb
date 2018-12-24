@@ -1,6 +1,9 @@
 module Chart
   extend ActiveSupport::Concern
 
+  DATE_RANGE_NUM = 29
+  DEFAULT_GOAL_NUM = 10
+
   def schedule_chart(user)
     days_until_review_hash = Hash.new(0)
     review_detail_data = Hash.new { |h, k| h[k] = [] }
@@ -111,14 +114,25 @@ module Chart
 
   def comparison_chart(user)
     today = Time.current.to_date
-    range = (today - 29)..today
+    range = (today - DATE_RANGE_NUM)..today
     date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
     learning_for_each_day = user.learning_for_each_day(range)
     unit = '件'
-    goal = 10
+    goal = DEFAULT_GOAL_NUM
     days1 = learning_for_each_day.sample(learning_for_each_day.size)
     days2 = days1.sample(learning_for_each_day.size)
-    text = '1日10件!!'
+    # 他の処理のついでにやればクエリ1つ減らせるが、メンテしにくくなるので別処理にします
+    number_of_learnings = user.number_of_learnings(Date.today, DATE_RANGE_NUM)
+    goal_of_learnings_num = (DATE_RANGE_NUM + 1) * DEFAULT_GOAL_NUM
+    if number_of_learnings >= goal_of_learnings_num * 2
+      text = '目標をあげよう!!'
+    elsif number_of_learnings >= goal_of_learnings_num
+      text = 'その調子!!'
+    elsif number_of_learnings >= goal_of_learnings_num / 2
+      text = 'もう少し頑張れる!!'
+    else
+      text = '目標が高すぎるかも？'
+    end
     return LazyHighCharts::HighChart.new('graph') do |c|
       c.chart(type: 'column')
       c.subtitle(text: text)
@@ -140,7 +154,7 @@ module Chart
           borderWidth: 0
         }
       })
-      c.series(type: 'spline', name: '目標', data: [goal]*30,
+      c.series(type: 'spline', name: '目標', data: [goal] * (DATE_RANGE_NUM + 1),
                marker: {
                  lineWidth: 1,
                  lineColor: 'white',
