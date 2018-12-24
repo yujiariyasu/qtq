@@ -23,6 +23,7 @@ $(document).on('turbolinks:load', function() {
   // });
 
   $('#avatar-file').change(function() {
+    $('.edit-avatar-img').remove()
     var fr = new FileReader();
     fr.onload = function() {
       var img = $('<img>').attr('src', fr.result).addClass('edit-avatar-img');
