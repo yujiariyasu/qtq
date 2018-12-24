@@ -8,6 +8,43 @@
   .learning-created-at {
     display: none;
   }
+
+  .sidebar {
+    min-width: 100%;
+    float: none;
+    margin-left: 0;
+
+    img {
+      margin-top: 10px;
+      width: 94%;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .profile-stats-list {
+      margin-left: 42px;
+    }
+  }
+
+  #main-container {
+      margin-top: 0;
+      margin-bottom: 10px;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+  }
+
+  .main {
+    min-width: 100%;
+    float: none;
+    padding-bottom: 10px;
+  }
+
+  .review-modal {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 16px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -42,37 +79,6 @@
 @media screen and (max-width: 600px) {
   body {
     font-family: 'HigashiOme';
-  }
-
-  #main-container {
-      margin-top: 0;
-      margin-bottom: 10px;
-      width: 100%;
-      margin-right: 0;
-      margin-left: 0;
-  }
-
-  .main {
-    min-width: 100%;
-    float: none;
-    padding-bottom: 10px;
-  }
-
-  .sidebar {
-    min-width: 100%;
-    float: none;
-    margin-left: 0;
-
-    img {
-      margin-top: 10px;
-      width: 94%;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-    .profile-stats-list {
-      margin-left: 42px;
-    }
   }
 
   .app-title {
@@ -119,6 +125,9 @@
   }
   div#error {
     width: calc(100% - 40px)
+  }
+  .review-modal {
+    width: 91%;
   }
 }
 @media screen and (max-width: 459px) {
