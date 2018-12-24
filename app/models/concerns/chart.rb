@@ -10,7 +10,11 @@ module Chart
     user.learnings.not_finished.each do |learning|
       set_review_data(learning, review_detail_data, days_until_review_hash)
     end
-    text = "復習で学習を定着させましょう!!"
+    if user.number_of_learnings(Date.today, DATE_RANGE_NUM) == 0
+      text = '学習を登録すると円グラフが表示されます!!'
+    else
+      text = "復習で学習を定着させましょう!!"
+    end
     return LazyHighCharts::HighChart.new('graph') do |c|
       c.chart(type: 'pie')
       c.subtitle(text: text)
@@ -124,7 +128,9 @@ module Chart
     # 他の処理のついでにやればクエリ1つ減らせるが、メンテしにくくなるので別処理にします
     number_of_learnings = user.number_of_learnings(Date.today, DATE_RANGE_NUM)
     goal_of_learnings_num = (DATE_RANGE_NUM + 1) * DEFAULT_GOAL_NUM
-    if number_of_learnings >= goal_of_learnings_num * 2
+    if number_of_learnings == 0
+      text = '学習を登録してみましょう!!'
+    elsif number_of_learnings >= goal_of_learnings_num * 2
       text = '目標をあげよう!!'
     elsif number_of_learnings >= goal_of_learnings_num
       text = 'その調子!!'
