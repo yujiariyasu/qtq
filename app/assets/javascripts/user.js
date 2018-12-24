@@ -51,4 +51,8 @@ $(document).on('turbolinks:load', function() {
   },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
     $(this).removeClass("animated swing");
   }});
+
+  $('.goal-selector').on('change', function() {
+    $('#edit_user_2').submit()
+  });
 });

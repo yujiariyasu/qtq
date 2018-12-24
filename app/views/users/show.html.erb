@@ -15,12 +15,22 @@
       </ol>
       <div class='item-wrapper'>
         <div class='item-header'>
-          <ol class="breadcrumb p20 mb0 flex">
+          <ol class="p20 mb0 flex">
             <li class="active blue-black user-main-comparison" id='next-comparison-chart-button'>
               <%= fa_icon 'smile-o', class: 'blue-black' %>
               学習件数
               <%= fa_icon 'smile-o', class: 'blue-black' %>
             </li>
+            <% if current_user?(@user) %>
+              <li class="active blue-black user-main-comparison">
+                目標：
+              </li>
+              <li class='goal-selector'>
+                <%= form_for @user do |f| %>
+                  <%= f.select :goal, options_for_select((1..100).to_a, @user.goal) %>
+                <% end %>
+              </li>
+            <% end %>
           </ol>
         </div>
         <%= high_chart("比較", @comparison_chart) %>

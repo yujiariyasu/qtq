@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181221113031) do
+ActiveRecord::Schema.define(version: 20181224082927) do
 
   create_table "learnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20181221113031) do
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.integer  "goal"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
