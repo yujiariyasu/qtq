@@ -2,7 +2,6 @@ module Chart
   extend ActiveSupport::Concern
 
   DATE_RANGE_NUM = 29
-  DEFAULT_GOAL_NUM = 10
 
   def schedule_chart(user)
     days_until_review_hash = Hash.new(0)
@@ -122,12 +121,12 @@ module Chart
     date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
     learning_for_each_day = user.learning_for_each_day(range)
     unit = '件'
-    goal = DEFAULT_GOAL_NUM
+    goal = user.goal
     days1 = learning_for_each_day.sample(learning_for_each_day.size)
     days2 = days1.sample(learning_for_each_day.size)
     # 他の処理のついでにやればクエリ1つ減らせるが、メンテしにくくなるので別処理にします
     number_of_learnings = user.number_of_learnings(Date.today, DATE_RANGE_NUM)
-    goal_of_learnings_num = (DATE_RANGE_NUM + 1) * DEFAULT_GOAL_NUM
+    goal_of_learnings_num = (DATE_RANGE_NUM + 1) * goal
     if number_of_learnings == 0
       text = '学習を登録してみましょう!!'
     elsif number_of_learnings >= goal_of_learnings_num * 2
