@@ -340,3 +340,16 @@
   font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
   -webkit-font-smoothing: antialiased;
 }
+
+.learning-delete-button {
+  background: #cc4453;
+  width: 77px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 39px;
+  margin-bottom: 10px;
+
+  a:hover {
+    color: white;
+  }
+}
