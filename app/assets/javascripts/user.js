@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', function() {
     $(this).removeClass("animated swing");
   }});
 
-  $('.goal-selector').on('change', function() {
-    $('#edit_user_2').submit()
+  $('#user_goal').on('change', function() {
+    $('#edit_user_1').submit()
   });
 });
