@@ -51,6 +51,15 @@
           <%= high_chart("復習", @chart) %>
         </div>
       </div>
+      <div class='clearfix'>
+        <% if current_user?(@user) %>
+          <button class="learning-delete-button pull-right">
+            <%= link_to @learning, class: 'white', method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+              削除
+            <% end %>
+          </button>
+        <% end %>
+      </div>
       <div class='divide-main'></div>
       <div class='comment-header-space'></div>
       <div class='comment-wrapper'>

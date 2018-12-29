@@ -38,6 +38,11 @@ class LearningsController < ApplicationController
     redirect_to learning_url(learning)
   end
 
+  def destroy
+   Learning.find(params[:id]).destroy
+   redirect_to user_url(current_user)
+  end
+
   private
   def learning_params(speed)
     params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
