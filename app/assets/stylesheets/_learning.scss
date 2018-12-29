@@ -1,5 +1,6 @@
 .learning-main {
   padding: 30px;
+  position: relative;
 
   .user-name {
     line-height: 39px;
@@ -194,4 +195,148 @@
 
 .modal-form-box .mdl-switch.is-checked .mdl-switch__track {
   background: #169ae2;
+}
+
+.divide-main {
+  height: 30px;
+  background-color: #f6f6f6;
+  position: absolute;
+  width: 150%;
+  left: 0;
+}
+
+.comment-header-space {
+  height: 50px;
+}
+
+.comment-wrapper {
+  margin-top: 30px;
+}
+
+.each-comment-box {
+  margin-top: 50px;
+}
+
+.comment-user-image {
+  border-radius: 4px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.comment-user-info {
+  margin-left: 10px;
+  line-height: 20px;
+}
+
+.comment-user-name {
+  color: #337ab7;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.comment-user-learning-num {
+  font-size: 13px;
+  color: #6f6f6f;
+}
+
+.comment-user-leanring-unit {
+  font-size: 11px;
+  margin-left: 3px;
+  color: #999;
+}
+
+.comment-time-box {
+  margin-left: auto;
+  line-height: 20px;
+}
+
+.comment-time {
+  font-size: 13px;
+  color: #7b7b7b;
+}
+
+.comment-contribution {
+  color: #6f6f74;
+  font-size: 15px;
+}
+
+.comment-body {
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.comment-body-inner {
+  padding: 18px 32px;
+
+  a {
+    color: #6dbde4;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    text-align: left;
+  }
+  pre {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
+}
+
+.comment-body-inner:before, .comment-body-inner:after {
+  bottom: 100%;
+  left: 17px;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.comment-body-inner:before {
+  border-color: rgba(255,255,255,0);
+  border-bottom-color: #d9d9d9;
+  border-width: 7px;
+  margin-left: -7px;
+}
+
+.comment-body-inner:after {
+  border-color: rgba(255,255,255,0);
+  border-bottom-color: #fff;
+  border-width: 6px;
+  margin-left: -6px;
+}
+
+.post-comment-info {
+  display: inline-block;
+  line-height: 41px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+#new_comment::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.post-comment-body, .post-comment-body:focus {
+  min-height: 100px;
+  max-height: 500px;
+  width: 100%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+  height: 100px;
+  transition: background-color .1s linear;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px #eee;
+  background-color: #fafafa;
+  padding: 10px;
+  color: #333;
+  font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
+  -webkit-font-smoothing: antialiased;
 }

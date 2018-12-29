@@ -1,10 +1,11 @@
 class LearningsController < ApplicationController
-  INITIAL_DECREASE_SPEED = 67
+  include Chart
   def show
     @learning = Learning.find(params[:id])
     @user = @learning.user
-    @chart = @learning.review_chart
+    @chart = review_chart(@learning)
     @review = Review.new
+    @comment = Comment.new
   end
 
   def create

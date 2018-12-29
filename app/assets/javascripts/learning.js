@@ -70,4 +70,10 @@ $(document).on('turbolinks:load', function() {
   function initializeEditFiles() {
     document.getElementById('edit-learning-images-preview').innerHTML = '';
   }
+
+  $('.post-comment-submit').on('click', function() {
+    if ($('#comment_body').val() == '') {
+      return false;
+    }
+  })
 });
