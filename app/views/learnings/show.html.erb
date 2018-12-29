@@ -54,7 +54,10 @@
       <div class='divide-main'></div>
       <div class='comment-header-space'></div>
       <div class='comment-wrapper'>
-        <%= render 'comment' %>
+        <div class='past-comment-wrapper'>
+          <%= render @learning.comments %>
+        </div>
+        <%= render 'post_comment' %>
       </div>
     </div>
     <%= render 'review_sidebar' %>

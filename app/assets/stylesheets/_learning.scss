@@ -269,6 +269,17 @@
 
 .comment-body-inner {
   padding: 18px 32px;
+
+  a {
+    color: #6dbde4;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    text-align: left;
+  }
+  pre {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
 }
 
 .comment-body-inner:before, .comment-body-inner:after {
@@ -294,4 +305,38 @@
   border-bottom-color: #fff;
   border-width: 6px;
   margin-left: -6px;
+}
+
+.post-comment-info {
+  display: inline-block;
+  line-height: 41px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+#new_comment::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.post-comment-body, .post-comment-body:focus {
+  min-height: 100px;
+  max-height: 500px;
+  width: 100%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+  height: 100px;
+  transition: background-color .1s linear;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px #eee;
+  background-color: #fafafa;
+  padding: 10px;
+  color: #333;
+  font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
+  -webkit-font-smoothing: antialiased;
 }

@@ -2,6 +2,7 @@ class Learning < ApplicationRecord
   include Chart
 
   has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :user
 
   mount_uploaders :images, AvatarUploader

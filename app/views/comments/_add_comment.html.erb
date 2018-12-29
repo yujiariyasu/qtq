@@ -1,0 +1,28 @@
+<div class='each-comment-box'>
+  <div class='comment-header flex'>
+    <%= image_tag user_avatar_or_default(current_user), class: 'comment-user-image' %>
+    <div class='comment-user-info'>
+      <div class='comment-user-name-box'>
+        <%= link_to user_path(current_user), class: 'comment-user-name' do %>
+          <%= current_user.name %>
+        <% end %>
+      </div>
+      <div class='comment-user-learning-num'>
+        <%= current_user.learnings.count %><span class='comment-user-leanring-unit'>learnings</span>
+      </div>
+    </div>
+    <div class='comment-time-box'>
+      <div class='comment-time'>
+        <%= current_user.created_at.strftime('%Y-%m-%d %H:%M') %>
+      </div>
+      <div class='comment-contribution'>
+        いいね：3
+      </div>
+    </div>
+  </div>
+  <div class='comment-body'>
+    <div class='comment-body-inner'>
+      <%= simple_format(markdown(comment.body).html_safe) %>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ class LearningsController < ApplicationController
     @user = @learning.user
     @chart = review_chart(@learning)
     @review = Review.new
+    @comment = Comment.new
   end
 
   def create
