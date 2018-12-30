@@ -115,7 +115,7 @@ class User < ApplicationRecord
     LearningLike.find_by(user: self, learning: learning)
   end
 
-  def likes_comment?(learning)
+  def likes_comment?(comment)
     CommentLike.find_by(user: self, comment: comment)
   end
 
