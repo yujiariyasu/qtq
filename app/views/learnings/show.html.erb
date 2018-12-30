@@ -52,18 +52,9 @@
         </div>
       </div>
       <div class='flex'>
-        <% unless true %>
-          <span class='learning-like-wrapper light-blue'>
-            <%= fa_icon 'thumbs-up', class: 'learning-like-thumbs-up' %>
-            <span>いいね</span>
-          </span>
-        <% else %>
-          <span class='learning-like-wrapper liked light-blue'>
-            <%= fa_icon 'check', class: 'white' %>
-            <span class='white mr10'>いいね済み</span>
-          </span>
-        <% end %>
-        <span class='learning-like-balloon'>222</span>
+        <div class='learning-like-container flex'>
+          <%= render 'like', learning: @learning %>
+        </div>
         <% if current_user?(@user) %>
           <button class="learning-delete-button">
             <%= link_to '削除', @learning, class: 'white', method: :delete, data: { confirm: '本当に削除しますか？' } %>

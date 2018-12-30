@@ -4,7 +4,7 @@ class Learning < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   belongs_to :user
-
+  has_many :learning_likes, dependent: :destroy
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
@@ -34,5 +34,9 @@ class Learning < ApplicationRecord
   def add_review_description(review_description)
     prefix = "\n***\n[復習メモ]\n"
     description + prefix + review_description
+  end
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
   end
 end
