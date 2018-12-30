@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181230055334) do
+ActiveRecord::Schema.define(version: 20181230113328) do
+
+  create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_likes_on_comment_id", using: :btree
+    t.index ["user_id"], name: "index_comment_likes_on_user_id", using: :btree
+  end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "learning_id"
@@ -18,8 +27,18 @@ ActiveRecord::Schema.define(version: 20181230055334) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id"
+    t.integer  "likes_count"
     t.index ["learning_id"], name: "index_comments_on_learning_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "learning_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "learning_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["learning_id"], name: "index_learning_likes_on_learning_id", using: :btree
+    t.index ["user_id"], name: "index_learning_likes_on_user_id", using: :btree
   end
 
   create_table "learnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -34,6 +53,7 @@ ActiveRecord::Schema.define(version: 20181230055334) do
     t.date     "next_review_date"
     t.boolean  "public_flag"
     t.integer  "proficiency"
+    t.integer  "likes_count"
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
   end
 
@@ -76,8 +96,12 @@ ActiveRecord::Schema.define(version: 20181230055334) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "comment_likes", "comments"
+  add_foreign_key "comment_likes", "users"
   add_foreign_key "comments", "learnings"
   add_foreign_key "comments", "users"
+  add_foreign_key "learning_likes", "learnings"
+  add_foreign_key "learning_likes", "users"
   add_foreign_key "learnings", "users"
   add_foreign_key "reviews", "learnings"
 end

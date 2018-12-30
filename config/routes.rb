@@ -11,9 +11,13 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :user_relationships, only: [:create, :destroy]
-  resources :learnings
+  resources :learnings do
+    resources :learning_likes, only: [:create, :destroy]
+  end
   resources :reviews
-  resources :comments, only: [:create, :destroy, :update]
+  resources :comments, only: [:create, :destroy, :update] do
+    resources :comment_likes, only: [:create, :destroy]
+  end
   root to: 'users#show'
   get '*anything' => 'errors#routing_error'
 end

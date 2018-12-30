@@ -111,6 +111,14 @@ class User < ApplicationRecord
     learnings.where(created_at: (range_last_date - date_range_num).midnight..range_last_date.end_of_day).count
   end
 
+  def likes_learning?(learning)
+    LearningLike.find_by(user: self, learning: learning)
+  end
+
+  def likes_comment?(learning)
+    CommentLike.find_by(user: self, comment: comment)
+  end
+
   private
   def downcase_email
     self.email = email.downcase

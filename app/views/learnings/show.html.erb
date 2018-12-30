@@ -51,9 +51,12 @@
           <%= high_chart("復習", @chart) %>
         </div>
       </div>
-      <div class='clearfix'>
+      <div class='flex'>
+        <div class='learning-like-container flex'>
+          <%= render 'like', learning: @learning %>
+        </div>
         <% if current_user?(@user) %>
-          <button class="learning-delete-button pull-right">
+          <button class="learning-delete-button">
             <%= link_to '削除', @learning, class: 'white', method: :delete, data: { confirm: '本当に削除しますか？' } %>
           </button>
         <% end %>
