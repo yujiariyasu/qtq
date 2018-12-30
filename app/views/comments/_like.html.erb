@@ -1,0 +1,13 @@
+<% if like = current_user.likes_comment?(comment) %>
+  <%= link_to comment_comment_like_path(like, comment_id: comment.id), method: :delete, id: "comment-like-button",
+    class: 'learning-like-wrapper comment-like-wrapper liked light-blue', remote: true do %>
+      <%= fa_icon 'check', class: 'white' %>
+      <span class='white mr10'>いいね済み</span>
+  <% end %>
+<% else %>
+  <%= link_to comment_comment_likes_path(comment), method: :post, id: "comment-like-button", class: 'learning-like-wrapper comment-like-wrapper light-blue', remote: true do %>
+    <%= fa_icon 'thumbs-up', class: 'learning-like-thumbs-up' %>
+    <span>いいね</span>
+  <% end %>
+<% end %>
+<span class='learning-like-balloon comment-like-balloon'><%= comment.likes_count || 0 %></span>
