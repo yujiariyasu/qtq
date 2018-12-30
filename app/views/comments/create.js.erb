@@ -1,2 +1,2 @@
-$(".past-comment-wrapper").append("<%= j(render partial: 'add_comment', locals: { comment: @comment }) %>");
+$(".past-comment-wrapper").append("<%= j(render partial: 'comment', locals: { comment: @comment, user: current_user }) %>");
 $("#comment_body").val('')

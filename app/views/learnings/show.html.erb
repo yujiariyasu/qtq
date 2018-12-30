@@ -62,7 +62,7 @@
       <div class='comment-header-space'></div>
       <div class='comment-wrapper'>
         <div class='past-comment-wrapper'>
-          <%= render @learning.comments %>
+          <%= render @learning.comments, user: @user %>
         </div>
         <%= render 'post_comment' %>
       </div>
