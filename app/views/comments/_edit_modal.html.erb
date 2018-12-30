@@ -1,0 +1,25 @@
+<div class='comment-edit-modal'>
+  <div class="modal fade" id=<%= "comment-modal#{comment.id}" %> tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id='comment-modal-dialog' role="document">
+      <div class="modal-content">
+        <div class='learning-new-modal-body'>
+          <div class='modal-inner-box'>
+            <div class='comment-modal-form-box'>
+              <%= form_for comment do |f| %>
+                <%= hidden_field_tag :learning_id, comment.learning_id %>
+                <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
+                  <%= f.text_area :body, class: 'form-control learning-modal-text-area', rows: '4' %>
+                </div>
+                <div class='clearfix'>
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
+                    編集
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :user_relationships, only: [:create, :destroy]
   resources :learnings
   resources :reviews
-  resources :comments, only: [:create, :delete, :update]
+  resources :comments, only: [:create, :destroy, :update]
   root to: 'users#show'
   get '*anything' => 'errors#routing_error'
 end

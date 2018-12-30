@@ -258,6 +258,7 @@
 .comment-contribution {
   color: #6f6f74;
   font-size: 15px;
+  display: flex;
 }
 
 .comment-body {
@@ -342,7 +343,7 @@
 }
 
 .learning-delete-button {
-  background: #cc4453;
+  background: black;
   width: 77px;
   border-radius: 4px;
   cursor: pointer;
@@ -352,4 +353,32 @@
   a:hover {
     color: white;
   }
+}
+
+.post-comment-submit {
+  margin-top: 4px;
+  margin-bottom: -11px;
+}
+
+.comment-delete-button {
+  color: #6f6f74;
+  margin-left: 5px;
+}
+
+.comment-contribution-unit {
+  margin-left: 1px;
+  margin-right: 4px;
+}
+
+.comment-edit-modal-button {
+  cursor: pointer;
+}
+
+.comment-modal-form-box {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#comment-modal-dialog {
+  margin-top: 300px;
 }
