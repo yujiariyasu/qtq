@@ -54,9 +54,7 @@
       <div class='clearfix'>
         <% if current_user?(@user) %>
           <button class="learning-delete-button pull-right">
-            <%= link_to @learning, class: 'white', method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-              削除
-            <% end %>
+            <%= link_to '削除', @learning, class: 'white', method: :delete, data: { confirm: '本当に削除しますか？' } %>
           </button>
         <% end %>
       </div>

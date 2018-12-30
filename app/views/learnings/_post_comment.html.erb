@@ -11,7 +11,7 @@
         <%= form_for @comment, remote: true do |f| %>
           <%= hidden_field_tag :learning_id, @learning.id %>
           <%= f.text_area :body, class: 'post-comment-body form-control', placeholder: 'コメントを入力してください' %>
-          <%= f.submit '投稿', class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mt10 post-comment-submit' %>
+          <%= f.submit '投稿', class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right post-comment-submit' %>
         <% end %>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div class='each-comment-box'>
+<div class='each-comment-box' id=<%= 'comment' + "#{comment.id}" %>>
   <div class='comment-header flex'>
     <%= image_tag user_avatar_or_default(current_user), class: 'comment-user-image' %>
     <div class='comment-user-info'>
@@ -16,7 +16,14 @@
         <%= @user.created_at.strftime('%Y-%m-%d %H:%M') %>
       </div>
       <div class='comment-contribution'>
-        いいね：3
+        <% if comment.user_id == current_user.id %>
+          <span>1</span>
+          <span class='comment-contribution-unit'>いいね</span>
+          <span class='comment-edit-modal-button'>編集</span>
+          <%= link_to '削除', comment, class: 'comment-delete-button', method: :delete, remote: true, data: {confirm: '本当に削除しますか？'} %>
+        <% else %>
+          いいね：3
+        <% end %>
       </div>
     </div>
   </div>
@@ -25,4 +32,7 @@
       <%= simple_format(markdown(comment.body).html_safe) %>
     </div>
   </div>
+</div>
+<div class='comment-edit-modal'>
+  
 </div>
