@@ -191,6 +191,7 @@
   color: #777;
   padding: 0 10px 0 19px;
   font-size: 15px;
+  word-break: break-all;
 
   a {
     color: #6dbde4;
@@ -206,6 +207,10 @@
 
 .user-list-introduction {
   margin-left: 10px;
+
+  p {
+    line-height: 1.3em;
+  }
 
   a {
     color: #6dbde4;

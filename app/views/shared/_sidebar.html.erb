@@ -55,7 +55,7 @@
   </div>
   <% if @user.introduction.present? %>
     <div class='introduction'>
-      <%= simple_format(markdown(@user.introduction).html_safe) %>
+      <%= simple_format(@user.introduction) %>
     </div>
   <% end %>
   <div class='user-learning-index'>

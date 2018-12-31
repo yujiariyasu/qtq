@@ -3,7 +3,11 @@
 <div class='row m0 p0'>
   <div class='user-list-page'>
     <div class='user-list-header'>
-      <%= link_to @user.name, @user %>
+      <% if params[:controller] == 'users' %>
+        <%= link_to @user.name, @user %>
+      <% elsif params[:controller] == 'learnings' %>
+        <%= link_to @learning.title, @learning %>
+      <% end %>
       <span class='user-list-description'><%= @description %></span>
     </div>
     <div class='user-list'>

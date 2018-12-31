@@ -1,12 +1,12 @@
 <div class='each-user-list'>
   <%= image_tag user_avatar_or_default(current_user), class: "user-list-avatar" %>
   <div>
-    <div>
+    <div style='margin-bottom: 6px;'>
       <%= link_to user.name, user, class: 'user-list-name' %>
     </div>
     <% if user.introduction.present? %>
       <div class='user-list-introduction'>
-        <%= simple_format(markdown(user.introduction).html_safe) %>
+        <%= user.introduction %>
       </div>
     <% end %>
   </div>
