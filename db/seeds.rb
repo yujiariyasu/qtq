@@ -17,17 +17,22 @@
 #   users.each { |user| user.learnings.create!(title: title, description: description) }
 # end
 
-users = User.where(id: [111,112,113,114,115])
-learnings = Learning.order(:created_at).take(6)
-4.times do
-  body = Faker::Lorem.sentence(5)
-  users.each do |user|
-    learnings.each do |l|
-      l.comments.create!(body: body, user_id: user.id)
-    end
-  end
-end
+# users = User.where(id: [111,112,113,114,115])
+# learnings = Learning.order(:created_at).take(6)
+# 4.times do
+#   body = Faker::Lorem.sentence(5)
+#   users.each do |user|
+#     learnings.each do |l|
+#       l.comments.create!(body: body, user_id: user.id)
+#     end
+#   end
+# end
 
+User.all.each do |u|
+  i = rand(1..2)
+  u.introduction = Faker::Lorem.sentence(5)
+  u.save if i == 1
+end
 
 # users = User.all
 # user  = users.first
