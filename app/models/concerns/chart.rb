@@ -10,10 +10,10 @@ module Chart
     user.learnings.not_finished.each do |learning|
       set_review_data(learning, review_detail_data, days_until_review_hash)
     end
-    if user.number_of_learnings(Date.today, DATE_RANGE_NUM) == 0
-      text = '学習を登録すると円グラフが表示されます!!'
-    else
+    if user.learnings.not_finished.present?
       text = "復習で学習を定着させましょう!!"
+    else
+      text = '学習を登録すると円グラフが表示されます!!'
     end
     return LazyHighCharts::HighChart.new('graph') do |c|
       c.chart(type: 'pie')
@@ -93,7 +93,7 @@ module Chart
 
   def set_review_data(learning, review_detail_data, days_until_review_hash)
     title = learning.title
-    title = "#{title[0..40]}..." if title.size > 40
+    title = "#{title[0..20]}..." if title.size > 20
     days_until_review = (learning.next_review_date - Time.current.to_date).to_i
     case days_until_review
     when 1
@@ -119,7 +119,13 @@ module Chart
 
   def comparison_chart(user)
     today = Time.current.to_date
-    range = (today - DATE_RANGE_NUM)..today
+    range_size = (today - user.created_at.to_date).to_i
+    if range_size >= DATE_RANGE_NUM
+      range = (today - DATE_RANGE_NUM)..today
+      range_size = DATE_RANGE_NUM
+    else
+      range = user.created_at.to_date..today
+    end
     date_category = range.to_a.map{ |date| date.strftime('%m/%d') }
     learning_for_each_day = user.learning_for_each_day(range)
     unit = '件'
@@ -127,8 +133,8 @@ module Chart
     days1 = learning_for_each_day.sample(learning_for_each_day.size)
     days2 = days1.sample(learning_for_each_day.size)
     # 他の処理のついでにやればクエリ1つ減らせるが、メンテしにくくなるので別処理にします
-    number_of_learnings = user.number_of_learnings(Date.today, DATE_RANGE_NUM)
-    goal_of_learnings_num = (DATE_RANGE_NUM + 1) * goal
+    number_of_learnings = user.number_of_learnings(Date.today, range_size)
+    goal_of_learnings_num = (range_size + 1) * goal
     if number_of_learnings == 0
       text = '学習を登録してみましょう!!'
     elsif number_of_learnings >= goal_of_learnings_num * 2
@@ -161,7 +167,7 @@ module Chart
           borderWidth: 0
         }
       })
-      c.series(type: 'spline', name: '目標', data: [goal] * (DATE_RANGE_NUM + 1),
+      c.series(type: 'spline', name: '目標', data: [goal] * (range_size + 1),
                marker: {
                  lineWidth: 1,
                  lineColor: 'white',
