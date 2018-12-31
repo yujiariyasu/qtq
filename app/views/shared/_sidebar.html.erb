@@ -38,21 +38,26 @@
             <% else %>
               <span class="profile-stats-span">フォロワー</span>
               <span class="profile-stats-span" id='followers'>0</span>
-              <% end %>
+            <% end %>
           </li>
         </ul>
       </div>
       <% if logged_in? && !current_user?(@user) %>
-        <div id=<%= "follow_form#{@user.id}" %>>
-        <% if current_user.following?(@user) %>
-          <%= render partial: 'users/unfollow', locals: { user: @user } %>
-        <% else %>
-          <%= render partial: 'users/follow', locals: { user: @user } %>
-        <% end %>
+        <div style='margin-left: 100px' id=<%= "follow_form#{@user.id}" %>>
+          <% if current_user.following?(@user) %>
+            <%= render partial: 'users/unfollow', locals: { user: @user } %>
+          <% else %>
+            <%= render partial: 'users/follow', locals: { user: @user } %>
+          <% end %>
         </div>
       <% end %>
     </div>
   </div>
+  <% if @user.introduction.present? %>
+    <div class='introduction'>
+      <%= simple_format(markdown(@user.introduction).html_safe) %>
+    </div>
+  <% end %>
   <div class='user-learning-index'>
     <div class='recent-learning-header'>
       <%= fa_icon 'arrow-down', class: 'pl10' %>

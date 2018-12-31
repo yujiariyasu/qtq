@@ -53,7 +53,7 @@ class LearningsController < ApplicationController
   end
 
   def trend
-    @learnings = Learning.page(params[:page]).per(30)
+    @learnings = Learning.includes(:user).page(params[:page]).per(30)
   end
 
   private

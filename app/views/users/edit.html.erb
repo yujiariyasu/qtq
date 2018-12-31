@@ -22,6 +22,10 @@
       <% f.label :email, class: 'mdl-textfield__label' %>
     </div>
 
+    <div class="mdl-textfield mdl-js-textfield form-group pt0">
+      <%= f.text_area :introduction, class: 'form-control learning-modal-text-area', rows: '3', placeholder: '自己紹介...' %>
+    </div>
+
     <div class="upload-box">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent upload-button" style="margin-bottom: 23px;color:white;cursor:pointer" type='button'>画像を選択する
       </button>

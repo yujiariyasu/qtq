@@ -62,11 +62,11 @@
 }
 
 .follow-btn {
-  margin-left: 105px;
+  min-width: 88px;
 }
 
 .unfollow-btn {
-  margin-left: 98px;
+  min-width: 102px;
 }
 
 .unfollow-now {
@@ -83,6 +83,7 @@
 
 .unfollow-btn:hover span:nth-child(1) {
   display: inline-block;
+  min-width: 85px;
 }
 
 .unfollow-btn:hover span:nth-child(2) {
@@ -184,4 +185,36 @@
 .recent-learning-header {
   margin-bottom:10px;
   color: #585454;
+}
+
+.introduction {
+  color: #777;
+  padding: 0 10px 0 19px;
+  font-size: 15px;
+
+  a {
+    color: #6dbde4;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    text-align: left;
+  }
+  pre {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
+}
+
+.user-list-introduction {
+  margin-left: 10px;
+
+  a {
+    color: #6dbde4;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    text-align: left;
+  }
+  pre {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
 }

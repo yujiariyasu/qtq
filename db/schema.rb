@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181230113328) do
+ActiveRecord::Schema.define(version: 20181231151906) do
 
   create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(version: 20181230113328) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                              null: false
-    t.string   "email",                             null: false
+    t.string   "name",                                            null: false
+    t.string   "email",                                           null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.boolean  "activated",                       default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20181230113328) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.integer  "goal"
+    t.text     "introduction",      limit: 65535
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
