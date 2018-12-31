@@ -6,6 +6,7 @@ class LearningsController < ApplicationController
     @chart = review_chart(@learning)
     @review = Review.new
     @comment = Comment.new
+    @comments = @learning.comments.includes(:user)
   end
 
   def create
@@ -46,9 +47,13 @@ class LearningsController < ApplicationController
   def likers
     @description = ' / likers'
     @learning = Learning.find(params[:id])
-    @users = @learning.users
+    @users = @learning.users.page(params[:page]).per(20)
     @title = "#{@learning.title} にいいねした人"
     render 'shared/users'
+  end
+
+  def trend
+    @learnings = Learning.page(params[:page]).per(30)
   end
 
   private

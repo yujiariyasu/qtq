@@ -16,13 +16,14 @@ Rails.application.routes.draw do
     member do
       get :likers
     end
+    collection do
+      get :trend
+    end
   end
   resources :reviews
   resources :comments, only: [:create, :destroy, :update] do
     resources :comment_likes, only: [:create, :destroy]
   end
-  root to: 'users#show' do
-
-  end
+  root to: 'learnings#trend'
   get '*anything' => 'errors#routing_error'
 end

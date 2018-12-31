@@ -1,3 +1,4 @@
+<% user = comment.user %>
 <div class='each-comment-box' id=<%= 'comment' + "#{comment.id}" %>>
   <div class='comment-header flex'>
     <%= image_tag user_avatar_or_default(user), class: 'comment-user-image' %>
@@ -13,7 +14,7 @@
     </div>
     <div class='comment-time-box'>
       <div class='comment-time clearfix'>
-        <span class='pull-right'><%= user.created_at.strftime('%Y-%m-%d %H:%M') %></span>
+        <span class='pull-right'><%= comment.created_at.strftime('%Y-%m-%d %H:%M') %></span>
       </div>
       <div class='comment-contribution'>
         <% if comment.user_id == current_user.id %>
@@ -22,7 +23,7 @@
           <span class='comment-edit-modal-button' data-toggle="modal" data-target=<%= "#comment-modal#{comment.id}" %>>編集</span>
           <%= link_to '削除', comment, class: 'comment-delete-button', method: :delete, remote: true, data: {confirm: '本当に削除しますか？'} %>
         <% else %>
-          <div class='comment-like-container flex'>
+          <div id=<%= "comment-like-container#{comment.id}" %> class='comment-like-container flex'>
             <%= render 'comments/like', comment: comment %>
           </div>
         <% end %>

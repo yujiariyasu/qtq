@@ -1,10 +1,5 @@
 <% provide(:title, "#{@user.name}さんのページ") %>
-<% if logged_in? %>
-  <%= render partial: 'common/header' %>
-<% else %>
-  <%= render partial: 'common/root_header' %>
-<% end %>
-
+<%= render partial: 'common/header' %>
 <div class='row m0 p0' id="main-wrapper">
   <div id='main-container' class='clearfix'>
     <div id="content" class='pt10 pl10 pr10 m0a main'>

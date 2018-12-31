@@ -1,4 +1,4 @@
-<% if @user.errors.any? %>
+<% if @user && @user.errors.any? %>
   <div id="error-explanation">
     <div class="alert alert-danger">
       <%= @user.errors.count %>つのエラーがあります。
