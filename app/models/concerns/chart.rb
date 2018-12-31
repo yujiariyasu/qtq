@@ -93,7 +93,7 @@ module Chart
 
   def set_review_data(learning, review_detail_data, days_until_review_hash)
     title = learning.title
-    days_until_review = (Time.current.to_date - learning.next_review_date).to_i
+    days_until_review = (learning.next_review_date - Time.current.to_date).to_i
     case days_until_review
     when 1
       review_detail_data[:tomorrow] << [title, 1]
