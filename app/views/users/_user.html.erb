@@ -2,7 +2,7 @@
   <%= image_tag user_avatar_or_default(current_user), class: "user-list-avatar" %>
   <%= link_to user.name, user, class: 'user-list-name' %>
   <% if logged_in? && !current_user?(user) %>
-    <div id="follow_form" class='follow_form'>
+    <div id=<%= "follow_form#{user.id}" %> class='follow_form'>
     <% if current_user.following?(user) %>
       <%= render 'unfollow', user: user %>
     <% else %>
