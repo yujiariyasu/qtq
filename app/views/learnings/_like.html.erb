@@ -10,4 +10,10 @@
     <span>いいね</span>
   <% end %>
 <% end %>
-<span class='learning-like-balloon'><%= learning.likes_count || 0 %></span>
+<% if learning.likes_count.present? %>
+  <%= link_to likers_learning_path(learning) do %>
+    <span class='learning-like-balloon learning-like-balloon-link'><%= learning.likes_count %></span>
+  <% end %>
+<% else %>
+  <span class='learning-like-balloon'><%= learning.likes_count || 0 %></span>
+<% end %>

@@ -71,15 +71,18 @@ class UsersController < ApplicationController
   end
 
   def following
+    @description = ' / following'
     @user = User.find(params[:id])
-    @users = @user.following
-    render 'show_follow'
+    @users = @user.following.page(params[:page]).per(20)
+    @title = "#{@user.name}さんがフォローしている人"
+    render 'shared/users'
   end
 
   def followers
+    @description = ' / followers'
     @user = User.find(params[:id])
-    @users = @user.followers
-    render 'show_follow'
+    @users = @user.followers.page(params[:page]).per(20)
+    render 'shared/users'
   end
 
   private

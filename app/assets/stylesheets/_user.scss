@@ -50,6 +50,9 @@
 
 .profile-stats-link {
   text-decoration:none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .profile-stats-span {
@@ -124,4 +127,56 @@
 .goal-selector {
   margin-right: 31px;
   position: relative;
+}
+
+.user-list-page {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  max-width: 1100px;
+  width: calc(100% - 50px);
+  margin-right: auto;
+  margin-left: auto;
+}
+.user-list-header {
+  margin-bottom: 13px;
+  background: #f3f6f1;
+  border-bottom: solid 1px #e8eee4;
+  border-top: solid 1px #e8eee4;
+  padding: 1em;
+  font-size: 14px;
+
+  a, a:hover {
+    color: #169ae2;
+  }
+}
+
+.user-list-description {
+  color: #999;
+  font-size: 14px;
+}
+
+.user-list {
+  .each-user-list {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: solid 1px #e4e0e0;
+  }
+
+  a, a:hover {
+    color: #169ae2;
+  }
+
+  .user-list-avatar {
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 4px;
+  }
+
+  .user-list-name {
+    margin-left: 10px;
+  }
+
+  .follow_form {
+    margin-left: auto;
+  }
 }

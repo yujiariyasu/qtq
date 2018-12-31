@@ -1,7 +1,7 @@
-<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+<%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
              html: { method: :delete },
              remote: true) do |f| %>
-  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent unfollow-btn" style="margin-bottom: 23px;">
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent unfollow-btn">
      <span class='unfollow-now'>フォロー解除</span><span class='follow-now'>フォロー中</span>
   </button>
 <% end %>
