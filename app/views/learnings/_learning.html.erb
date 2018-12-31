@@ -1,9 +1,16 @@
 <div class='each-user-list'>
-  <%= image_tag user_avatar_or_default(learning.user), class: "user-list-avatar" %>
-  <%= link_to learning.title, learning, class: 'user-list-name' %>
+  <%= image_tag user_avatar_or_default(learning.user), class: "user-list-avatar mr10" %>
+  <div class='mr10'>
+    <div class='user-list-username'>
+      <%= link_to "@#{learning.user.name}", learning %>
+      <span> <%= learning.created_at.strftime('%Y/%m/%d') %> </span>
+    </div>
+    <div>
+      <%= link_to learning.title, learning, class: 'user-list-learning-title' %>
+    </div>
+  </div>
   <div class='user-list-like-container mla'>
     <%= fa_icon 'thumbs-up', class: 'user-list-like-icon' %>
     <span><%= learning.likes_count || 0 %></span>
-    <%#= render 'learnings/like', learning: learning %>
   </div>
 </div>
