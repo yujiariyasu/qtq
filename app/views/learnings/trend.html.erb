@@ -1,0 +1,17 @@
+<% provide(:title, @title) %>
+<% if logged_in? %>
+  <%= render partial: 'common/header' %>
+<% else %>
+  <%= render partial: 'common/root_header' %>
+<% end %>
+<div class='row m0 p0'>
+  <div class='user-list-page'>
+    <div class='user-list-header'>
+      <span class='user-list-description'>新着</span>
+    </div>
+    <div class='user-list'>
+      <%= render @learnings %>
+    </div>
+    <%= paginate @learnings %>
+  </div>
+</div>

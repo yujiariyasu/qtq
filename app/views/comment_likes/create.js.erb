@@ -1,1 +1,1 @@
-$(".comment-like-container").html("<%= j(render partial: 'comments/like', locals: { comment: @comment}) %>")
+$('<%= "#comment-like-container#{@comment.id}" %>').html("<%= j(render partial: 'comments/like', locals: { comment: @comment}) %>")

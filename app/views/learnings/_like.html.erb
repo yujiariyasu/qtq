@@ -1,19 +1,34 @@
-<% if like = current_user.likes_learning?(learning) %>
-  <%= link_to learning_learning_like_path(like, learning_id: learning.id), method: :delete, id: "learning-like-button",
-    class: 'learning-like-wrapper liked light-blue', remote: true do %>
-      <%= fa_icon 'check', class: 'white' %>
-      <span class='white mr10'>いいね済み</span>
+<% if logged_in? %>
+  <% if like = current_user.likes_learning?(learning) %>
+    <%= link_to learning_learning_like_path(like, learning_id: learning.id), method: :delete, id: "learning-like-button",
+      class: 'learning-like-wrapper liked light-blue', remote: true do %>
+        <%= fa_icon 'check', class: 'white' %>
+        <span class='white mr10'>いいね済み</span>
+    <% end %>
+  <% else %>
+    <%= link_to learning_learning_likes_path(learning), method: :post, id: "learning-like-button", class: 'learning-like-wrapper light-blue', remote: true do %>
+      <%= fa_icon 'thumbs-up', class: 'learning-like-thumbs-up' %>
+      <span>いいね</span>
+    <% end %>
   <% end %>
+  <% if learning.likes_count.present? && learning.likes_count >= 1 %>
+    <%= link_to likers_learning_path(learning) do %>
+      <span class='learning-like-balloon learning-like-balloon-link'><%= learning.likes_count %></span>
+    <% end %>
+  <% else %>
+    <span class='learning-like-balloon'><%= learning.likes_count || 0 %></span>
+  <% end %>
+
 <% else %>
-  <%= link_to learning_learning_likes_path(learning), method: :post, id: "learning-like-button", class: 'learning-like-wrapper light-blue', remote: true do %>
+  <span class='learning-like-wrapper light-blue'>
     <%= fa_icon 'thumbs-up', class: 'learning-like-thumbs-up' %>
     <span>いいね</span>
+  </span>
+  <% if learning.likes_count.present? && learning.likes_count >= 1 %>
+    <%= link_to likers_learning_path(learning) do %>
+      <span class='learning-like-balloon learning-like-balloon-link'><%= learning.likes_count %></span>
+    <% end %>
+  <% else %>
+    <span class='learning-like-balloon'><%= learning.likes_count || 0 %></span>
   <% end %>
-<% end %>
-<% if learning.likes_count.present? %>
-  <%= link_to likers_learning_path(learning) do %>
-    <span class='learning-like-balloon learning-like-balloon-link'><%= learning.likes_count %></span>
-  <% end %>
-<% else %>
-  <span class='learning-like-balloon'><%= learning.likes_count || 0 %></span>
 <% end %>
