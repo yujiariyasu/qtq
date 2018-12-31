@@ -1,9 +1,10 @@
 class Learning < ApplicationRecord
   include Chart
 
+  belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
-  belongs_to :user
+  has_many :users, through: :learning_likes
   has_many :learning_likes, dependent: :destroy
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true

@@ -411,6 +411,11 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   height: 32px;
+  color: #2f3a40;
+}
+
+.learning-like-balloon-link:hover {
+  text-decoration: underline;
 }
 
 .learning-like-balloon:before {

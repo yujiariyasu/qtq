@@ -13,11 +13,16 @@ Rails.application.routes.draw do
   resources :user_relationships, only: [:create, :destroy]
   resources :learnings do
     resources :learning_likes, only: [:create, :destroy]
+    member do
+      get :likers
+    end
   end
   resources :reviews
   resources :comments, only: [:create, :destroy, :update] do
     resources :comment_likes, only: [:create, :destroy]
   end
-  root to: 'users#show'
+  root to: 'users#show' do
+
+  end
   get '*anything' => 'errors#routing_error'
 end

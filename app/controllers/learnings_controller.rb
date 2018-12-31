@@ -43,6 +43,14 @@ class LearningsController < ApplicationController
    redirect_to user_url(current_user)
   end
 
+  def likers
+    @description = ' / likers'
+    @learning = Learning.find(params[:id])
+    @users = @learning.users
+    @title = "#{@learning.title} にいいねした人"
+    render 'shared/users'
+  end
+
   private
   def learning_params(speed)
     params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
