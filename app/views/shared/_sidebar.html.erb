@@ -15,7 +15,7 @@
           </li>
           <li class="profile-stats-list">
             <% if @user.following.present? %>
-              <%= link_to following_user_path, class: 'profile-stats-link' do %>
+              <%= link_to following_user_path(@user), class: 'profile-stats-link' do %>
                 <span class="profile-stats-span">フォロー</span>
                 <span class="profile-stats-span" id='following'><%= @user.following.count %></span>
               <% end %>
@@ -26,7 +26,7 @@
           </li>
           <li class="profile-stats-list-follower">
             <% if @user.followers.present? %>
-              <%= link_to followers_user_path, class: 'profile-stats-link' do %>
+              <%= link_to followers_user_path(@user), class: 'profile-stats-link' do %>
                 <span class="profile-stats-span">フォロワー</span>
                 <span class="profile-stats-span" id='followers'><%= @user.followers.count %></span>
               <% end %>
@@ -38,11 +38,11 @@
         </ul>
       </div>
       <% if logged_in? && !current_user?(@user) %>
-        <div id="follow_form">
+        <div id=<%= "follow_form#{@user.id}" %>>
         <% if current_user.following?(@user) %>
-          <%= render 'unfollow', user: @user %>
+          <%= render partial: 'users/unfollow', locals: { user: @user } %>
         <% else %>
-          <%= render 'follow', user: @user %>
+          <%= render partial: 'users/follow', locals: { user: @user } %>
         <% end %>
         </div>
       <% end %>
