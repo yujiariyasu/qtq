@@ -8,10 +8,15 @@
       <div class="profile-stats mb10">
         <ul class="">
           <li class="profile-stats-list">
-            <a class='profile-stats-link'>
+            <% if @user.learnings.present? %>
+              <%= link_to learnings_user_path(@user), class: 'profile-stats-link' do %>
+                <span class="profile-stats-span">学習件数</span>
+                <span class="profile-stats-span"><%= number_with_delimiter(@user.learnings.count) %></span>
+              <% end %>
+            <% else %>
               <span class="profile-stats-span">学習件数</span>
-              <span class="profile-stats-span"><%= number_with_delimiter(@user.learnings.count) %></span>
-            </a>
+              <span class="profile-stats-span" id='following'>0</span>
+            <% end %>
           </li>
           <li class="profile-stats-list">
             <% if @user.following.present? %>
@@ -21,7 +26,7 @@
               <% end %>
             <% else %>
               <span class="profile-stats-span">フォロー</span>
-              <span class="profile-stats-span" id='following'><%= @user.following.count %></span>
+              <span class="profile-stats-span" id='following'>0</span>
             <% end %>
           </li>
           <li class="profile-stats-list-follower">
@@ -32,7 +37,7 @@
               <% end %>
             <% else %>
               <span class="profile-stats-span">フォロワー</span>
-              <span class="profile-stats-span" id='followers'><%= @user.followers.count %></span>
+              <span class="profile-stats-span" id='followers'>0</span>
               <% end %>
           </li>
         </ul>
@@ -49,7 +54,12 @@
     </div>
   </div>
   <div class='user-learning-index'>
-    <% @user.learnings.reverse_each do |learning| %>
+    <div class='recent-learning-header'>
+      <%= fa_icon 'arrow-down', class: 'pl10' %>
+      <span class='ml10'>最近の学習</span>
+      <%= fa_icon 'arrow-down' %>
+    </div>
+    <% @user.learnings.reverse.take(20).each do |learning| %>
       <%= link_to learning.title, learning_path(learning) %>
     <% end %>
   </div>

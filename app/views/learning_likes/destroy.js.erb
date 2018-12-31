@@ -1,1 +1,1 @@
-$(".learning-like-container").html("<%= j(render partial: 'learnings/like', locals: { learning: @learning}) %>")
+$('<%= "#learning-like-container#{@learning.id}" %>').html("<%= j(render partial: 'learnings/like', locals: { learning: @learning}) %>")
