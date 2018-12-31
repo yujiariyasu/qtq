@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class='flex'>
-        <div class='learning-like-container flex'>
+        <div id=<%= "learning-like-container#{@learning.id}" %> class='learning-like-container flex'>
           <%= render 'like', learning: @learning %>
         </div>
         <% if current_user?(@user) %>

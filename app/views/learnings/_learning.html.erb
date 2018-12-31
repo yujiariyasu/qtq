@@ -1,0 +1,7 @@
+<div class='each-user-list'>
+  <%= image_tag user_avatar_or_default(learning.user), class: "user-list-avatar" %>
+  <%= link_to learning.title, learning, class: 'user-list-name' %>
+  <div id=<%= "learning-like-container#{learning.id}" %> class='learning-like-container flex mla'>
+    <%= render 'learnings/like', learning: learning %>
+  </div>
+</div>

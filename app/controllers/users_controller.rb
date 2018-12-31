@@ -85,6 +85,12 @@ class UsersController < ApplicationController
     render 'shared/users'
   end
 
+  def learnings
+    @description = ' / learnings'
+    @user = User.find(params[:id])
+    @learnings = @user.learnings.page(params[:page]).per(20)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :goal)
