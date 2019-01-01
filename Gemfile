@@ -26,6 +26,8 @@ gem 'omniauth-facebook'
 gem 'redcarpet', '~> 2.3.0'
 gem 'kaminari'
 gem 'faker'
+gem 'serviceworker-rails'
+gem 'webpush'
 
 group :development, :test do
   gem 'byebug', platform: :mri
