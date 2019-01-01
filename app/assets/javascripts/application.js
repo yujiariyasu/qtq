@@ -10,3 +10,4 @@
 //= require learning
 //= require top
 //= require user
+//= require notification
