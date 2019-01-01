@@ -4,6 +4,7 @@
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
 //= require highcharts/modules/drilldown
+//= require serviceworker
 //= require material
 //= require turbolinks
 //= require cable
