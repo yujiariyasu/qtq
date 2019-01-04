@@ -1,0 +1,111 @@
+var CACHE_VERSION = "<%= Time.current.strftime('%Y-%m-%d') %>";
+var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
+
+function onInstall(event) {
+  console.log('[Serviceworker]', "Installing!", event);
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function prefill(cache) {
+      return cache.addAll([]);
+    })
+  );
+}
+
+function onActivate(event) {
+  console.log('[Serviceworker]', "Activating!", event);
+  event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+            cacheNames.filter(function(cacheName) {
+              return cacheName.indexOf(CACHE_VERSION) !== 0;
+            }).map(function(cacheName) {
+              return caches.delete(cacheName);
+            })
+        );
+      })
+  );
+}
+
+function onFetch(event) {
+  event.respondWith(
+      // try to return untouched request from network first
+      fetch(event.request).then(function (response) {
+        var requestUrl = new URL(event.request.url)
+        if($('.learning-main-header').length) {
+          if ($('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
+            var cloneResponse = response.clone();
+            caches.open(CACHE_NAME).then(function (cache) {
+              cache.put(event.request.url, cloneResponse);
+              return response;
+            })
+            return response;
+          }
+        }
+        return response;
+      }).catch(function() {
+        // if it fails, try to return request from the cache
+        return caches.match(event.request).then(function(response) {
+          if (response) {
+            return response;
+          }
+          // if not found in cache, return default offline content for navigate requests
+          if (event.request.mode === 'navigate' ||
+              (event.request.method === 'GET'
+                  && event.request.headers.get('accept').includes('text/html'))) {
+            console.log('[Serviceworker]', "Fetching offline content", event);
+            return caches.match('/offline.html');
+          }
+        })
+      })
+  );
+}
+
+function onPush(event) {
+  console.log('[Serviceworker]', "Received push message!", event);
+  var json = event.data.json();
+  return event.waitUntil(
+      self.registration.showNotification(json.title, {
+        body: json.body,
+        icon: json.icon,
+        tag: json.tag,
+        data: {
+          target_url: '/'
+        }
+      })
+  );
+}
+
+function onSWNotificationClick(event) {
+  event.notification.close();
+  return event.waitUntil(
+      clients.openWindow(
+          event.notification.data != null ? event.notification.data.target_url : '/'
+      )
+  );
+}
+
+function onPushSubscriptionChange(event) {
+  console.log('[Service Worker]: \'pushsubscriptionchange\' event fired.');
+  event.waitUntil(
+      self.registration.pushManager.subscribe(
+          event.oldSubscription.options
+      ).then(function (newSubscription) {
+        fetch('/subscription', {
+          body: JSON.stringify({
+            subscription: newSubscription
+          }),
+          headers: {
+            'content-type': 'application/json'
+          },
+          method: 'POST'
+        })
+        console.log('[Service Worker] New subscription: ', newSubscription);
+      })
+  );
+}
+
+self.addEventListener('install', onInstall);
+self.addEventListener('activate', onActivate);
+self.addEventListener('fetch', onFetch);
+self.addEventListener("push", onPush);
+self.addEventListener("notificationclick", onSWNotificationClick);
+self.addEventListener("pushsubscriptionchange", onPushSubscriptionChange);

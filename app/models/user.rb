@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :learnings, dependent: :destroy
   has_many :comments
+  has_many :subscriptions
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -118,6 +119,36 @@ class User < ApplicationRecord
 
   def likes_comment?(comment)
     CommentLike.find_by(user: self, comment: comment)
+  end
+
+  def webpush_to(user)
+    learnings_count = user.learnings.where(next_review_date: '2019-01-01'..Time.current.strftime('%Y-%m-%d')).count
+    return if learnings_count.blank?
+    message = {
+        title: 'QtQ からメッセージ',
+        body: "今日の復習は#{learnings_count}件です",
+        icon: ActionController::Base.helpers.asset_path('webpush-logo.png'),
+        tag: Time.current.strftime('%Y-%m-%d')
+    }
+    user.subscriptions.each do |subscription|
+      begin
+        Webpush.payload_send(
+            message: JSON.generate(message),
+            endpoint: subscription.endpoint,
+            p256dh: subscription.p256dh,
+            auth: subscription.auth,
+            vapid: {
+                subject: "mailto:#{ENV['MAIL']}",
+                public_key: ENV['WEB_PUSH_VAPID_PUBLIC_KEY'],
+                private_key: ENV['WEB_PUSH_VAPID_PRIVATE_KEY'],
+                expiration: 12 * 60 * 60
+            }
+        )
+      rescue Webpush::InvalidSubscription => e
+        logger.error e
+        subscription.destroy
+      end
+    end
   end
 
   private

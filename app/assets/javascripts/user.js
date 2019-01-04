@@ -34,11 +34,11 @@ $(document).on('turbolinks:load', function() {
 
   componentHandler.upgradeAllRegistered();
 
-  $(".side-user-image").on({"click":function(){
-    $(this).addClass("animated pulse");
-  },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
-    $(this).removeClass("animated pulse");
-  }});
+  // $(".side-user-image").on({"click":function(){
+  //   $(this).addClass("animated pulse");
+  // },"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend":function(){
+  //   $(this).removeClass("animated pulse");
+  // }});
 
   $(".user-main-comparison").on({"click":function(){
     $(this).addClass("animated bounce");

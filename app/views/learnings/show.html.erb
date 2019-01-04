@@ -78,3 +78,5 @@
     </p>
   </footer>
 </div>
+<%= hidden_field_tag :user_id_for_webpush, @learning.user_id, class: 'user_id_for_webpush' %>
+<%= hidden_field_tag :current_user_id_for_webpush, logged_in? ? current_user.id : 0, class: 'current_user_id_for_webpush' %>
