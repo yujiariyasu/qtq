@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181231151906) do
+ActiveRecord::Schema.define(version: 20190104012712) do
 
   create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20181231151906) do
     t.index ["learning_id"], name: "index_reviews_on_learning_id", using: :btree
   end
 
+  create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "endpoint"
+    t.string   "p256dh"
+    t.string   "auth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+  end
+
   create_table "user_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -105,4 +115,5 @@ ActiveRecord::Schema.define(version: 20181231151906) do
   add_foreign_key "learning_likes", "users"
   add_foreign_key "learnings", "users"
   add_foreign_key "reviews", "learnings"
+  add_foreign_key "subscriptions", "users"
 end
