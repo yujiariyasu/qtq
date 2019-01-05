@@ -1,65 +1,64 @@
-$(document).on('turbolinks:load', function() {
-  var swRegistration = null;
+var PUSH_CHECK_PATHS = ['/'];
+var swRegistration = null;
 
-  if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/serviceworker.js', { scope: './' })
-        .then(function(reg) {
-          swRegistration = reg;
-          console.log('[Companion]', 'Service worker registered!');
-          if($('.learning-main-header').length && $('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
-            subscribe();
-          }
-        });
-  }
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/serviceworker.js', { scope: './' })
+      .then(function(reg) {
+        swRegistration = reg;
+        console.log('[Companion]', 'Service worker registered!');
+        if(PUSH_CHECK_PATHS.includes(location.pathname)) {
+          subscribe();
+        }
+      });
+}
 
-  var convertedVapidKey = new Uint8Array(
-      <%= Base64.urlsafe_decode64(ENV['WEB_PUSH_VAPID_PUBLIC_KEY']).bytes %>
-  );
+var convertedVapidKey = new Uint8Array(
+    <%= Base64.urlsafe_decode64(ENV['WEB_PUSH_VAPID_PUBLIC_KEY']).bytes %>
+);
 
-  function subscribe() {
-    if (!canNotification()) { return; }
-    var newSubscription = null;
-    return swRegistration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: convertedVapidKey
-    }).then(function (subscription) {
-      newSubscription = subscription;
-      console.log('User is subscribed.');
-    }).catch(function(e) {
-      console.error('Unable to subscribe to push.', e);
-    }).then(function () {
-      if (newSubscription !== null) {
-        createSubscriptionOnServer(newSubscription);
-      }
-    });
-  }
+function subscribe() {
+  if (!canNotification()) { return; }
+  var newSubscription = null;
+  return swRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: convertedVapidKey
+  }).then(function (subscription) {
+    newSubscription = subscription;
+    console.log('User is subscribed.');
+  }).catch(function(e) {
+    console.error('Unable to subscribe to push.', e);
+  }).then(function () {
+    if (newSubscription !== null) {
+      createSubscriptionOnServer(newSubscription);
+    }
+  });
+}
 
-  function canNotification() {
-    // When not supported push notification
-    if (!('showNotification' in ServiceWorkerRegistration.prototype)) { return false; }
-    // When deny push notification
-    if (Notification.permission === 'denied') { return false; }
-    // When not exist PushManager
-    if (!('PushManager' in window)) { return false; }
-    return true;
-  }
+function canNotification() {
+  // When not supported push notification
+  if (!('showNotification' in ServiceWorkerRegistration.prototype)) { return false; }
+  // When deny push notification
+  if (Notification.permission === 'denied') { return false; }
+  // When not exist PushManager
+  if (!('PushManager' in window)) { return false; }
+  return true;
+}
 
-  function createSubscriptionOnServer(subscription) {
-    $.ajax({
-      url: '/subscriptions',
-      type: 'POST',
-      data: {
-        endpoint: subscription.endpoint,
-        p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh'))))
-                    .replace(/\+/g, '-').replace(/\//g, '_'),
-        auth: btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth'))))
-                    .replace(/\+/g, '-').replace(/\//g, '_')
-      },
-      dataType: 'json'
-    })
-    .done(function(data) {
-    })
-    .fail(function() {
-    });
-  }
-});
+function createSubscriptionOnServer(subscription) {
+  $.ajax({
+    url: '/subscriptions',
+    type: 'POST',
+    data: {
+      endpoint: subscription.endpoint,
+      p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh'))))
+                  .replace(/\+/g, '-').replace(/\//g, '_'),
+      auth: btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth'))))
+                  .replace(/\+/g, '-').replace(/\//g, '_')
+    },
+    dataType: 'json'
+  })
+  .done(function(data) {
+  })
+  .fail(function() {
+  });
+}
