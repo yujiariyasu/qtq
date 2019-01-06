@@ -93,7 +93,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :goal, :introduction)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :introduction).merge(goal: 10)
   end
 
   def correct_user
