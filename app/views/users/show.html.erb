@@ -21,7 +21,7 @@
                 目標：
               </li>
               <li class='goal-selector'>
-                <%= form_for @user do |f| %>
+                <%= form_for @user, html: {id: 'edit-user-goal'} do |f| %>
                   <%= f.select :goal, options_for_select((1..100).to_a, @user.goal) %>
                 <% end %>
               </li>

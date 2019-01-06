@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         end
       end
     end
-    @user = User.new(user_params)
+    @user = User.new(create_params)
     result = @user.save
     if @user.save
       if Rails.env.production?
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(update_params)
       unless params[:user][:goal]
         flash.now[:success] = 'プロフィールを更新しました。'
       end
@@ -92,8 +92,12 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
+  def create_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :introduction).merge(goal: 10)
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :goal, :introduction)
   end
 
   def correct_user

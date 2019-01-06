@@ -53,6 +53,6 @@ $(document).on('turbolinks:load', function() {
   }});
 
   $('#user_goal').on('change', function() {
-    $('#edit_user_1').submit()
+    $('#edit-user-goal').submit()
   });
 });

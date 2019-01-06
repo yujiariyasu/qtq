@@ -19,6 +19,7 @@ var convertedVapidKey = new Uint8Array(
 function subscribe() {
   if (!canNotification()) { return; }
   var newSubscription = null;
+console.log(convertedVapidKey)
   return swRegistration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: convertedVapidKey
