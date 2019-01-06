@@ -7,7 +7,7 @@ if (navigator.serviceWorker) {
       .then(function(reg) {
         swRegistration = reg;
         console.log('[Companion]', 'Service worker registered!');
-if($('.learning-main-header').length && $('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
+        if($('.learning-main-header').length && $('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
         // if(PUSH_CHECK_PATHS.includes(location.pathname)) {
           subscribe();
         }

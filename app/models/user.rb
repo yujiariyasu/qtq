@@ -125,10 +125,10 @@ class User < ApplicationRecord
     learnings_count = user.learnings.where(next_review_date: '2019-01-01'..Time.current.strftime('%Y-%m-%d')).count
     return if learnings_count.blank?
     message = {
+        # tag: Time.current.strftime('%Y-%m-%d'), # 一日複数回送るかもなので一旦コメントアウト
         title: 'QtQ からメッセージ',
         body: "今日の復習は#{learnings_count}件です",
-        icon: ActionController::Base.helpers.asset_path('webpush-logo.png'),
-        tag: Time.current.strftime('%Y-%m-%d')
+        icon: ActionController::Base.helpers.asset_path('webpush-logo.png')
     }
     user.subscriptions.each do |subscription|
       begin
