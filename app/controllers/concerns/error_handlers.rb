@@ -12,16 +12,25 @@ module ErrorHandlers
 
     def rescue403(e)
       @exception = e
+      logger.error "---------------\n"
+      logger.error e
+      logger.error "---------------"
       render 'errors/forbidden', status: 403
     end
 
     def rescue404(e)
       @exception = e
+      logger.error "---------------\n"
+      logger.error e
+      logger.error "---------------"
       render 'errors/not_found', status: 404
     end
 
     def rescue500(e)
       @exception = e
+      logger.error "---------------\n"
+      logger.error e
+      logger.error "---------------"
       render 'errors/internal_server_error', status: 500
     end
   end
