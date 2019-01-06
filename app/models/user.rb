@@ -121,16 +121,16 @@ class User < ApplicationRecord
     CommentLike.find_by(user: self, comment: comment)
   end
 
-  def webpush_to(user)
-    learnings_count = user.learnings.where(next_review_date: '2019-01-01'..Time.current.strftime('%Y-%m-%d')).count
-    return if learnings_count.blank?
+  def webpush
+    learnings_count = learnings.where(next_review_date: '2019-01-01'..Time.current.strftime('%Y-%m-%d')).count
+    return if learnings_count == 0
     message = {
         # tag: Time.current.strftime('%Y-%m-%d'), # 一日複数回送るかもなので一旦コメントアウト
         title: 'QtQ からメッセージ',
         body: "今日の復習は#{learnings_count}件です",
         icon: ActionController::Base.helpers.asset_path('webpush-logo.png')
     }
-    user.subscriptions.each do |subscription|
+    subscriptions.each do |subscription|
       begin
         Webpush.payload_send(
             message: JSON.generate(message),
