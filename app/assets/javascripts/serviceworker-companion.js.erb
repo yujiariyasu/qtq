@@ -1,3 +1,4 @@
+$(document).on('turbolinks:load', function() {
 var PUSH_CHECK_PATHS = ['/'];
 var swRegistration = null;
 
@@ -6,7 +7,8 @@ if (navigator.serviceWorker) {
       .then(function(reg) {
         swRegistration = reg;
         console.log('[Companion]', 'Service worker registered!');
-        if(PUSH_CHECK_PATHS.includes(location.pathname)) {
+if($('.learning-main-header').length && $('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
+        // if(PUSH_CHECK_PATHS.includes(location.pathname)) {
           subscribe();
         }
       });
@@ -19,7 +21,6 @@ var convertedVapidKey = new Uint8Array(
 function subscribe() {
   if (!canNotification()) { return; }
   var newSubscription = null;
-console.log(convertedVapidKey)
   return swRegistration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: convertedVapidKey
@@ -63,3 +64,4 @@ function createSubscriptionOnServer(subscription) {
   .fail(function() {
   });
 }
+});
