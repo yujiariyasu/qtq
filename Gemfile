@@ -28,6 +28,7 @@ gem 'kaminari'
 gem 'faker'
 gem 'serviceworker-rails'
 gem 'webpush'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri
