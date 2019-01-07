@@ -142,7 +142,8 @@ class User < ApplicationRecord
                 public_key: ENV['WEB_PUSH_VAPID_PUBLIC_KEY'],
                 private_key: ENV['WEB_PUSH_VAPID_PRIVATE_KEY'],
                 expiration: 12 * 60 * 60
-            }
+            },
+            data: { target_url: user_url(self) }
         )
       rescue Webpush::InvalidSubscription => e
         logger.error e
