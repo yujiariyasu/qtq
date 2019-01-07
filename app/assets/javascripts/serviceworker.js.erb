@@ -69,7 +69,7 @@ function onPush(event) {
         icon: json.icon,
         tag: json.tag,
         data: {
-          target_url: '/'
+          url: JSON.parse(event.message).url
         }
       })
   );
