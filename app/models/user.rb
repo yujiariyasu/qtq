@@ -143,7 +143,7 @@ class User < ApplicationRecord
                 private_key: ENV['WEB_PUSH_VAPID_PRIVATE_KEY'],
                 expiration: 12 * 60 * 60
             },
-            data: { target_url: user_url(self) }
+            data: { target_url: "https://www.qtq.work/users/#{self.id}" }
         )
       rescue Webpush::InvalidSubscription => e
         logger.error e
