@@ -61,6 +61,7 @@ function onFetch(event) {
 }
 
 function onPush(event) {
+  console.log(event.notification.data)
   console.log('[Serviceworker]', "Received push message!", event);
   var json = event.data.json();
   return event.waitUntil(
