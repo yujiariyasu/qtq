@@ -1,7 +1,6 @@
 set :output, 'log/crontab.log'
-ENV['RAILS_ENV'] ||= 'development'
-set :environment, ENV['RAILS_ENV']
+set :environment, 'production'
 
-every 30.minutes do
-  rake "webpush:push"
+every 1.day, :at => ['4:30 am', '6:00 pm'] do
+  rake "webpush:send"
 end
