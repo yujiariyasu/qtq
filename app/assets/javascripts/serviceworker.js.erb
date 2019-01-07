@@ -80,7 +80,7 @@ function onSWNotificationClick(event) {
   event.notification.close();
   return event.waitUntil(
       clients.openWindow(
-          event.notification.data != null ? event.notification.data.target_url : '/'
+          event.notification.data != null ? event.notification.data.url : '/'
       )
   );
 }
