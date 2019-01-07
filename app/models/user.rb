@@ -128,6 +128,7 @@ class User < ApplicationRecord
         # tag: Time.current.strftime('%Y-%m-%d'), # 一日複数回送るかもなので一旦コメントアウト
         title: 'QtQ からメッセージ',
         body: "今日の復習は#{learnings_count}件です",
+        data: { 'url': "https://www.qtq.work/users/#{self.id}" },
         icon: ActionController::Base.helpers.asset_path('webpush-logo.png')
     }
     subscriptions.each do |subscription|
