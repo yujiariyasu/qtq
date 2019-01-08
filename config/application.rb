@@ -32,7 +32,6 @@ module QtQ
     config.i18n.default_locale = :en
     config.action_view.embed_authenticity_token_in_remote_forms = true
     config.autoload_paths += %W(#{config.root}/lib)
-    config.enable_dependency_loading = true 
-
+    config.enable_dependency_loading = true
   end
 end

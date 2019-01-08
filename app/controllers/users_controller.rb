@@ -41,8 +41,9 @@ class UsersController < ApplicationController
     result = @user.save
     if @user.save
       if Rails.env.production?
-        @user.send_activation_email
         flash[:info] = 'ユーザー認証のためのメールを送信しました。'
+        @user.send_activation_email
+        log_in @user
       else
         flash[:info] = 'ユーザー登録に成功しました。'
         @user.activate
