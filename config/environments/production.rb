@@ -70,6 +70,7 @@ Rails.application.configure do
     user_name:            ENV['MAIL'],
     password:             ENV['MAIL_PASS'],
     authentication:       'login'
+    openssl_verify_mode:  'none'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
