@@ -69,7 +69,7 @@ Rails.application.configure do
     domain:               'smtp.gmail.com',
     user_name:            ENV['MAIL'],
     password:             ENV['MAIL_PASS'],
-    authentication:       'login'
+    authentication:       'login',
     openssl_verify_mode:  'none'
   }
 
