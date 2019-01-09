@@ -69,6 +69,7 @@ function onFetch(event) {
 function onPush(event) {
   console.log('[Serviceworker]', "Received push message!", event);
   var json = event.data.json();
+  console.log(json)
   return event.waitUntil(
       self.registration.showNotification(json.title, {
         body: json.body,
