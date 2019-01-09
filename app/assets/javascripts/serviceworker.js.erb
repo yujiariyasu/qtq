@@ -1,4 +1,4 @@
-var CACHE_VERSION = '<%= Time.current.to_i %>';
+var CACHE_VERSION = '<%=Time.current.strftime('%Y-%m-%d') %>';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 var CACHE_PATHS = ['/'];
 
@@ -6,7 +6,13 @@ function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
-      return cache.addAll([]);
+      return cache.addAll([
+        // make sure serviceworker.js is not required by application.js
+        // if you want to reference application.js from here
+        '<%= asset_path "application.js" %>',
+        '<%= asset_path "application.css" %>',
+        '/login'
+      ]);
     })
   );
 }
@@ -31,16 +37,16 @@ function onFetch(event) {
       // try to return untouched request from network first
       fetch(event.request).then(function (response) {
         var requestUrl = new URL(event.request.url)
-        // CACHE_PATHS.forEach(function (path) {
-          // if (requestUrl.pathname === path) {
+        CACHE_PATHS.forEach(function (path) {
+          if (requestUrl.pathname === path) {
             var cloneResponse = response.clone();
             caches.open(CACHE_NAME).then(function (cache) {
               cache.put(event.request.url, cloneResponse);
               return response;
             })
             return response;
-          // }
-        // });
+          }
+        });
         return response;
       }).catch(function() {
         // if it fails, try to return request from the cache
@@ -90,24 +96,17 @@ function onPushSubscriptionChange(event) {
       self.registration.pushManager.subscribe(
           event.oldSubscription.options
       ).then(function (newSubscription) {
-        $.ajax({
-          url: '/subscriptions',
-          type: 'POST',
-          data: {
-            endpoint: newSubscription.endpoint,
-            p256dh: btoa(String.fromCharCode.apply(null, new Uint8Array(newSubscription.getKey('p256dh'))))
-                        .replace(/\+/g, '-').replace(/\//g, '_'),
-            auth: btoa(String.fromCharCode.apply(null, new Uint8Array(newSubscription.getKey('auth'))))
-                        .replace(/\+/g, '-').replace(/\//g, '_')
+        fetch('/subscription', {
+          body: JSON.stringify({
+            subscription: newSubscription
+          }),
+          headers: {
+            'content-type': 'application/json'
           },
-          dataType: 'json'
+          method: 'POST'
         })
-        .done(function(data) {
-          console.log('[Service Worker] New subscription: ', newSubscription);
-        })
-        .fail(function() {
-        });
-    })
+        console.log('[Service Worker] New subscription: ', newSubscription);
+      })
   );
 }
 
