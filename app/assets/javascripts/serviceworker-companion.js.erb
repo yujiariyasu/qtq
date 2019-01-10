@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-var PUSH_CHECK_PATHS = ['/'];
 var swRegistration = null;
 
 if (navigator.serviceWorker) {
@@ -8,7 +7,6 @@ if (navigator.serviceWorker) {
         swRegistration = reg;
         console.log('[Companion]', 'Service worker registered!');
         if($('.learning-main-header').length && $('.user_id_for_webpush').val() === $('.current_user_id_for_webpush').val()) {
-        // if(PUSH_CHECK_PATHS.includes(location.pathname)) {
           subscribe();
         }
       });
