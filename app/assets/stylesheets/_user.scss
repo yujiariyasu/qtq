@@ -31,9 +31,25 @@
   margin-left: 110px;
 }
 
+.sidebar {
+    float: right;
+    width: 300px;
+    margin-left: 10px;
+
+    img {
+      border-radius: 4px;
+      width: 280px;
+      margin-left: 10px;
+    }
+}
+
 .side-user-name {
   font-size: 20px;
   text-align: center;
+}
+
+.side-user-image {
+  max-height: 600px;
 }
 
 .profile-stats-list {
@@ -203,6 +219,11 @@
     padding-top: 15px;
     padding-left: 10px;
   }
+
+  p {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
 
 .user-list-introduction {
@@ -221,5 +242,10 @@
   pre {
     padding-top: 15px;
     padding-left: 10px;
+  }
+
+  p {
+    word-wrap: break-word;
+    white-space: normal;
   }
 }

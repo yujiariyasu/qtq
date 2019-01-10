@@ -1,5 +1,13 @@
 class LearningsController < ApplicationController
   include Chart
+
+  def index
+    @description = ' / learnings'
+    @user = User.find(params[:user_id])
+    @learnings = @user.learnings.order(id: :desc).page(params[:page]).per(20)
+    @title = "#{@user.name}さんの学習一覧"
+  end
+
   def show
     @learning = Learning.find(params[:id])
     @user = @learning.user
@@ -44,16 +52,8 @@ class LearningsController < ApplicationController
    redirect_to user_url(current_user)
   end
 
-  def likers
-    @description = ' / likers'
-    @learning = Learning.find(params[:id])
-    @users = @learning.users.page(params[:page]).per(20)
-    @title = "#{@learning.title} にいいねした人"
-    render 'shared/users'
-  end
-
   def trend
-    @learnings = Learning.includes(:user).page(params[:page]).per(30)
+    @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
   end
 
   private

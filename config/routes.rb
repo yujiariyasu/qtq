@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :users do
+    resources :learnings, only: :index
     member do
-      get :following, :followers, :learnings
+      get :following, :followers
     end
   end
   get '/login', to: 'sessions#new'
@@ -11,10 +12,10 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :user_relationships, only: [:create, :destroy]
-  resources :learnings do
+  resources :learnings, except: :index do
     resources :learning_likes, only: [:create, :destroy]
     member do
-      get :likers
+      get :likers, to: 'users#likers'
     end
     collection do
       get :trend

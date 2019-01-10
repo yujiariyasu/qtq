@@ -73,23 +73,32 @@ class UsersController < ApplicationController
 
   def following
     @description = ' / following'
-    @user = User.find(params[:id])
-    @users = @user.following.page(params[:page]).per(20)
-    @title = "#{@user.name}さんがフォローしている人"
+    user = User.find(params[:id])
+    @path = user_path(user)
+    @link_text = user.name
+    @users = user.following.page(params[:page]).per(20)
+    @title = "#{user.name}さんがフォローしている人一覧"
     render 'shared/users'
   end
 
   def followers
     @description = ' / followers'
-    @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).per(20)
+    user = User.find(params[:id])
+    @path = user_path(user)
+    @link_text = user.name
+    @users = user.followers.page(params[:page]).per(20)
+    @title = "#{user.name}さんのフォロワー一覧"
     render 'shared/users'
   end
 
-  def learnings
-    @description = ' / learnings'
-    @user = User.find(params[:id])
-    @learnings = @user.learnings.page(params[:page]).per(20)
+  def likers
+    @description = ' / likers'
+    learning = Learning.find(params[:id])
+    @path = learning_path(learning)
+    @link_text = learning.title
+    @users = learning.users.page(params[:page]).per(20)
+    @title = "#{learning.title} にいいねした人"
+    render 'shared/users'
   end
 
   private

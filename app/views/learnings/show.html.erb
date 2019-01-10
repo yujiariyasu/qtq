@@ -18,13 +18,13 @@
         <% end %>
       </div>
       <h1 class='text-left'><%= @learning.title %></h1>
-      <div class='learning-tag-list'>
-        <% ['タグ機能', 'いずれ', 'つける'].each do |tag| %>
-        <!-- TODO: tag作成したら置き換える -->
+<!--       <div class='learning-tag-list'>
+        <%# ['タグ機能', 'いずれ', 'つける'].each do |tag| %>
+        TODO: tag作成したら置き換える
         <%# @learning.tags.each do |tag| %>
-          <%= link_to tag, '#' %>
-        <% end %>
-      </div>
+          <%#= link_to tag, '#' %>
+        <%# end %>
+      </div> -->
       <% @learning.images.each do |image| %>
         <%= link_to image.url, target: '_blank' do %>
           <%= image_tag image, class: 'learning-img' %>
@@ -51,7 +51,7 @@
           <%= high_chart("復習", @chart) %>
         </div>
       </div>
-      <div class='flex'>
+      <div class='flex mb10'>
         <div id=<%= "learning-like-container#{@learning.id}" %> class='learning-like-container flex'>
           <%= render 'like', learning: @learning %>
         </div>
