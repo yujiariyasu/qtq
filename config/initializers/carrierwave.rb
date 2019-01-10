@@ -5,6 +5,7 @@ require 'carrierwave/storage/fog'
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage = :fog
+    config.fog_provider = 'fog/aws'
     config.fog_credentials = {
         :provider              => 'AWS',
         :aws_access_key_id     => ENV['S3_IAM_ACCESS_KEY'],
@@ -14,10 +15,11 @@ if Rails.env.production?
 
     config.fog_directory = 'quantity-teaches-quality' # バケット名
     config.fog_public = true
-
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/quantity-teaches-quality'
   end
 else
   CarrierWave.configure do |config|
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/quantity-teaches-quality'
     config.storage = :file
   end
 end

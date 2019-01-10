@@ -26,7 +26,7 @@
         <% end %>
       </div>
       <% @learning.images.each do |image| %>
-        <%= link_to image.file.file, target: '_blank' do %>
+        <%= link_to image.url, target: '_blank' do %>
           <%= image_tag image, class: 'learning-img' %>
         <% end %>
       <% end %>
