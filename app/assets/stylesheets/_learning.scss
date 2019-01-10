@@ -72,6 +72,11 @@
       padding-top: 15px;
       padding-left: 10px;
     }
+
+    p {
+      word-wrap: break-word;
+      white-space: normal;
+    }
   }
 }
 
@@ -463,4 +468,8 @@
 }
 .user-list-learning-title {
   line-height: 1.3em;
+}
+.user-list-like-container {
+  min-width: 52px;
+  text-align: right;
 }

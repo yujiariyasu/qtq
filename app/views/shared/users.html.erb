@@ -4,7 +4,7 @@
   <div class='user-list-page'>
     <div class='user-list-header'>
       <% if params[:controller] == 'users' %>
-        <%= link_to @user.name, @user %>
+        <%= link_to @link_text, @path %>
       <% elsif params[:controller] == 'learnings' %>
         <%= link_to @learning.title, @learning %>
       <% end %>

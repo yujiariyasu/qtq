@@ -9,7 +9,7 @@
         <ul class="">
           <li class="profile-stats-list">
             <% if @user.learnings.present? %>
-              <%= link_to learnings_user_path(@user), class: 'profile-stats-link' do %>
+              <%= link_to user_learnings_path(@user), class: 'profile-stats-link' do %>
                 <span class="profile-stats-span">学習件数</span>
                 <span class="profile-stats-span"><%= number_with_delimiter(@user.learnings.count) %></span>
               <% end %>
@@ -58,15 +58,17 @@
       <%= simple_format(@user.introduction) %>
     </div>
   <% end %>
-  <div class='user-learning-index'>
-    <div class='recent-learning-header'>
-      <%= fa_icon 'arrow-down', class: 'pl10' %>
-      <span class='ml10'>最近の学習</span>
-      <%= fa_icon 'arrow-down' %>
+  <% if @user.learnings.present? %>
+    <div class='user-learning-index'>
+      <div class='recent-learning-header'>
+        <%= fa_icon 'arrow-down', class: 'pl10' %>
+        <span class='ml10'>最近の学習</span>
+        <%= fa_icon 'arrow-down' %>
+      </div>
+      <% @user.learnings.reverse.take(20).each do |learning| %>
+        <%= link_to learning.title, learning_path(learning) %>
+      <% end %>
     </div>
-    <% @user.learnings.reverse.take(20).each do |learning| %>
-      <%= link_to learning.title, learning_path(learning) %>
-    <% end %>
-  </div>
+  <% end %>
   <%= image_tag 'ex.png' %>
 </div>
