@@ -348,6 +348,7 @@
 }
 
 .learning-delete-button {
+  padding-left: 22px;
   background: black;
   width: 77px;
   border-radius: 4px;
@@ -356,7 +357,7 @@
   margin-bottom: 10px;
   margin-left: auto;
 
-  a:hover {
+  &:hover {
     color: white;
   }
 }
