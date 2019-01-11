@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190104012712) do
+ActiveRecord::Schema.define(version: 20190111160254) do
 
   create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20190104012712) do
     t.boolean  "finish_flag",                              default: false
     t.integer  "proficiency_decrease_speed"
     t.date     "next_review_date"
-    t.boolean  "public_flag"
     t.integer  "proficiency"
     t.integer  "likes_count"
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
