@@ -55,4 +55,10 @@ $(document).on('turbolinks:load', function() {
   $('#user_goal').on('change', function() {
     $('#edit-user-goal').submit()
   });
+
+  $('#user-edit-introduction-area').on('input', function() {
+    lineHeight = parseInt($(this).css('lineHeight'));
+    lines = ($(this).val() + '\n').match(/\n/g).length;
+    $(this).height(lineHeight * lines);
+  });
 });
