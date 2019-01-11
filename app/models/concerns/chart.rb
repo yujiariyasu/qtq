@@ -92,8 +92,7 @@ module Chart
   end
 
   def set_review_data(learning, review_detail_data, days_until_review_hash)
-    title = learning.title
-    title = "#{title[0..20]}..." if title.size > 20
+    title = learning.title.truncate(20)
     days_until_review = (learning.next_review_date - Time.current.to_date).to_i
     case days_until_review
     when 1
