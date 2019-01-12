@@ -23,6 +23,7 @@ class LearningsController < ApplicationController
     else
       speed = (70 - params[:learning][:proficiency].to_i / 2)
     end
+    safe_params = learning_params(speed)
     learning = Learning.new(learning_params(speed))
     if learning.save
       flash[:info] = '学習を登録しました。'
@@ -58,8 +59,13 @@ class LearningsController < ApplicationController
 
   private
   def learning_params(speed)
-    params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
+    strip_title(params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
       :proficiency_decrease_speed, :next_review_date, :public_flag)
-      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: Time.current.to_date.tomorrow)
+      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: Time.current.to_date.tomorrow))
+  end
+
+  def strip_title(params_hash)
+    params_hash['title'] = params_hash['title'].my_strip if params_hash['title'].present?
+    return params_hash
   end
 end

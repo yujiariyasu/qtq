@@ -16,10 +16,15 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body).merge(learning_id: params[:learning_id], user_id: current_user.id)
+    strip_body(params.require(:comment).permit(:body).merge(learning_id: params[:learning_id], user_id: current_user.id))
   end
 
   def update_params
-    params.require(:comment).permit(:body)
+    strip_body(params.require(:comment).permit(:body))
+  end
+
+  def strip_body(params_hash)
+    params_hash['body'] = params_hash['body'].my_strip if params_hash[:body].present?
+    params_hash
   end
 end

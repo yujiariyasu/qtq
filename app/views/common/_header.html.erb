@@ -55,7 +55,7 @@
                     <%= form_for(Learning.new) do |f| %>
                       <%= hidden_field_tag :url, request.url %>
                       <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
-                        <%= f.text_field :title, class: 'mdl-textfield__input p10', placeholder: 'タイトル...', required: true %>
+                        <%= f.text_field :title, class: 'mdl-textfield__input p10 learning-title-for-js', placeholder: 'タイトル...', required: true %>
                       </div>
                       <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                         <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
@@ -73,7 +73,7 @@
                         <%#= f.check_box :public_flag, class: "mdl-switch__input", id: "public-checkbox", checked: true %>
                         <span class="mdl-switch__label"></span>
                       </label> -->
-                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10">
+                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10 post-learning-submit">
                         記録をつける
                       </button>
                     <% end %>

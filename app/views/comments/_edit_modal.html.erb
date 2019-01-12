@@ -8,10 +8,10 @@
               <%= form_for comment do |f| %>
                 <%= hidden_field_tag :learning_id, comment.learning_id %>
                 <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
-                  <%= f.text_area :body, class: 'form-control learning-modal-text-area', rows: '4' %>
+                  <%= f.text_area :body, class: 'form-control learning-modal-text-area edit-comment-body', rows: '4' %>
                 </div>
                 <div class='clearfix'>
-                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right edit-comment-submit">
                     編集
                   </button>
                 </div>
