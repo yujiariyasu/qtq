@@ -15,11 +15,9 @@ if Rails.env.production?
 
     config.fog_directory = 'quantity-teaches-quality' # バケット名
     config.fog_public = true
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/quantity-teaches-quality'
   end
 else
   CarrierWave.configure do |config|
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/quantity-teaches-quality'
     config.storage = :file
   end
 end

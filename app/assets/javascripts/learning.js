@@ -76,4 +76,16 @@ $(document).on('turbolinks:load', function() {
       return false;
     }
   })
+
+  $('.learning-modal-text-area').on('input', function() {
+    height = parseInt($(this).css('lineHeight'));
+    lines = ($(this).val() + '\n').match(/\n/g).length;
+    $(this).height(height * lines);
+  });
+
+  $('.post-comment-body').on('input', function() {
+    height = parseInt($(this).css('lineHeight'));
+    lines = ($(this).val() + '\n').match(/\n/g).length;
+    $(this).height(height * lines);
+  });
 });
