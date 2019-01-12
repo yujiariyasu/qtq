@@ -10,6 +10,7 @@ class Learning < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
   scope :not_finished, -> { where(finish_flag: false) }
+  scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current) }
 
   INITIAL_DECREASE_SPEED = 67
   REVIEW_NOTIFICATION_LINE = 51
