@@ -131,6 +131,6 @@ $(document).on('turbolinks:load', function() {
     $('#edit-learning-image-files').val('')
     $('#edit-learning-images-preview').html('')
     $('.edit-learning-trash-image').hide()
-    $('#image_delete_flag').val(true)
+    $('#image_delete_flag').val('true')
   })
 });
