@@ -84,7 +84,6 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.post-comment-body').on('input', function() {
-console.log(3)
     height = parseInt($(this).css('lineHeight'));
     lines = ($(this).val() + '\n').match(/\n/g).length;
     $(this).height(height * lines);
