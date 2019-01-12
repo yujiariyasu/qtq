@@ -26,4 +26,8 @@ module ApplicationHelper
       markdown = Redcarpet::Markdown.new(html_render, options)
       markdown.render(text)
   end
+
+  def review_today?(user)
+    user.learnings.review_today.present?
+  end
 end
