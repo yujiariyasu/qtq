@@ -72,7 +72,19 @@ $(document).on('turbolinks:load', function() {
   }
 
   $('.post-comment-submit').on('click', function() {
-    if ($('#comment_body').val() == '') {
+    if ($('.post-comment-body').val().trim() == '') {
+      return false;
+    }
+  })
+
+  $('.edit-comment-submit').on('click', function() {
+    if ($('.edit-comment-body').val().trim() == '') {
+      return false;
+    }
+  })
+
+  $('.post-learning-submit').on('click', function() {
+    if ($('.learning-title-for-js').val().trim() == '') {
       return false;
     }
   })
