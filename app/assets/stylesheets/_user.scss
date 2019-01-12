@@ -9,6 +9,8 @@
   #avatar-preview img{
     width: 100px;
     margin-bottom: 10px;
+    margin-left: 92px;
+    position: relative;
   }
 
   input[type=file] {
@@ -16,6 +18,27 @@
     visibility: hidden;
     position: absolute;
   }
+}
+
+// .delete-button-container {
+//   width: 15px;
+//   height: 15px;
+//   position: absolute;
+//   top: 0;
+// }
+
+.delete-user-image-button {
+  width: 40px;
+  padding-right: 19px;
+  height: 40px;
+  font-size: 24px;
+  padding-left: 3px;
+  text-align: center;
+  line-height: 9px;
+  vertical-align: middle;
+  color:grey;
+  cursor: pointer;
+  position: absolute;
 }
 
 .edit-send-button {

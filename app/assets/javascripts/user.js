@@ -24,12 +24,22 @@ $(document).on('turbolinks:load', function() {
 
   $('#avatar-file').change(function() {
     $('.edit-avatar-img').remove()
+    $('.delete-user-image-button').remove()
     var fr = new FileReader();
     fr.onload = function() {
       var img = $('<img>').attr('src', fr.result).addClass('edit-avatar-img');
+      var span = '<span class="delete-user-image-button">×</span>'
       $('#avatar-preview').append(img);
+      $('#avatar-preview').append(span);
+      $('#delete_avatar_flag').val('false')
     };
     fr.readAsDataURL(this.files[0]);
+  });
+
+  $(document).on("click", ".delete-user-image-button", function(){
+    $('#avatar-file').val('')
+    $('#avatar-preview').html('')
+    $('#delete_avatar_flag').val('true')
   });
 
   componentHandler.upgradeAllRegistered();

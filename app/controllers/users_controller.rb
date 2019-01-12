@@ -63,6 +63,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(update_params)
       unless params[:user][:goal]
+        if params[:delete_avatar_flag] == 'true'
+          @user.remove_avatar!
+          @user.save
+        end
         flash.now[:success] = 'プロフィールを更新しました。'
       end
       redirect_to @user

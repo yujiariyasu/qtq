@@ -18,21 +18,23 @@
           <div class='modal-form-box'>
             <%= form_for(@learning) do |f| %>
               <%= hidden_field_tag :url, request.url %>
+              <%= hidden_field_tag :image_delete_flag, false %>
               <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
                 <%= f.text_field :title, class: 'mdl-textfield__input p10', placeholder: 'タイトル...' %>
               </div>
               <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
-                <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
+                <%= f.text_area :description, class: 'form-control learning-modal-text-area edit-learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
               </div>
               <div class='clearfix mb10'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, tabindex: 0, id: 'edit-learning-slider' %>
               </div>
               <div id="edit-learning-images-preview">
                 <% @learning.images.each do |image| %>
-                  <img src=<%= image %> class="learning-image">
+                  <img src=<%= image %> class="learning-image edit-learning-image">
                 <% end %>
               </div>
               <div class="upload-box pull-left">
                 <%= fa_icon 'image', class: 'learning-upload-button learning-image-icon edit-learning-image-button' %>
+                <%= fa_icon 'trash', class: 'edit-learning-trash-image' %>
                 <%= f.file_field :images, id: 'edit-learning-image-files', multiple: true %>
               </div>
               <div class='blue-black header-study-time pull-left'><span>習熟度</span><span id='edit-study-time'><%= @learning.proficiency %>%</span></div>

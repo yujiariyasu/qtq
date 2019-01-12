@@ -12,6 +12,7 @@
 
   <%= form_for @user do |f| %>
     <%= render 'shared/error_messages' %>
+    <%= hidden_field_tag :delete_avatar_flag, false %>
     <div class="mdl-textfield mdl-js-textfield">
       <%= f.text_field :name, class: 'mdl-textfield__input', id: 'edit-name', placeholder: 'ユーザーネーム...' %>
       <% f.label :name, class: 'mdl-textfield__label' %>
@@ -30,7 +31,12 @@
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent upload-button" style="margin-bottom: 23px;color:white;cursor:pointer" type='button'>画像を選択する
       </button>
       <%= f.file_field :avatar, id: 'avatar-file' %>
-      <div id="avatar-preview"></div>
+      <div id="avatar-preview">
+        <% if current_user.avatar.file %>
+          <%= image_tag current_user.avatar, class: 'edit-avatar-img' %>
+          <span class='delete-user-image-button'>x</span>
+        <% end %>
+      </div>
     </div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored send-button" style="margin-bottom: 23px;">保存する</button>
 
