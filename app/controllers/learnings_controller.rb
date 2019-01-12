@@ -45,6 +45,10 @@ class LearningsController < ApplicationController
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
     end
+    if params['image_delete_flag'] == 'true'
+      learning.remove_images!
+      learning.save
+    end
     redirect_to learning_url(learning)
   end
 

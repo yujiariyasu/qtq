@@ -34,6 +34,7 @@ $(document).on('turbolinks:load', function() {
             img.className = 'learning-image';
             img.src = e.target.result;
             document.getElementById('learning-images-preview').insertBefore(img, null);
+            $('.learning-trash-image').show()
           }
         })(f);
       }
@@ -59,6 +60,8 @@ $(document).on('turbolinks:load', function() {
             img.className = 'learning-image';
             img.src = e.target.result;
             document.getElementById('edit-learning-images-preview').insertBefore(img, null);
+            $('.edit-learning-trash-image').show()
+            $('#image_delete_flag').val(false)
           }
         })(f);
       }
@@ -92,6 +95,9 @@ $(document).on('turbolinks:load', function() {
   $('.learning-modal-text-area').on('input', function() {
     height = parseInt($(this).css('lineHeight'));
     lines = ($(this).val() + '\n').match(/\n/g).length;
+    if(lines < 8) {
+      lines = 8
+    }
     $(this).height(height * lines);
   });
 
@@ -100,4 +106,31 @@ $(document).on('turbolinks:load', function() {
     lines = ($(this).val() + '\n').match(/\n/g).length;
     $(this).height(height * lines);
   });
+
+  if($('.edit-learning-modal-text-area').length) {
+    area = $('.edit-learning-modal-text-area')
+    height = parseInt(area.css('lineHeight'));
+    lines = (area.val() + '\n').match(/\n/g).length;
+    if(lines < 8) {
+      lines = 8
+    }
+    area.height(height * lines);
+
+    if($('.edit-learning-image').length) {
+      $('.edit-learning-trash-image').show()
+    }
+  }
+
+  $('.learning-trash-image').on('click', function() {
+    $('#learning-image-files').val('')
+    $('#learning-images-preview').html('')
+    $('.learning-trash-image').hide()
+  })
+
+  $('.edit-learning-trash-image').on('click', function() {
+    $('#edit-learning-image-files').val('')
+    $('#edit-learning-images-preview').html('')
+    $('.edit-learning-trash-image').hide()
+    $('#image_delete_flag').val(true)
+  })
 });
