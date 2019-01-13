@@ -29,6 +29,7 @@ gem 'faker'
 gem 'serviceworker-rails'
 gem 'webpush'
 gem 'whenever', require: false
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

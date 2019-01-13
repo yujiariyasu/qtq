@@ -4,6 +4,9 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@import "jquery.tagit";
+@import "tagit.ui-zendesk";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";

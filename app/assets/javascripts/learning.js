@@ -133,4 +133,6 @@ $(document).on('turbolinks:load', function() {
     $('.edit-learning-trash-image').hide()
     $('#image_delete_flag').val('true')
   })
+
+  $('#learning_tags').tagit()
 });

@@ -43,4 +43,19 @@ class Learning < ApplicationRecord
   def like_user(user_id)
    likes.find_by(user_id: user_id)
   end
+
+  def save_tags(tag_names)
+    current_tag_names = self.tags.pluck(:name) unless self.tag_names.nil?
+    old_tag_names = current_tag_names - tag_names
+    new_tag_names = tag_names - current_tag_names
+
+    old_tag_names.each do |old_name|
+      self.tags.delete(Tag.find_by(name: old_name))
+    end
+
+    new_tag_names.each do |new_name|
+      tag = Tag.find_or_create_by(name: new_name)
+      self.tags << tag
+    end
+  end
 end
