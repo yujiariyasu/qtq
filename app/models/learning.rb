@@ -6,6 +6,8 @@ class Learning < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :users, through: :learning_likes
   has_many :learning_likes, dependent: :destroy
+  has_many :tags, through: :learning_tags
+  has_many :learning_tags, dependent: :destroy
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
