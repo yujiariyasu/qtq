@@ -26,6 +26,7 @@ class LearningsController < ApplicationController
     safe_params = learning_params(speed)
     learning = Learning.new(learning_params(speed))
     if learning.save
+      learning.save_tags(params[:tag_names].split(','))
       flash[:info] = '学習を登録しました。'
       redirect_to learning_url(learning)
     else
@@ -45,6 +46,7 @@ class LearningsController < ApplicationController
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
     end
+    learning.save_tags(params[:tag_names].split(','))
     if params['image_delete_flag'] == 'true'
       learning.remove_images!
       learning.save
@@ -59,6 +61,8 @@ class LearningsController < ApplicationController
 
   def trend
     @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
+    @title = '新着'
+    render 'shared/learnings'
   end
 
   private

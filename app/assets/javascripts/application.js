@@ -13,3 +13,4 @@
 //= require learning
 //= require top
 //= require user
+//= require tag

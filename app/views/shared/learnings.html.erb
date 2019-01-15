@@ -1,4 +1,4 @@
-<% provide(:title, 'QtQ') %>
+<% provide(:title, @title) %>
 <% if logged_in? %>
   <%= render partial: 'common/header' %>
 <% else %>
@@ -7,7 +7,7 @@
 <div class='row m0 p0'>
   <div class='user-list-page'>
     <div class='user-list-header'>
-      <span class='user-list-description'>新着</span>
+      <span class='user-list-description'><%= @title %></span>
     </div>
     <div class='user-list'>
       <%= render @learnings %>

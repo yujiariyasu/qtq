@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :comment_likes, only: [:create, :destroy]
   end
   resources :subscriptions, only: :create
+  resources :tags, only: :show
   root to: 'top#root'
   get '*anything' => 'errors#routing_error'
 end

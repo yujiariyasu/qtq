@@ -45,12 +45,12 @@ class Learning < ApplicationRecord
   end
 
   def save_tags(tag_names)
-    current_tag_names = self.tags.pluck(:name) unless self.tag_names.nil?
+    current_tag_names = tags.present? ? tags.pluck(:name) : []
     old_tag_names = current_tag_names - tag_names
     new_tag_names = tag_names - current_tag_names
 
     old_tag_names.each do |old_name|
-      self.tags.delete(Tag.find_by(name: old_name))
+      tags.delete(Tag.find_by(name: old_name))
     end
 
     new_tag_names.each do |new_name|
