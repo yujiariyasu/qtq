@@ -4,7 +4,7 @@
     <%= image_tag user_avatar_or_default(user), class: 'comment-user-image' %>
     <div class='comment-user-info'>
       <div class='comment-user-name-box'>
-        <%= link_to user_path(user), class: 'comment-user-name' do %>
+        <%= link_to user_path(name: user.name), class: 'comment-user-name' do %>
           <%= user.name %>
         <% end %>
       </div>

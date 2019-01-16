@@ -6,6 +6,8 @@ class Learning < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :users, through: :learning_likes
   has_many :learning_likes, dependent: :destroy
+  has_many :tags, through: :learning_tags
+  has_many :learning_tags, dependent: :destroy
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
@@ -40,5 +42,20 @@ class Learning < ApplicationRecord
 
   def like_user(user_id)
    likes.find_by(user_id: user_id)
+  end
+
+  def save_tags(tag_names)
+    current_tag_names = tags.present? ? tags.pluck(:name) : []
+    old_tag_names = current_tag_names - tag_names
+    new_tag_names = tag_names - current_tag_names
+
+    old_tag_names.each do |old_name|
+      tags.delete(Tag.find_by(name: old_name))
+    end
+
+    new_tag_names.each do |new_name|
+      tag = Tag.find_or_create_by(name: new_name)
+      self.tags << tag
+    end
   end
 end

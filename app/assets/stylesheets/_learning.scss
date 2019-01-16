@@ -72,6 +72,7 @@
     pre {
       padding-top: 15px;
       padding-left: 10px;
+      margin: 20px 0px;
     }
 
     p {
@@ -160,7 +161,7 @@
 
 .proficiency-level .proficiency-level-box {
   position:absolute;
-  width: 220px;
+  width: 256px;
   height: 34px;
   top: -43px;
   left: -11px;
@@ -286,6 +287,7 @@
   pre {
     padding-top: 15px;
     padding-left: 10px;
+    margin: 20px 0px;
   }
 }
 
@@ -481,4 +483,53 @@
   margin-left: 5px;
   display: none;
   cursor: pointer;
+}
+
+.header-proficiency-level-comment {
+  font-size: 12px;
+  position: absolute;
+  top: 7px;
+  left: 14px;
+  color: white;
+ }
+
+.proficiency-level:hover .header-proficiency-level-box {
+  z-index: 2;
+  display: block;
+}
+
+.header-proficiency-level-box {
+  position:absolute;
+  width: 256px;
+  height: 34px;
+  top: -43px;
+  left: -37px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #2f3a40;
+  display: none;
+}
+
+.proficiency-level .header-proficiency-level-box:after { /* 三角形を作成 */
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 28px;
+  left: 64px;
+  border: 9px solid transparent;
+  border-top: 10px solid #2f3a40;
+  border-radius: 6px
+}
+
+ul.tagit {
+  background: white;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  margin-top: 16px;
+  padding-left: 11px;
+
+  li.tagit-choice {
+    margin-top: 6px;
+    background-color: #e8f5ff;
+  }
 }

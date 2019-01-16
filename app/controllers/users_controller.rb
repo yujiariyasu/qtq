@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     session[:path_info] = request.path_info
-    @user = User.find(params[:id])
+    @user = User.find_by(name: params[:name])
     @comparison_chart = comparison_chart(@user)
     @schedule_chart = schedule_chart(@user)
   end
@@ -56,11 +56,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(name: params[:name])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by(name: params[:name])
     if @user.update_attributes(update_params)
       unless params[:user][:goal]
         if params[:delete_avatar_flag] == 'true'
@@ -77,8 +77,8 @@ class UsersController < ApplicationController
 
   def following
     @description = ' / following'
-    user = User.find(params[:id])
-    @path = user_path(user)
+    user = User.find_by(name: params[:name])
+    @path = user_path(user.name)
     @link_text = user.name
     @users = user.following.page(params[:page]).per(20)
     @title = "#{user.name}さんがフォローしている人一覧"
@@ -87,8 +87,8 @@ class UsersController < ApplicationController
 
   def followers
     @description = ' / followers'
-    user = User.find(params[:id])
-    @path = user_path(user)
+    user = User.find_by(name: params[:name])
+    @path = user_path(user.name)
     @link_text = user.name
     @users = user.followers.page(params[:page]).per(20)
     @title = "#{user.name}さんのフォロワー一覧"
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 
   def likers
     @description = ' / likers'
-    learning = Learning.find(params[:id])
+    learning = Learning.find_by(name: params[:name])
     @path = learning_path(learning)
     @link_text = learning.title
     @users = learning.users.page(params[:page]).per(20)
@@ -115,7 +115,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find_by(name: params[:name])
     redirect_to root_url unless current_user?(@user)
   end
 end

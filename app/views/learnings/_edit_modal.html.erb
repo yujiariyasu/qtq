@@ -25,6 +25,11 @@
               <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                 <%= f.text_area :description, class: 'form-control learning-modal-text-area edit-learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
               </div>
+              <ul id='edit-learning-tags'>
+                <% @learning.tags.each do |tag| %>
+                  <li><%= tag.name %></li>
+                <% end %>
+              </ul>
               <div class='clearfix mb10'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, tabindex: 0, id: 'edit-learning-slider' %>
               </div>
               <div id="edit-learning-images-preview">
@@ -37,12 +42,13 @@
                 <%= fa_icon 'trash', class: 'edit-learning-trash-image' %>
                 <%= f.file_field :images, id: 'edit-learning-image-files', multiple: true %>
               </div>
-              <div class='blue-black header-study-time pull-left'><span>習熟度</span><span id='edit-study-time'><%= @learning.proficiency %>%</span></div>
-<!--               <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pull-left public-checkbox" for="edit-public-checkbox">
-                <span class='public-letter'>公開</span>
-                <%#= f.check_box :public_flag, class: "mdl-switch__input", id: "edit-public-checkbox" %>
-                <span class="mdl-switch__label"></span>
-              </label> -->
+              <div class='pull-left blue-black proficiency-level header-study-time'>
+                <span>習熟度</span>
+                <span id='edit-study-time'><%= @learning.proficiency %>%</span>
+                <div class="header-proficiency-level-box">
+                  <p class="header-proficiency-level-comment">習熟度によって次回の復習日が変わります</p>
+                </div>
+              </div>
               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10">
                 編集する
               </button>
