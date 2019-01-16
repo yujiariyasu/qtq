@@ -2,7 +2,7 @@
   <%= image_tag user_avatar_or_default(learning.user), class: "user-list-avatar mr10" %>
   <div class='mr10'>
     <div class='user-list-username'>
-      <%= link_to "@#{learning.user.name}", learning.user %>
+      <%= link_to "@#{learning.user.name}", user_path(learning.user.name) %>
       <span> <%= learning.created_at.strftime('%Y/%m/%d') %> </span>
     </div>
     <div>

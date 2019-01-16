@@ -8,7 +8,7 @@
       <% end %>
       <div class='learning-main-header'>
         <%= image_tag user_avatar_or_default(@user), class: 'avatar-img' %>
-        <%= link_to "@#{@user.name}", user_path(@user), class: 'user-name' %>
+        <%= link_to "@#{@user.name}", user_path(@user.name), class: 'user-name' %>
         <span class='learning-created-at'><%= @learning.created_at.strftime('%Y年%m月%d日') %>に追加</span>
         <span class='learning-created-at'></span>
         <% if current_user?(@user) %>
@@ -20,7 +20,7 @@
       <h1 class='text-left'><%= @learning.title %></h1>
       <div class='learning-tag-list'>
         <% @learning.tags.each do |tag| %>
-          <%= link_to tag.name, tag %>
+          <%= link_to tag.name, tag_path(tag.name) %>
         <% end %>
       </div>
       <% @learning.images.each do |image| %>

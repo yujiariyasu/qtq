@@ -19,8 +19,8 @@
         <span class="caret mr10 img-hover-gray"></span>
       </button>
       <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right">
-          <li><%= link_to 'マイページ', user_path(current_user), class: 'mdl-menu__item' %></li>
-          <li><%= link_to 'プロフィール編集', edit_user_path(current_user), class: 'mdl-menu__item' %></li>
+          <li><%= link_to 'マイページ', user_path(current_user.name), class: 'mdl-menu__item' %></li>
+          <li><%= link_to 'プロフィール編集', edit_user_path(current_user.name), class: 'mdl-menu__item' %></li>
           <li role="separator" class="divider" style="border: solid 0.3px #87b1c7;"></li>
           <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
       </ul>

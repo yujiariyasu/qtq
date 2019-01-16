@@ -3,7 +3,7 @@ class LearningsController < ApplicationController
 
   def index
     @description = ' / learnings'
-    @user = User.find(params[:user_id])
+    @user = User.find_by(name: params[:user_name])
     @learnings = @user.learnings.order(id: :desc).page(params[:page]).per(20)
     @title = "#{@user.name}さんの学習一覧"
   end

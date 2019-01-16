@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :users do
-    resources :learnings, only: :index
+  resources :users, param: :name do
+    resources :learnings, param: :name, only: :index
     member do
       get :following, :followers
     end
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :comment_likes, only: [:create, :destroy]
   end
   resources :subscriptions, only: :create
-  resources :tags, only: :show
+  resources :tags, param: :name, only: :show
   root to: 'top#root'
   get '*anything' => 'errors#routing_error'
 end
