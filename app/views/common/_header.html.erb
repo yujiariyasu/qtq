@@ -2,7 +2,12 @@
   <div class='header-inner-box'>
     <ul class="nav white navbar-nav">
       <li><a href="/" class='p0'><%= image_tag "logo-white.png", class: 'header-logo' %></a></li>
-
+<li>
+  <%= form_tag(search_learnings_path, method: "get", class: 'learning-search-form') do %>
+    <span class="fa fa-search"></span>
+    <%= text_field_tag :search, '', class: 'learning-search-field' %>
+  <% end %>
+</li>
   <!--
   サイドバー隠すボタン、とりあえずはお蔵入り
        <li>

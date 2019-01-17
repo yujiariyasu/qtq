@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :trend
+      get :search
     end
   end
   resources :reviews

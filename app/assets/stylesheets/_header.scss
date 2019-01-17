@@ -247,3 +247,30 @@
     margin-left: 11px;
   }
 }
+
+.learning-search-form {
+  position: relative;
+  width: 200px;
+  margin-top: 7px;
+  margin-left: 30px;
+
+  .fa-search {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    color: #aaa;
+  }
+
+  .learning-search-field {
+    width: 100%;
+    color: black;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    box-shadow: inset 0 1px 2px #ccc;
+    padding-left: 32px;
+    padding-right: 8px;
+  }
+}
