@@ -31,6 +31,7 @@ gem 'webpush'
 gem 'whenever', require: false
 gem 'jquery-ui-rails'
 gem 'gon'
+gem 'rouge'
 
 group :development, :test do
   gem 'byebug', platform: :mri

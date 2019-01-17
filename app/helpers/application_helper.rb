@@ -7,11 +7,8 @@ module ApplicationHelper
       'https://s3-ap-northeast-1.amazonaws.com/quantity-teaches-quality/uploads/default/default-avatar.jpg'
   end
 
-  class HTMLwithCoderay < Redcarpet::Render::HTML
-  end
-
   def markdown(text)
-      html_render = HTMLwithCoderay.new(filter_html: true)
+      html_render = Highlight.new(filter_html: true)
       options = {
           autolink: true,
           space_after_headers: true,
