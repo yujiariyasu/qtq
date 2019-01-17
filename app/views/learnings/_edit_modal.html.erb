@@ -30,7 +30,7 @@
                   <li><%= tag.name %></li>
                 <% end %>
               </ul>
-              <div class='clearfix mb10'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, tabindex: 0, id: 'edit-learning-slider' %>
+              <div class='clearfix proficiency-slider-box'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, tabindex: 0, id: 'edit-learning-slider' %>
               </div>
               <div id="edit-learning-images-preview">
                 <% @learning.images.each do |image| %>
