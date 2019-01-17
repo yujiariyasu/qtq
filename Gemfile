@@ -30,6 +30,7 @@ gem 'serviceworker-rails'
 gem 'webpush'
 gem 'whenever', require: false
 gem 'jquery-ui-rails'
+gem 'gon'
 
 group :development, :test do
   gem 'byebug', platform: :mri

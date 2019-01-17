@@ -526,6 +526,7 @@ ul.tagit {
   border-radius: 4px;
   margin-top: 16px;
   padding-left: 11px;
+  position: relative;
 
   li.tagit-choice {
     margin-top: 6px;
@@ -536,4 +537,23 @@ ul.tagit {
 .proficiency-slider-box {
   margin-bottom: 10px;
   margin-top: 30px;
+}
+
+.ui-autocomplete {
+  z-index: 1051;
+  border-radius: 4px;
+  position: absolute;
+}
+
+.ui-menu-item {
+  padding: 5px!important;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #e8f5ff;
+  }
+}
+
+.ui-menu-item-wrapper {
+  border: none!important;
 }

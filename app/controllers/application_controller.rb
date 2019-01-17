@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
+  before_action :set_tag_list_to_gon
 
   def logged_in_user
     unless logged_in?
@@ -14,4 +15,10 @@ class ApplicationController < ActionController::Base
   class IpAddressRejected < ActionController::ActionControllerError; end
 
   include ErrorHandlers if Rails.env.production?
+
+  private
+
+  def set_tag_list_to_gon
+    gon.tag_list = Tag.pluck(:name)
+  end
 end
