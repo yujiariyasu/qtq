@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def exist_user?
+    @user = User.find_by(name: params[:name])
+    raise ActiveRecord::RecordNotFound unless @user
+  end
+
   class Forbidden < ActionController::ActionControllerError;end
   class IpAddressRejected < ActionController::ActionControllerError; end
 
