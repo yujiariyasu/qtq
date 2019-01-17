@@ -24,7 +24,7 @@ class LearningsController < ApplicationController
       speed = (70 - params[:learning][:proficiency].to_i / 2)
     end
     safe_params = learning_params(speed)
-    learning = Learning.new(learning_params(speed))
+    learning = Learning.new(safe_params)
     if learning.save
       learning.save_tags(params[:tag_names].split(','))
       flash[:info] = '学習を登録しました。'
