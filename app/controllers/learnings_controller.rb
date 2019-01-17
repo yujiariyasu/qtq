@@ -56,7 +56,7 @@ class LearningsController < ApplicationController
 
   def destroy
    Learning.find(params[:id]).destroy
-   redirect_to user_url(current_user)
+   redirect_to user_url(current_user.name)
   end
 
   def trend

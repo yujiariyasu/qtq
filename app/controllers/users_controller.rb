@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   include Chart
 
   before_action :logged_in_user,   only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: :edit
+  before_action :correct_update_user,   only: :update
 
   def show
     session[:path_info] = request.path_info
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
         @user.activate
         log_in @user
         flash[:info] = 'Facebookログインしました。'
-        redirect_to @user and return
+        redirect_to user_url(@user.name) and return
       else
         flash[:danger] = 'Facebookログインに失敗しました。'
         if session[:path_info] == '/'
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
         @user.activate
         log_in @user
       end
-      redirect_to @user
+      redirect_to user_url(@user.name)
     else
       render 'new'
     end
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(name: params[:name])
+    @user = User.find_by(id: request.path.delete('/users/'))
     if @user.update_attributes(update_params)
       unless params[:user][:goal]
         if params[:delete_avatar_flag] == 'true'
@@ -69,7 +70,7 @@ class UsersController < ApplicationController
         end
         flash.now[:success] = 'プロフィールを更新しました。'
       end
-      redirect_to @user
+      redirect_to user_url(@user.name)
     else
       render 'edit'
     end
@@ -116,6 +117,11 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find_by(name: params[:name])
+    redirect_to root_url unless current_user?(@user)
+  end
+
+  def correct_update_user
+    @user = User.find_by(id: request.path.delete('/users/'))
     redirect_to root_url unless current_user?(@user)
   end
 end

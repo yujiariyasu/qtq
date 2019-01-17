@@ -30,7 +30,7 @@ class PasswordResetsController < ApplicationController
       log_in @user
       @user.update_attribute(:reset_digest, nil)
       flash[:success] = 'パスワードがリセットされました。'
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       render 'edit'
     end
