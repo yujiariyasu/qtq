@@ -1,9 +1,10 @@
 class LearningsController < ApplicationController
   include Chart
 
+  before_action :exist_user?,   only: [:index]
+
   def index
     @description = ' / learnings'
-    @user = User.find_by(name: params[:user_name])
     @learnings = @user.learnings.order(id: :desc).page(params[:page]).per(20)
     @title = "#{@user.name}さんの学習一覧"
   end

@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   include Chart
 
   before_action :logged_in_user,   only: [:edit, :update]
+  before_action :exist_user?,   only: [:show, :edit, :followers, :following]
   before_action :correct_user,   only: :edit
   before_action :correct_update_user,   only: :update
 
   def show
     session[:path_info] = request.path_info
-    @user = User.find_by(name: params[:name])
     @comparison_chart = comparison_chart(@user)
     @schedule_chart = schedule_chart(@user)
   end
@@ -61,7 +61,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: request.path.delete('/users/'))
     if @user.update_attributes(update_params)
       unless params[:user][:goal]
         if params[:delete_avatar_flag] == 'true'
@@ -78,37 +77,35 @@ class UsersController < ApplicationController
 
   def following
     @description = ' / following'
-    user = User.find_by(name: params[:name])
-    @path = user_path(user.name)
-    @link_text = user.name
-    @users = user.following.page(params[:page]).per(20)
-    @title = "#{user.name}さんがフォローしている人一覧"
+    @path = user_path(@user.name)
+    @link_text = @user.name
+    @users = @user.following.page(params[:page]).per(20)
+    @title = "#{@user.name}さんがフォローしている人一覧"
     render 'shared/users'
   end
 
   def followers
     @description = ' / followers'
-    user = User.find_by(name: params[:name])
-    @path = user_path(user.name)
-    @link_text = user.name
-    @users = user.followers.page(params[:page]).per(20)
-    @title = "#{user.name}さんのフォロワー一覧"
+    @path = user_path(@user.name)
+    @link_text = @user.name
+    @users = @user.followers.page(params[:page]).per(20)
+    @title = "#{@user.name}さんのフォロワー一覧"
     render 'shared/users'
   end
 
   def likers
     @description = ' / likers'
-    learning = Learning.find_by(name: params[:name])
-    @path = learning_path(learning)
-    @link_text = learning.title
-    @users = learning.users.page(params[:page]).per(20)
-    @title = "#{learning.title} にいいねした人"
+    @learning = Learning.find_by(id: params[:id])
+    @path = learning_path(@learning)
+    @link_text = @learning.title
+    @users = @learning.users.page(params[:page]).per(20)
+    @title = "#{@learning.title} にいいねした人"
     render 'shared/users'
   end
 
   private
   def create_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :introduction).merge(goal: 10)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :introduction).merge(goal: 5)
   end
 
   def update_params

@@ -69,6 +69,9 @@ $(document).on('turbolinks:load', function() {
   $('#user-edit-introduction-area').on('input', function() {
     lineHeight = parseInt($(this).css('lineHeight'));
     lines = ($(this).val() + '\n').match(/\n/g).length;
+    if(lines < 3) {
+      lines = 3
+    }
     $(this).height(lineHeight * lines);
   });
 });
