@@ -133,4 +133,10 @@ $(document).on('turbolinks:load', function() {
     $('.edit-learning-trash-image').hide()
     $('#image_delete_flag').val('true')
   })
+
+  $('.learning-modal-text-area').on('keydown', function(e) {
+    if(e.keyCode == 73 && e.metaKey) {
+      $(this).val($(this).val() + "\n\n```ruby\n\n```")
+    }
+  });
 });
