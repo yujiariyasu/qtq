@@ -7,10 +7,11 @@ module Chart
   def schedule_chart(user)
     days_until_review_hash = Hash.new(0)
     review_detail_data = Hash.new { |h, k| h[k] = [] }
-    user.learnings.not_finished.each do |learning|
+    learnings = user.learnings.not_finished
+    learnings.each do |learning|
       set_review_data(learning, review_detail_data, days_until_review_hash)
     end
-    if user.learnings.not_finished.present?
+    if learnings.present?
       text = "復習で学習を定着させましょう!!"
     else
       text = '学習を登録すると円グラフが表示されます!!'
