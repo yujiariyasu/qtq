@@ -3,7 +3,9 @@
 <div class='row m0 p0'>
   <div class='user-list-page'>
     <div class='user-list-header'>
-      <%= link_to @link_text, @path %>
+      <% if @link_text %>
+        <%= link_to @link_text, @path %>
+      <% end %>
       <span class='user-list-description'><%= @description %></span>
     </div>
     <div class='user-list'>

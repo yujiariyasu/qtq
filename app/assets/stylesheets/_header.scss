@@ -251,7 +251,7 @@
 .learning-search-form {
   position: relative;
   width: 200px;
-  margin-top: 7px;
+  margin-top: 8px;
   margin-left: 30px;
 
   .fa-search {
@@ -273,4 +273,21 @@
     padding-left: 32px;
     padding-right: 8px;
   }
+}
+
+.header-left-menu-button {
+  margin: 14px 0 0 24px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 4px;
+  height: 20px;
+}
+
+.header-left-menu-caret {
+  background-color: rgb(0, 107, 171);
+  margin-right: 2px;
+}
+
+.learning-search-submit {
+  cursor: pointer;
 }

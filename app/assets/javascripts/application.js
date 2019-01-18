@@ -14,3 +14,4 @@
 //= require top
 //= require user
 //= require tag
+//= require header

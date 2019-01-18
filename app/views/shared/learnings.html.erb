@@ -11,6 +11,13 @@
     </div>
     <div class='user-list'>
       <%= render @learnings %>
+      <% if @learnings.blank? %>
+        <h2>
+          <%= fa_icon 'smile-o' %>
+          No Result
+          <%= fa_icon 'smile-o' %>
+        </h2>
+      <% end %>
     </div>
     <%= paginate @learnings %>
   </div>
