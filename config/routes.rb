@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :learnings, param: :name, only: :index
     member do
       get :following, :followers
+      get :like, to: 'learnings#liked'
     end
   end
   get '/login', to: 'sessions#new'
