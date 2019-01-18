@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       get :likers, to: 'users#likers'
     end
     collection do
-      get :trend
+      get :timeline
+      get :search
     end
   end
   resources :reviews

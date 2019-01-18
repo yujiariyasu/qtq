@@ -60,9 +60,16 @@ class LearningsController < ApplicationController
    redirect_to user_url(current_user.name)
   end
 
-  def trend
+  def timeline
     @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
-    @title = '新着'
+    @title = 'タイムライン'
+    render 'shared/learnings'
+  end
+
+  def search
+    word = params[:word].my_strip
+    @learnings = Learning.searched_by(word).includes(:user).order(id: :desc).page(params[:page]).per(30)
+    @title = "学習検索 / #{word}"
     render 'shared/learnings'
   end
 

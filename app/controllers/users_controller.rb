@@ -6,6 +6,13 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: :edit
   before_action :correct_update_user,   only: :update
 
+  def index
+    @description = '一覧'
+    @users = User.all.page(params[:page]).per(20)
+    @title = "ユーザー一覧"
+    render 'shared/users'
+  end
+
   def show
     session[:path_info] = request.path_info
     @comparison_chart = comparison_chart(@user)
@@ -76,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def following
-    @description = ' / following'
+    @description = ' / フォローしている人'
     @path = user_path(@user.name)
     @link_text = @user.name
     @users = @user.following.page(params[:page]).per(20)
@@ -85,7 +92,7 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @description = ' / followers'
+    @description = ' / フォロワー'
     @path = user_path(@user.name)
     @link_text = @user.name
     @users = @user.followers.page(params[:page]).per(20)
@@ -94,7 +101,7 @@ class UsersController < ApplicationController
   end
 
   def likers
-    @description = ' / likers'
+    @description = ' / いいねした人'
     @learning = Learning.find_by(id: params[:id])
     @path = learning_path(@learning)
     @link_text = @learning.title
