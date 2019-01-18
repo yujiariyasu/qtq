@@ -3,6 +3,12 @@
   border: 0;
   border-radius: 0;
 
+  .mdl-menu__item {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+  }
+
   .mdl-menu__item a {
     color:black;
     background-color: white;

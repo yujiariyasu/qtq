@@ -1,7 +1,7 @@
 class LearningsController < ApplicationController
   include Chart
 
-  before_action :exist_user?,   only: [:index]
+  before_action :exist_user?,   only: [:index, :liked]
 
   def index
     @description = ' / learnings'
@@ -70,6 +70,12 @@ class LearningsController < ApplicationController
     word = params[:word].my_strip
     @learnings = Learning.searched_by(word).includes(:user).order(id: :desc).page(params[:page]).per(30)
     @title = "学習検索 / #{word}"
+    render 'shared/learnings'
+  end
+
+  def liked
+    @learnings = Learning.liked_by(@user).includes(:user).order(id: :desc).page(params[:page]).per(30)
+    @title = 'いいねした学習'
     render 'shared/learnings'
   end
 

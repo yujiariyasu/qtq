@@ -14,6 +14,7 @@ class Learning < ApplicationRecord
   scope :not_finished, -> { where(finish_flag: false) }
   scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current) }
   scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%") }
+  scope :liked_by, ->(user) { where(id: user.learning_likes.pluck(:learning_id)) }
 
   INITIAL_DECREASE_SPEED = 67
   REVIEW_NOTIFICATION_LINE = 51
