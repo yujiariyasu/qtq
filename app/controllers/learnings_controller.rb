@@ -24,7 +24,7 @@ class LearningsController < ApplicationController
     else
       speed = (70 - params[:learning][:proficiency].to_i / 2)
     end
-    safe_params = learning_params(speed)
+    safe_params = learning_params(speed, Time.current.to_date.tomorrow)
     learning = Learning.new(safe_params)
     if learning.save
       learning.save_tags(params[:tag_names].split(','))
@@ -38,11 +38,10 @@ class LearningsController < ApplicationController
 
   def update
     learning = Learning.find(params[:id])
-    difference = learning.proficiency - params[:learning][:proficiency].to_i / 2
-    speed = difference + learning.proficiency_decrease_speed
+    speed = params[:learning][:proficiency] == 0 ? 1 : (learning.proficiency_decrease_speed * (params[:learning][:proficiency].to_f / learning.proficiency)).to_i
     speed = 100 if speed > 100
-    speed = 1 if speed < 1
-    update_params = learning_params(speed)
+    speed = 1 if speed == 0
+    update_params = learning_params(speed, learning.next_review_date)
     update_params[:title] = update_params[:title].presence || learning.title
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
@@ -80,10 +79,10 @@ class LearningsController < ApplicationController
   end
 
   private
-  def learning_params(speed)
+  def learning_params(speed, next_review_date)
     strip_title(params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
-      :proficiency_decrease_speed, :next_review_date, :public_flag)
-      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: Time.current.to_date.tomorrow))
+      :proficiency_decrease_speed, :next_review_date, :finish_flag)
+      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: next_review_date))
   end
 
   def strip_title(params_hash)

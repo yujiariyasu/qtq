@@ -559,3 +559,23 @@ ul.tagit {
 .ui-menu-item-wrapper {
   border: none!important;
 }
+
+.finish-checkbox {
+  width: 104px;
+  margin-top: 5px;
+  margin-left: 32px;
+
+  .mdl-switch__thumb {
+    top: 2px;
+  }
+
+  .mdl-switch__track {
+    top: 5px;
+  }
+}
+
+.finish-letter {
+  color: #2f3a40;
+  font-size: 14px;
+  margin-left: 11px;
+}
