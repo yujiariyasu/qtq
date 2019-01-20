@@ -1,0 +1,14 @@
+<% provide(:title, @title) %>
+<%= render partial: 'common/header' %>
+<div class='row m0 p0'>
+  <div class='user-list-page'>
+    <div class='user-list-header'>
+      <%= link_to @user.name, user_path(@user.name) %>
+      <span class='user-list-description'><%= @description %></span>
+    </div>
+    <div class='user-list'>
+      <%= render partial: 'activities/activity', collection: @activities, as: :activity %>
+    </div>
+    <%= paginate @activities %>
+  </div>
+</div>

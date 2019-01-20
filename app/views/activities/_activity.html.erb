@@ -1,0 +1,21 @@
+<% if activity.type == 'CommentActivity' %>
+  <% path = learning_path(activity.learning) %>
+<% else %>
+  <% path = user_path(activity.active_user.name) %>
+<% end %>
+<%= link_to path, class: 'activity-index-item' do %>
+  <%= image_tag user_avatar_or_default(activity.active_user), class: 'activity-index-item-avatar' %>
+  <div class='activity-index-item-sentence'>
+    <% case activity.type %>
+    <% when 'LearningLikeActivity' %>
+      <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>いいね</span>しました。
+    <% when 'FollowActivity' %>
+      <span class='bold'><%= activity.active_user.name %></span>があなたを<span class='bold'>フォロー</span>しました。
+    <% when 'CommentActivity' %>
+      <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>コメント</span>しました。
+    <% end %>
+    <div class='activity-index-item-time'>
+      <%= activity.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+  </div>
+<% end %>

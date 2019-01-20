@@ -1,7 +1,8 @@
 class LearningsController < ApplicationController
   include Chart
 
-  before_action :exist_user?,   only: [:index, :liked]
+  before_action :exist_user?,   only: :liked
+  before_action :exist_user_with_params_user_name?,   only: :index
 
   def index
     @description = ' / learnings'

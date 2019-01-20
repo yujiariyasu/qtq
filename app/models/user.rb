@@ -11,11 +11,13 @@ class User < ApplicationRecord
   has_many :learning_likes, dependent: :destroy
   has_many :comments
   has_many :subscriptions
+  has_many :active_activities, class_name: 'Activity', foreign_key: 'active_user_id'
+  has_many :passive_activities, class_name: 'Activity', foreign_key: 'passive_user_id'
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
   mount_uploader :avatar, AvatarUploader
-  validates :name, presence: true, length: { maximum: 50 }, allow_nil: true
+  validates :name, presence: true, length: { maximum: 50 }, allow_nil: true, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
