@@ -175,4 +175,16 @@ $(document).on('turbolinks:load', function() {
       $('.edit_learning').submit()
     }
   });
+
+  $('.learning-title-for-js').on('keydown', function(e) {
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.new_learning').submit()
+    }
+  });
+
+  $('.edit-learning-title-field').on('keydown', function(e) {
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.edit_learning').submit()
+    }
+  });
 });
