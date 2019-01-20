@@ -107,6 +107,18 @@ $(document).on('turbolinks:load', function() {
     $(this).height(height * lines);
   });
 
+  $('.post-comment-body').on('keydown', function(e) {
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.new_comment').submit()
+    }
+  });
+
+  $('.edit-comment-body').on('keydown', function(e) {
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.edit_comment').submit()
+    }
+  });
+
   if($('.edit-learning-modal-text-area').length) {
     area = $('.edit-learning-modal-text-area')
     height = parseInt(area.css('lineHeight'));
@@ -137,6 +149,30 @@ $(document).on('turbolinks:load', function() {
   $('.learning-modal-text-area').on('keydown', function(e) {
     if(e.keyCode == 73 && e.metaKey) {
       $(this).val($(this).val() + "\n\n```ruby\n\n```")
+      height = parseInt($(this).css('lineHeight'));
+      lines = ($(this).val() + '\n').match(/\n/g).length;
+      if(lines < 8) {
+        lines = 8
+      }
+      $(this).height(height * lines);
+    }
+    if(e.keyCode == 13 && e.metaKey) {
+      $('#new_learning').submit()
+    }
+  });
+
+  $('.edit-learning-modal-text-area').on('keydown', function(e) {
+    if(e.keyCode == 73 && e.metaKey) {
+      $(this).val($(this).val() + "\n\n```ruby\n\n```")
+      height = parseInt($(this).css('lineHeight'));
+      lines = ($(this).val() + '\n').match(/\n/g).length;
+      if(lines < 8) {
+        lines = 8
+      }
+      $(this).height(height * lines);
+    }
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.edit_learning').submit()
     }
   });
 });
