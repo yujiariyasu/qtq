@@ -74,4 +74,10 @@ $(document).on('turbolinks:load', function() {
     }
     $(this).height(lineHeight * lines);
   });
+
+  $('#user-edit-introduction-area').on('keydown', function(e) {
+    if(e.keyCode == 13 && e.metaKey) {
+      $('.edit_user').submit()
+    }
+  });
 });
