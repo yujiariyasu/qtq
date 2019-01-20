@@ -1,0 +1,2 @@
+class LearningLikeActivity < Activity
+end

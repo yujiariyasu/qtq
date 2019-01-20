@@ -118,6 +118,10 @@
   height: 20px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .fs10 {
   font-size: 10px;
 }
@@ -217,4 +221,11 @@ label {
 
 .root-user-new-button {
   font-size: 15px;
+}
+
+// 縦のcenter合わせ、親にposition: relativeを付ける必要有
+.length-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

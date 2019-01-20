@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-  before_action :set_tag_list_to_gon
+  before_action :tag_list_to_gon
+  before_action :short_activities
 
   def logged_in_user
     unless logged_in?
@@ -16,6 +17,11 @@ class ApplicationController < ActionController::Base
     raise ActiveRecord::RecordNotFound unless @user
   end
 
+  def exist_user_with_params_user_name?
+    @user = User.find_by(name: params[:user_name])
+    raise ActiveRecord::RecordNotFound unless @user
+  end
+
   class Forbidden < ActionController::ActionControllerError;end
   class IpAddressRejected < ActionController::ActionControllerError; end
 
@@ -23,7 +29,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_tag_list_to_gon
+  def tag_list_to_gon
     gon.tag_list = Tag.pluck(:name)
+  end
+
+  def short_activities
+    @short_activities = current_user.passive_activities.includes(:active_user, :learning).order(created_at: :desc).take(10) if logged_in?
   end
 end

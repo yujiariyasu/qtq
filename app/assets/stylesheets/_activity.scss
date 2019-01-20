@@ -1,0 +1,21 @@
+.activity-index-item {
+  display: flex;
+  position: relative;
+  margin-bottom:18px;
+}
+
+.activity-index-item-avatar {
+  height: 39px;
+  width: 39px;
+  border-radius: 4px;
+}
+
+.activity-index-item-sentence {
+  color: #4a4a4a;
+  margin-left: 10px;
+}
+
+.activity-index-item-time {
+  margin-top: 10px;
+  color: #999;
+}

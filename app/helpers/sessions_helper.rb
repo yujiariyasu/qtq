@@ -41,8 +41,8 @@ module SessionsHelper
     user == current_user
   end
 
-  def redirect_back_or(default)
-    redirect_to(session[:forwarding_url] || default)
+  def redirect_back_or(user)
+    redirect_to(session[:forwarding_url] || user_path(user.name))
     session.delete(:forwarding_url)
   end
 

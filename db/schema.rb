@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190113031617) do
+ActiveRecord::Schema.define(version: 20190119105949) do
+
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "active_user_id"
+    t.integer  "passive_user_id"
+    t.integer  "learning_id"
+    t.string   "type"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "checked",         default: false
+    t.index ["active_user_id"], name: "index_activities_on_active_user_id", using: :btree
+    t.index ["learning_id"], name: "index_activities_on_learning_id", using: :btree
+    t.index ["passive_user_id"], name: "index_activities_on_passive_user_id", using: :btree
+  end
 
   create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"

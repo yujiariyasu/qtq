@@ -4,6 +4,7 @@ class UserRelationshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
+    FollowActivity.create(active_user_id: current_user.id, passive_user_id: @user.id, learning_id: 1)
     respond_to do |format|
       format.html { redirect_to user_url(@user) }
       format.js

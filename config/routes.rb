@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, param: :name do
-    resources :learnings, param: :name, only: :index
+    resources :learnings, only: :index
+    resources :activities, only: :index
     member do
       get :following, :followers
       get :like, to: 'learnings#liked'

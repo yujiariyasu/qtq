@@ -40,68 +40,51 @@
     <% end %>
     <ul class="pull-right header-link-list">
       <% if logged_in? %>
-        <li class='white learning-new-modal' data-toggle="modal" data-target="#learning-new-modal">
+        <li class='white learning-new-modal header-learning-new-modal ' data-toggle="modal" data-target="#learning-new-modal">
           学習の登録
         </li>
-        <div class="modal fade" id="learning-new-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title text-center" id="exampleModalLabel">日々の学習を記録しましょう！</h5>
-              </div>
-              <div class='learning-new-modal-body'>
-                <div class='modal-inner-box'>
-                  <div class='modal-image-box'>
-                    <%= image_tag user_avatar_or_default(current_user), class: "avatar-img learning-new-modal-img" %>
-                  </div>
-                  <div>
-                    <%= fa_icon 'angle-left', class: 'modal-angle-left' %>
-                  </div>
-                  <div class='modal-form-box'>
-                    <%= form_for(Learning.new) do |f| %>
-                      <%= hidden_field_tag :url, request.url %>
-                      <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
-                        <%= f.text_field :title, class: 'mdl-textfield__input p10 learning-title-for-js', placeholder: 'タイトル...', required: true %>
-                      </div>
-                      <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
-                        <%= f.text_area :description, class: 'form-control learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
-                      </div>
-                      <ul id='learning-tags'></ul>
-                      <div class='clearfix proficiency-slider-box'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, value: 80, tabindex: 0, id: 'learning-slider' %>
-                      </div>
-                      <div id="learning-images-preview"></div>
-                      <div class="upload-box pull-left">
-                        <%= fa_icon 'image', class: 'learning-upload-button learning-image-icon learning-image-button' %>
-                        <%= fa_icon 'trash', class: 'learning-trash-image' %>
-                        <%= f.file_field :images, id: 'learning-image-files', multiple: true %>
-                      </div>
-
-<!-- 非公開機能は一旦見送り、一応コードは残しておく -->
-<!--                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pull-left public-checkbox" for="public-checkbox">
-                        <span class='public-letter'>公開</span>
-                        <%#= f.check_box :public_flag, class: "mdl-switch__input", id: "public-checkbox", checked: true %>
-                        <span class="mdl-switch__label"></span>
-                      </label> -->
-
-                      <div class='pull-left blue-black proficiency-level header-study-time'>
-                        <span>習熟度</span><span id='study-time'>80%</span>
-                        <div class="header-proficiency-level-box">
-                          <p class="header-proficiency-level-comment">習熟度によって次回の復習日が変わります</p>
-                        </div>
-                      </div>
-                      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10 post-learning-submit">
-                        記録をつける
-                      </button>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
+        <%= render 'common/create_learning_modal' %>
+        <li class='header-notice-number-wrapper'>
+          <span id="demo-menu-lower-right2" class="  header-notice-number mdl-js-button">0</span>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0 notice-wrapper" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right2">
+            <div class='notice-header'>
+              <%= fa_icon 'bell-o', class: 'blue-black' %>
+              <span>お知らせ</span>
             </div>
-          </div>
-        </div>
+            <div class='notice-list-wrapper'>
+              <% @short_activities.each do |activity| %>
+                <li>
+                  <% if activity.type == 'CommentActivity' %>
+                    <% path = learning_path(activity.learning) %>
+                  <% else %>
+                    <% path = user_path(activity.active_user.name) %>
+                  <% end %>
+                  <%= link_to path, class: 'notice-item' do %>
+                    <%= image_tag user_avatar_or_default(activity.active_user), class: 'notice-item-avatar' %>
+                    <div class='notice-sentence-wrapper'>
+                      <div class='notice-sentence'>
+                        <% case activity.type %>
+                        <% when 'LearningLikeActivity' %>
+                          <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>いいね</span>しました。
+                        <% when 'FollowActivity' %>
+                          <span class='bold'><%= activity.active_user.name %></span>があなたを<span class='bold'>フォロー</span>しました。
+                        <% when 'CommentActivity' %>
+                          <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>コメント</span>しました。
+                          <% end %>
+                      </div>
+                      <div class='notice-sentence-time'>
+                        <%= activity.created_at.strftime('%Y/%m/%d %H:%M') %>
+                      </div>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </div>
+            <div class='notice-footer'>
+              <%= link_to '通知一覧へ', user_activities_path(current_user.name) %>
+            </div>
+          </ul>
+        </li>
       <% elsif !(params[:controller] == 'users' && params[:action] == 'new') %>
         <li style='margin-bottom: 18px;'><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
       <% end %>
