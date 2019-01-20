@@ -43,12 +43,12 @@
           <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
       </ul>
     <% elsif !(params[:controller] == 'sessions' && params[:action] == 'new') %>
-      <ul class="pull-right header-link-list">
-        <li><%= link_to 'ログイン', login_path, style: 'margin-right:10px;' %></li>
+      <ul class="pull-right header-link-list header-login-ul">
+        <li><%= link_to 'ログイン', login_path %></li>
       </ul>
     <% end %>
-    <ul class="pull-right header-link-list">
-      <% if logged_in? %>
+    <% if logged_in? %>
+      <ul class="pull-right header-link-list">
         <li class='white learning-new-modal header-learning-new-modal ' data-toggle="modal" data-target="#learning-new-modal">
           学習の登録
         </li>
@@ -94,10 +94,12 @@
             </div>
           </ul>
         </li>
-      <% elsif !(params[:controller] == 'users' && params[:action] == 'new') %>
-        <li style='margin-bottom: 18px;'><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
-      <% end %>
-    </ul>
+      </ul>
+    <% elsif !(params[:controller] == 'users' && params[:action] == 'new') %>
+      <ul class='pull-right header-link-list header-login-ul'>
+        <li><%= link_to 'ユーザー登録', new_user_path, class: 'header-link-new-user' %></li>
+      </ul>
+    <% end %>
   </div>
 </div>
 <% flash.each do |message_type, message| %>
