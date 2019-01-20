@@ -9,6 +9,7 @@ class TopController < ApplicationController
       render 'users/show'
     else
       @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
+      @title = '新着'
       render 'shared/learnings'
     end
   end

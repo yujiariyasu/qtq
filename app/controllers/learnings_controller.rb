@@ -62,7 +62,7 @@ class LearningsController < ApplicationController
 
   def timeline
     @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
-    @title = 'タイムライン'
+    @title = '新着'
     render 'shared/learnings'
   end
 
