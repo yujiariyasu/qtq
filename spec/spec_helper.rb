@@ -16,27 +16,26 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'factory_girl_rails'
-require 'database_cleaner'
-require 'selenium-webdriver'
-require 'capybara/poltergeist'
-require 'capybara/rspec'
-require 'turnip'
-require 'turnip/capybara'
+# require 'factory_bot_rails'
+# require 'selenium-webdriver'
+# require 'capybara/poltergeist'
+# require 'capybara/rspec'
+# require 'turnip'
+# require 'turnip/capybara'
 
-Capybara.configure do |capybara_config|
-  capybara_config.default_driver = :selenium
-end
+# Capybara.configure do |capybara_config|
+#   capybara_config.default_driver = :selenium
+# end
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 60)
-end
+# Capybara.register_driver :poltergeist do |app|
+#   Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 60)
+# end
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(app, browser: :chrome)
+# end
 
-Capybara.javascript_driver = :selenium
+# Capybara.javascript_driver = :selenium
 
 # デバッグ用
 # seleniumで動かして実際のブラウザで目視挙動確認したい場合にコメントアウトする
@@ -48,7 +47,7 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
-  config.expect_with :rspec do |expectations|
+  # config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:
@@ -56,35 +55,21 @@ RSpec.configure do |config|
     #     # => "be bigger than 2 and smaller than 4"
     # ...rather than:
     #     # => "be bigger than 2"
-    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-  end
+    # expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  # end
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
-  config.mock_with :rspec do |mocks|
+  # config.mock_with :rspec do |mocks|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended, and will default to
     # `true` in RSpec 4.
-    mocks.verify_partial_doubles = true
-  end
+    # mocks.verify_partial_doubles = true
+  # end
 
   # FactoryGirl configuration
-  config.include FactoryGirl::Syntax::Methods
+  # config.include FactoryBot::Syntax::Methods
 
-  # DatabaseCleaner
-  # https://github.com/DatabaseCleaner/database_cleaner
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
 
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.
