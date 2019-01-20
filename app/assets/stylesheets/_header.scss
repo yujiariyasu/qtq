@@ -9,6 +9,21 @@
     font-size: 12px;
   }
 
+  .header-left-menu-list {
+    &:hover {
+      a {
+        background-color: #ecececd4;
+      }
+    }
+    a:hover {
+      background-color: #ecececd4;
+    }
+  }
+
+  .header-left-menu-list-bell {
+    padding-left: 14px;
+  }
+
   .mdl-menu__item a {
     color:black;
     background-color: white;
