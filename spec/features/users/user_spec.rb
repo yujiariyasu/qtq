@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'ユーザー画面関連' do
   include FeaturesSpecHelper
   before do
-    @user = create(:user)
+    @user = create(:user, name: 'yujiariyasu', email: 'yuji@xxx.com')
   end
   context 'ログイン中' do
     before do

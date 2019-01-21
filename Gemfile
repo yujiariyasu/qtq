@@ -46,16 +46,20 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'capybara', '2.5.0'
+  gem 'capybara'
   gem 'turnip', '2.1.0'
   gem 'poltergeist', '1.6.0'
   gem 'selenium-webdriver', '2.47.1'
   gem 'chromedriver-helper'
+  gem 'shoulda-matchers',
+    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
+    branch: 'rails-5'
 end
 
 group :production do
