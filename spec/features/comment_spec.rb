@@ -9,7 +9,8 @@ feature 'Comments', type: :feature do
   end
   scenario 'コメント投稿', js: true do
     visit learning_path(@learning)
-    fill_in 'comment_body', with: 'test'
+    fill_in 'comment_body', with: 'test_comment'
     click_button '投稿'
+    expect(page).to have_content 'test_comment'
   end
 end

@@ -43,7 +43,7 @@
           <li><%= link_to 'ログアウト', logout_path, class: 'mdl-menu__item', method: :delete %></li>
       </ul>
     <% elsif !(params[:controller] == 'sessions' && params[:action] == 'new') %>
-      <ul class="pull-right header-link-list header-login-ul">
+      <ul class="pull-right header-link-list header-login-ul header-login-link">
         <li><%= link_to 'ログイン', login_path %></li>
       </ul>
     <% end %>

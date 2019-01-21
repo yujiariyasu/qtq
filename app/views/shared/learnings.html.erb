@@ -1,8 +1,8 @@
 <% provide(:title, @title) %>
-<% if logged_in? %>
-  <%= render partial: 'common/header' %>
-<% else %>
+<% if !logged_in? && params[:controller] == 'top' %>
   <%= render partial: 'common/root_header' %>
+<% else %>
+  <%= render partial: 'common/header' %>
 <% end %>
 <div class='row m0 p0'>
   <div class='user-list-page'>

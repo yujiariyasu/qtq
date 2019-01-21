@@ -71,7 +71,7 @@ class LearningsController < ApplicationController
     searced_learnings = Learning.searched_by(word).includes(:user).order(created_at: :desc)
     searced_learnings_by_tag = Learning.searched_by_tag(word).includes(:user).order(created_at: :desc)
     @learnings =  Kaminari.paginate_array((searced_learnings + searced_learnings_by_tag).uniq).page(params[:page]).per(100)
-    @title = "学習検索 / #{word}"
+    @title = "検索結果 / #{word}"
     render 'shared/learnings'
   end
 
