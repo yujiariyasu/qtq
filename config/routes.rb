@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
       get :like, to: 'learnings#liked'
+      get :check_all, to: 'activities#check_all'
     end
   end
   get '/login', to: 'sessions#new'
