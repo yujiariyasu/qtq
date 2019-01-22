@@ -6,7 +6,7 @@ FactoryBot.define do
     goal { 5 }
 
     trait :with_learnings do
-      after(:create) { |user| create_list(:learnings, 5, user: user) }
+      after(:create) { |user| create_list(:learning, 5, user: user) }
     end
   end
 end

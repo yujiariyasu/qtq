@@ -58,6 +58,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include LoginMacros
+  config.include FeaturesSpecHelper
   config.include ActiveSupport::Testing::TimeHelpers
   config.filter_run_excluding :performance => true
   config.before(performance: true) do

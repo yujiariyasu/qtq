@@ -56,12 +56,13 @@ group :test do
   gem 'turnip', '2.1.0'
   gem 'poltergeist', '1.6.0'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '~> 1.1.0'
   gem 'shoulda-matchers',
     git: 'https://github.com/thoughtbot/shoulda-matchers.git',
     branch: 'rails-5'
   gem 'launchy', '~> 2.4.3'
   gem 'database_cleaner', '1.6.0'
+  gem 'rails-controller-testing'
 end
 
 group :production do

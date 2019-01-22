@@ -24,33 +24,7 @@ require 'selenium-webdriver'
 require 'turnip'
 require 'turnip/capybara'
 
-Capybara.configure do |capybara_config|
-  capybara_config.default_driver = :selenium
-end
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 60)
-end
-
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app,
-    browser: :chrome,
-    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-      chrome_options: {
-        args: ['headless', 'disable-gpu', 'window-size=1680,1050']
-      }
-    )
-  )
-end
-
 Capybara.javascript_driver = :selenium
-Chromedriver.set_version "2.35" # headless chromeとdriverのversion依存があるので指定
-
-# デバッグ用
-# seleniumで動かして実際のブラウザで目視挙動確認したい場合にコメントアウトする
-# require 'selenium-webdriver'
-# Capybara.javascript_driver = :selenium
-# Capybara.default_driver = :selenium
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

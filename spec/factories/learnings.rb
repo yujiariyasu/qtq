@@ -8,7 +8,7 @@ FactoryBot.define do
     association :user
 
     trait :with_comments do
-      after(:create) { |learning| create_list(:comments, 5, learning: learning) }
+      after(:create) { |learning| create_list(:comment, 5, learning: learning) }
     end
   end
 end

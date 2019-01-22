@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Comments', type: :feature do
-  include FeaturesSpecHelper
   before do
     create(:user)
     login(User.first, 'password')

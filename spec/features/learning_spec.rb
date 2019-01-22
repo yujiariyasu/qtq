@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Learnings', type: :feature, js: true do
-  include FeaturesSpecHelper
   before do
     @user = create(:user)
     login(@user)
@@ -33,6 +32,7 @@ feature 'Learnings', type: :feature, js: true do
     fill_in 'learning_title', with: 'test!!!'
     fill_in 'learning_description', with: '9999'
     click_button '編集する'
+take_screenshot
     expect(page).to have_content '学習を編集しました。'
     expect(page).to have_content 'test!!!'
     expect(page).to have_content '9999'

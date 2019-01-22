@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Users', type: :feature do
-  include FeaturesSpecHelper
   context 'ログイン中' do
     before do
       @user = create(:user)
