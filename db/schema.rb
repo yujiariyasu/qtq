@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190119105949) do
+ActiveRecord::Schema.define(version: 20190122160211) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "active_user_id"
@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(version: 20190119105949) do
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
     t.json     "images"
-    t.boolean  "finish_flag",                              default: false
     t.integer  "proficiency_decrease_speed"
     t.date     "next_review_date"
     t.integer  "proficiency"
     t.integer  "likes_count"
+    t.boolean  "finished",                                 default: false
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
   end
 

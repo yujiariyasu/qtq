@@ -39,7 +39,7 @@
                   </div>
                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pull-left finish-checkbox" for="finish-checkbox">
                     <span class='finish-letter'>復習完了</span>
-                    <%= f.check_box :finish_flag, class: "mdl-switch__input", id: "finish-checkbox", checked: @learning.finish_flag %>
+                    <%= f.check_box :finished, class: "mdl-switch__input", id: "finish-checkbox", checked: @learning.finished %>
                     <span class="mdl-switch__label"></span>
                   </label>
                   <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
