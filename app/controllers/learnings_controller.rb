@@ -29,7 +29,7 @@ class LearningsController < ApplicationController
     learning = Learning.new(safe_params)
     if learning.save
       learning.save_tags(params[:tag_names].split(','))
-      flash[:save_tags] = '学習を登録しました。'
+      flash[:info] = '学習を登録しました。'
       redirect_to learning_url(learning)
     else
       flash[:danger] = '学習の登録に失敗しました。'
@@ -47,6 +47,7 @@ class LearningsController < ApplicationController
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
     end
+    flash[:info] = '学習を編集しました。'
     learning.save_tags(params[:tag_names].split(','))
     if params['image_delete_flag'] == 'true'
       learning.remove_images!

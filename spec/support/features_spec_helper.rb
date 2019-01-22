@@ -7,4 +7,8 @@ module FeaturesSpecHelper
       click_button 'ログイン'
     end
   end
+
+  def take_screenshot
+    page.save_screenshot "screenshot-#{Time.current}.png"
+  end
 end
