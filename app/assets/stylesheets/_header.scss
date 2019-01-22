@@ -35,39 +35,6 @@
     text-decoration: none;
   }
 }
-.root-header-nav {
-  .mdl-menu__item {
-    height: 40px;
-    line-height: 40px;
-    font-size: 12px;
-  }
-
-  .header-left-menu-list {
-    &:hover {
-      a {
-        background-color: #ecececd4;
-      }
-    }
-    a:hover {
-      background-color: #ecececd4;
-    }
-  }
-
-  .header-left-menu-list-bell {
-    padding-left: 14px;
-  }
-
-  .mdl-menu__item a {
-    color:black;
-    background-color: white;
-  }
-
-  .mdl-menu__item a:hover {
-    color:black;
-    background-color: #f5f5f5;
-    text-decoration: none;
-  }
-}
 
 .navbar {
   margin-bottom: 0;
@@ -432,4 +399,38 @@
 
 .header-login-link {
   margin-right: 18px;
+}
+
+.root-header-nav {
+  .mdl-menu__item {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+  }
+
+  .header-left-menu-list {
+    &:hover {
+      a {
+        background-color: #ecececd4;
+      }
+    }
+    a:hover {
+      background-color: #ecececd4;
+    }
+  }
+
+  .header-left-menu-list-bell {
+    padding-left: 14px;
+  }
+
+  .mdl-menu__item a {
+    color:black;
+    background-color: white;
+  }
+
+  .mdl-menu__item a:hover {
+    color:black;
+    background-color: #f5f5f5;
+    text-decoration: none;
+  }
 }

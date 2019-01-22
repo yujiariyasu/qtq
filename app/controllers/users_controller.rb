@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     safe_params = update_params
     safe_params[:name] = @user.name if safe_params[:name].blank?
     safe_params[:email] = @user.email if safe_params[:email].blank?
-    if @user.update_attributes(safe_params)
+    if @user.update(safe_params)
       unless params[:user][:goal]
         if params[:delete_avatar_flag] == 'true'
           @user.remove_avatar!
