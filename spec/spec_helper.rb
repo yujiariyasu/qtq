@@ -16,33 +16,15 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'database_cleaner'
-require 'selenium-webdriver'
 require 'capybara/poltergeist'
 require 'capybara/rspec'
+require 'selenium-webdriver'
 require 'turnip'
 require 'turnip/capybara'
 
-Capybara.configure do |capybara_config|
-  capybara_config.default_driver = :selenium
-end
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 60)
-end
-
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
 Capybara.javascript_driver = :selenium
-
-# デバッグ用
-# seleniumで動かして実際のブラウザで目視挙動確認したい場合にコメントアウトする
-# require 'selenium-webdriver'
-# Capybara.javascript_driver = :selenium
-# Capybara.default_driver = :selenium
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -69,7 +51,7 @@ RSpec.configure do |config|
   end
 
   # FactoryGirl configuration
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   # DatabaseCleaner
   # https://github.com/DatabaseCleaner/database_cleaner

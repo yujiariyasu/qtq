@@ -29,7 +29,7 @@ class LearningsController < ApplicationController
     learning = Learning.new(safe_params)
     if learning.save
       learning.save_tags(params[:tag_names].split(','))
-      flash[:save_tags] = '学習を登録しました。'
+      flash[:info] = '学習を登録しました。'
       redirect_to learning_url(learning)
     else
       flash[:danger] = '学習の登録に失敗しました。'
@@ -47,6 +47,7 @@ class LearningsController < ApplicationController
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
     end
+    flash[:info] = '学習を編集しました。'
     learning.save_tags(params[:tag_names].split(','))
     if params['image_delete_flag'] == 'true'
       learning.remove_images!
@@ -71,7 +72,7 @@ class LearningsController < ApplicationController
     searced_learnings = Learning.searched_by(word).includes(:user).order(created_at: :desc)
     searced_learnings_by_tag = Learning.searched_by_tag(word).includes(:user).order(created_at: :desc)
     @learnings =  Kaminari.paginate_array((searced_learnings + searced_learnings_by_tag).uniq).page(params[:page]).per(100)
-    @title = "学習検索 / #{word}"
+    @title = "検索結果 / #{word}"
     render 'shared/learnings'
   end
 

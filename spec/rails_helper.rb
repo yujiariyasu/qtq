@@ -2,10 +2,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -47,15 +47,30 @@ RSpec.configure do |config|
   #       # ...
   #     end
   #
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.reload
+  end
+
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   config.include LoginMacros
+  config.include FeaturesSpecHelper
   config.include ActiveSupport::Testing::TimeHelpers
   config.filter_run_excluding :performance => true
   config.before(performance: true) do
     Actioncontroller::Base.perform_caching = true
     ActiveSupport::Dependencies.mechanism = :require
     Rails.logger.level = ActiveSupport::Logger::INFO
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
