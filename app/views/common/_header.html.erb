@@ -49,12 +49,12 @@
     <% end %>
     <% if logged_in? %>
       <ul class="pull-right header-link-list">
-        <li class='white learning-new-modal header-learning-new-modal ' data-toggle="modal" data-target="#learning-new-modal">
+        <li class='white learning-new-modal header-learning-new-modal' data-toggle="modal" data-target="#learning-new-modal">
           学習の登録
         </li>
         <%= render 'common/create_learning_modal' %>
         <li class='header-notice-number-wrapper'>
-          <span id="demo-menu-lower-right2" class="  header-notice-number mdl-js-button">0</span>
+          <span id="demo-menu-lower-right2" class="header-notice-number mdl-js-button">0</span>
           <%= render 'common/notice' %>
         </li>
       </ul>

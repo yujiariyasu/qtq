@@ -33,6 +33,10 @@
     <% end %>
   </div>
   <div class='notice-footer'>
-    <%= link_to '通知一覧へ', user_activities_path(current_user.name) %>
+    <% if @short_activities.present? %>
+      <%= link_to '通知一覧へ', user_activities_path(current_user.name) %>
+    <% else %>
+      <span>通知なし</span>
+    <% end %>
   </div>
 </ul>
