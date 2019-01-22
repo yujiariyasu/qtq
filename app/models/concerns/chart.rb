@@ -130,8 +130,6 @@ module Chart
     learning_for_each_day = user.learning_for_each_day(range)
     unit = '件'
     goal = user.goal
-    days1 = learning_for_each_day.sample(learning_for_each_day.size)
-    days2 = days1.sample(learning_for_each_day.size)
     # 他の処理のついでにやればクエリ1つ減らせるが、メンテしにくくなるので別処理にします
     number_of_learnings = user.number_of_learnings(Date.today, range_size)
     goal_of_learnings_num = (range_size + 1) * goal
@@ -220,15 +218,15 @@ module Chart
 
   def review_text(point)
     return case point
-    when 0..9
-      'ヤバいよ'
-    when 10..39
-      '頑張ろう'
-    when 40..69
-      'そろそろ復習'
-    else
-      'イイ感じ'
-    end
+           when 0..9
+             'ヤバいよ'
+           when 10..39
+             '頑張ろう'
+           when 40..69
+             'そろそろ復習'
+           else
+             'イイ感じ'
+           end
   end
 
   def generate_review_chart(title, text, date_category, review_data)
