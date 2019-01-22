@@ -55,44 +55,7 @@
         <%= render 'common/create_learning_modal' %>
         <li class='header-notice-number-wrapper'>
           <span id="demo-menu-lower-right2" class="  header-notice-number mdl-js-button">0</span>
-          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0 notice-wrapper" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right2">
-            <div class='notice-header'>
-              <%= fa_icon 'bell-o', class: 'blue-black' %>
-              <span>お知らせ</span>
-            </div>
-            <div class='notice-list-wrapper'>
-              <% @short_activities.each do |activity| %>
-                <li>
-                  <% if activity.type == 'CommentActivity' %>
-                    <% path = learning_path(activity.learning) %>
-                  <% else %>
-                    <% path = user_path(activity.active_user.name) %>
-                  <% end %>
-                  <%= link_to path, class: 'notice-item' do %>
-                    <%= image_tag user_avatar_or_default(activity.active_user), class: 'notice-item-avatar' %>
-                    <div class='notice-sentence-wrapper'>
-                      <div class='notice-sentence'>
-                        <% case activity.type %>
-                        <% when 'LearningLikeActivity' %>
-                          <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>いいね</span>しました。
-                        <% when 'FollowActivity' %>
-                          <span class='bold'><%= activity.active_user.name %></span>があなたを<span class='bold'>フォロー</span>しました。
-                        <% when 'CommentActivity' %>
-                          <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>コメント</span>しました。
-                          <% end %>
-                      </div>
-                      <div class='notice-sentence-time'>
-                        <%= activity.created_at.strftime('%Y/%m/%d %H:%M') %>
-                      </div>
-                    </div>
-                  <% end %>
-                </li>
-              <% end %>
-            </div>
-            <div class='notice-footer'>
-              <%= link_to '通知一覧へ', user_activities_path(current_user.name) %>
-            </div>
-          </ul>
+          <%= render 'common/notice' %>
         </li>
       </ul>
     <% elsif !(params[:controller] == 'users' && params[:action] == 'new') %>
