@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
       get :like, to: 'learnings#liked'
+      get :timeline, to: 'learnings#timeline'
     end
   end
   get '/login', to: 'sessions#new'
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
       get :likers, to: 'users#likers'
     end
     collection do
-      get :timeline
+      get :trend
       get :search
     end
   end

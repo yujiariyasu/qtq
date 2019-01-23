@@ -1,7 +1,7 @@
 class LearningsController < ApplicationController
   include Chart
 
-  before_action :exist_user?,   only: :liked
+  before_action :exist_user?,   only: [:liked, :timeline]
   before_action :exist_user_with_params_user_name?,   only: :index
 
   def index
@@ -62,6 +62,13 @@ class LearningsController < ApplicationController
   end
 
   def timeline
+    redirect_to root_url unless current_user?(@user)
+    @learnings = Learning.where(user: current_user.following).or(Learning.where(user: current_user)).includes(:user).order(id: :desc).page(params[:page]).per(30)
+    @title = 'タイムライン'
+    render 'shared/learnings'
+  end
+
+  def trend
     @learnings = Learning.includes(:user).order(id: :desc).page(params[:page]).per(30)
     @title = '新着'
     render 'shared/learnings'
