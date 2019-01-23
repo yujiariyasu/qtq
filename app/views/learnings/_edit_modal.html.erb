@@ -25,7 +25,7 @@
               <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
                 <%= f.text_area :description, class: 'form-control learning-modal-text-area edit-learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
               </div>
-              <ul id='edit-learning-tags'>
+              <ul id='edit-learning-tags' class='mb10'>
                 <% @learning.tags.each do |tag| %>
                   <li><%= tag.name %></li>
                 <% end %>
