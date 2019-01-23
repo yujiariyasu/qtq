@@ -562,6 +562,20 @@ ul.tagit {
 
 .finish-checkbox {
   width: 104px;
+  margin-top: 12px;
+  margin-left: 70px;
+
+  .mdl-switch__thumb {
+    top: 2px;
+  }
+
+  .mdl-switch__track {
+    top: 5px;
+  }
+}
+
+.edit-finish-checkbox {
+  width: 104px;
   margin-top: 5px;
   margin-left: 32px;
 

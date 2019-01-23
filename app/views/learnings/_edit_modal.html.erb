@@ -51,6 +51,13 @@
                   <p class="header-proficiency-level-comment">習熟度によって次回の復習日が変わります</p>
                 </div>
               </div> -->
+              <% if @learning.finish_flag %>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pull-left finish-checkbox" for="edit-finish-checkbox">
+                  <span class='finish-letter'>復習完了</span>
+                  <%= f.check_box :finish_flag, class: "mdl-switch__input", id: "edit-finish-checkbox", checked: @learning.finish_flag %>
+                  <span class="mdl-switch__label"></span>
+                </label>
+              <% end %>
               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right mr10 mt10">
                 編集する
               </button>
