@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     session[:path_info] = request.path_info
     @comparison_chart = comparison_chart(@user)
     @schedule_chart = schedule_chart(@user)
+    @today_review_learnings = @user.learnings.review_today
   end
 
   def new

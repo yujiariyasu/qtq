@@ -60,14 +60,14 @@
   <% end %>
   <% if @user.learnings.present? %>
     <div class='user-learning-index'>
-      <% if learnings = @user.learnings.review_today %>
+      <% if current_user?(@user) && @today_review_learnings.present? %>
         <div class='recent-learning-header'>
           <%= fa_icon 'arrow-down', class: 'pl10' %>
           <span class='ml10'>今日の復習</span>
           <%= fa_icon 'arrow-down' %>
         </div>
         <div class='today-reviews-list-wrapper'>
-          <% learnings.each do |learning| %>
+          <% @today_review_learnings.each do |learning| %>
             <%= link_to learning.title, learning_path(learning) %>
           <% end %>
         </div>
