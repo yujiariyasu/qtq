@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :reviews
+  resources :reviews, only: :create
   resources :comments, only: [:create, :destroy, :update] do
     resources :comment_likes, only: [:create, :destroy]
   end
