@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190122160211) do
+ActiveRecord::Schema.define(version: 20190123014910) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "active_user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20190122160211) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "checked",         default: false
+    t.boolean  "pushed",          default: false
     t.index ["active_user_id"], name: "index_activities_on_active_user_id", using: :btree
     t.index ["learning_id"], name: "index_activities_on_learning_id", using: :btree
     t.index ["passive_user_id"], name: "index_activities_on_passive_user_id", using: :btree
