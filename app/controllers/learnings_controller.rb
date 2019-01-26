@@ -47,6 +47,7 @@ class LearningsController < ApplicationController
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
     end
+    learning.update_review_date
     flash[:info] = '学習を編集しました。'
     learning.save_tags(params[:tag_names].split(','))
     if params['image_delete_flag'] == 'true'

@@ -181,7 +181,8 @@ module Chart
     review_data = [0, 100]
     decrease_speed = INITIAL_DECREASE_SPEED
     review_date_proficiency_map = set_review_date_proficiency(learning)
-    range = chart_date_range(learning)
+    end_date = learning.finished? ? learning.finish_date : Date.current
+    range = chart_date_range(learning, end_date)
     if learning.created_at.to_date != Time.now.to_date
       (learning.created_at.to_date.tomorrow..Time.now.to_date).each do |date|
         if review_date_proficiency_map.keys.include?(date)
@@ -195,7 +196,7 @@ module Chart
       end
     end
     date_category = range.to_a.map{ |date| "#{date}日目" }
-    text = review_text(review_data[-1])
+    text = learning.finished ? '忘れたらまた再開' : review_text(review_data[-1])
     return generate_review_chart(learning.title, text, date_category, review_data)
   end
 
@@ -207,26 +208,29 @@ module Chart
     review_date_proficiency_map
   end
 
-  def chart_date_range(learning)
-    days_num = elapsed_days_num(learning)
+  # 経過日数が10以下の場合0..10を返す
+  # 11以上の場合は0..経過日数
+  def chart_date_range(learning, end_date)
+    days_num = elapsed_days_num(learning, end_date)
     days_num > 10 ? 0..days_num : 0..10
   end
 
-  def elapsed_days_num(learning)
-    (Date.today - learning.created_at.to_date).to_i + 1
+  # 経過日数
+  def elapsed_days_num(learning, end_date)
+    (end_date - learning.created_at.to_date).to_i + 1
   end
 
   def review_text(point)
-    return case point
-           when 0..9
-             'ヤバいよ'
-           when 10..39
-             '頑張ろう'
-           when 40..69
-             'そろそろ復習'
-           else
-             'イイ感じ'
-           end
+    case point
+    when 0..9
+      'ヤバいよ'
+    when 10..39
+      '頑張ろう'
+    when 40..69
+      'そろそろ復習'
+    else
+      'イイ感じ'
+    end
   end
 
   def generate_review_chart(title, text, date_category, review_data)
