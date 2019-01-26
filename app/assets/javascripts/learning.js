@@ -146,7 +146,7 @@ $(document).on('turbolinks:load', function() {
     $('#image_delete_flag').val('true')
   })
 
-  $('.learning-modal-text-area').on('keydown', function(e) {
+  $('.create-learning-modal-text-area').on('keydown', function(e) {
     if(e.keyCode == 73 && e.metaKey) {
       $(this).val($(this).val() + "\n\n```ruby\n\n```")
       height = parseInt($(this).css('lineHeight'));

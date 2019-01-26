@@ -1,0 +1,16 @@
+<ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect p0 notice-wrapper" id='header-right-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-right2">
+  <div class='notice-header'>
+    <%= fa_icon 'bell-o', class: 'blue-black' %>
+    <span>お知らせ</span>
+  </div>
+  <div class='notice-list-wrapper'>
+    <%= render partial: 'activities/short_activity', collection: @short_activities, as: :activity %>
+  </div>
+  <div class='notice-footer'>
+    <% if @short_activities.present? %>
+      <%= link_to '通知一覧へ', user_activities_path(current_user.name) %>
+    <% else %>
+      <span>通知なし</span>
+    <% end %>
+  </div>
+</ul>

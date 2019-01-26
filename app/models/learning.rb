@@ -8,10 +8,11 @@ class Learning < ApplicationRecord
   has_many :learning_likes, dependent: :destroy
   has_many :tags, through: :learning_tags
   has_many :learning_tags, dependent: :destroy
+  has_many :activities, dependent: :destroy
   mount_uploaders :images, AvatarUploader
   validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
 
-  scope :not_finished, -> { where(finish_flag: false) }
+  scope :not_finished, -> { where(finished: false) }
   scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current).not_finished }
   scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%") }
   scope :searched_by_tag, lambda { |word|
@@ -28,7 +29,7 @@ class Learning < ApplicationRecord
     return speed == 0 ? 1 : speed.round(0)
   end
 
-  def update_with_review(finish_flag, proficiency, review_description, first_in_the_day_flag)
+  def update_with_review(finished, proficiency, review_description, first_in_the_day_flag)
     update_params = {}
     if first_in_the_day_flag
       update_params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
@@ -36,7 +37,7 @@ class Learning < ApplicationRecord
       update_params[:next_review_date] = next_review_date + days_until_review
     end
     update_params[:proficiency] = proficiency
-    update_params[:finish_flag] = finish_flag
+    update_params[:finished] = finished
     update_params[:description] = add_review_description(review_description) if review_description.present?
     self.update_attributes(update_params)
   end

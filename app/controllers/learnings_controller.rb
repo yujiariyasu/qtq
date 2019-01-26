@@ -92,7 +92,7 @@ class LearningsController < ApplicationController
   private
   def learning_params(speed, next_review_date)
     strip_title(params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
-      :proficiency_decrease_speed, :next_review_date, :finish_flag)
+      :proficiency_decrease_speed, :next_review_date, :finished)
       .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: next_review_date))
   end
 
