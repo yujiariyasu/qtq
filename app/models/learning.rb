@@ -29,12 +29,12 @@ class Learning < ApplicationRecord
     return speed == 0 ? 1 : speed.round(0)
   end
 
-  def update_with_review(is_finish, proficiency, review_description, first_in_the_day_flag)
+  def update_with_review(is_finish, proficiency, review_description, first_review_in_the_day)
     update_params = {}
-    if first_in_the_day_flag
+    if first_review_in_the_day
       update_params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
       days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
-      update_params[:next_review_date] = next_review_date + days_until_review
+      update_params[:next_review_date] = Date.current + days_until_review
     end
     update_params[:proficiency] = proficiency
     if !finished && update_params[:finished] = is_finish

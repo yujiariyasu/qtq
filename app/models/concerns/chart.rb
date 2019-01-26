@@ -183,8 +183,10 @@ module Chart
     review_date_proficiency_map = set_review_date_proficiency(learning)
     end_date = learning.finished? ? learning.finish_date : Date.current
     range = chart_date_range(learning, end_date)
+    date_category = range.to_a.map{ |date| "#{date}日目" }
     if learning.created_at.to_date != Time.now.to_date
-      (learning.created_at.to_date.tomorrow..Time.now.to_date).each do |date|
+      (learning.created_at.to_date.tomorrow..Time.now.to_date).each_with_index do |date, i|
+        break if i >= date_category.size - 2
         if review_date_proficiency_map.keys.include?(date)
           review_data << 100
           decrease_speed = learning.calc_next_decrease_speed(decrease_speed, review_date_proficiency_map[date])
@@ -195,7 +197,6 @@ module Chart
         review_data << last_data
       end
     end
-    date_category = range.to_a.map{ |date| "#{date}日目" }
     text = learning.finished ? '忘れたらまた再開' : review_text(review_data[-1])
     return generate_review_chart(learning.title, text, date_category, review_data)
   end
