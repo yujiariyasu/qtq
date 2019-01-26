@@ -36,7 +36,9 @@
           <ol class="breadcrumb p20 mb0">
             <li class="breadcrumb-item active blue-black user-main-comparison">
               <%= fa_icon 'smile-o', class: 'blue-black' %>
-              <% if @learning.next_review_date > Date.today %>
+              <% if @learning.finished %>
+                復習完了
+              <% elsif @learning.next_review_date > Date.today %>
                 次回復習予定日：<%= @learning.next_review_date.strftime('%Y年%m月%d日') %>
               <% else %>
                 今すぐ復習!!
