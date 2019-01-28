@@ -46,6 +46,7 @@ class LearningsController < ApplicationController
     update_params[:title] = update_params[:title].presence || learning.title
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
+      redirect_to learning_url(learning) and return
     end
     flash[:info] = '学習を編集しました。'
     learning.save_tags(params[:tag_names].split(','))
