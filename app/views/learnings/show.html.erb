@@ -17,7 +17,7 @@
           </button>
         <% end %>
       </div>
-      <h1 class='text-left'><%= @learning.title %></h1>
+      <h1 class='text-left line-break'><%= @learning.title %></h1>
       <div class='learning-tag-list'>
         <% @learning.tags.each do |tag| %>
           <%= link_to tag.name, tag_path(tag.name) %>

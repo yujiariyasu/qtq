@@ -10,7 +10,7 @@ class Learning < ApplicationRecord
   has_many :learning_tags, dependent: :destroy
   has_many :activities, dependent: :destroy
   mount_uploaders :images, AvatarUploader
-  validates :title, presence: true, length: { maximum: 50 }, allow_blank: true
+  validates :title, presence: true, length: { maximum: 250 }, allow_blank: true
 
   scope :not_finished, -> { where(finished: false) }
   scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current).not_finished }

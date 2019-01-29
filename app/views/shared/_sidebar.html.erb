@@ -68,7 +68,7 @@
         </div>
         <div class='today-reviews-list-wrapper'>
           <% @today_review_learnings.each do |learning| %>
-            <%= link_to learning.title, learning_path(learning) %>
+            <%= link_to learning.title.truncate(20), learning_path(learning) %>
           <% end %>
         </div>
       <% end %>
@@ -78,7 +78,7 @@
         <%= fa_icon 'arrow-down' %>
       </div>
       <% @user.learnings.reverse.take(10).each do |learning| %>
-        <%= link_to learning.title, learning_path(learning) %>
+        <%= link_to learning.title.truncate(20), learning_path(learning) %>
       <% end %>
     </div>
   <% end %>
