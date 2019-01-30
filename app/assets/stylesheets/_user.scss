@@ -242,6 +242,13 @@
 }
 
 .markdown{
+  code {
+    background-color: #eee;
+    color: black;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
   a {
     color: #6dbde4;
   }
@@ -253,18 +260,15 @@
     margin: 20px 0px;
     background-color: #364549;
     color: #e3e3e3;
+
+    code {
+      background-color: #364549;
+    }
   }
 
   p {
     word-wrap: break-word;
     white-space: normal;
-    code {
-      background-color: #eee;
-      color: black;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
   }
 
   h2 {
