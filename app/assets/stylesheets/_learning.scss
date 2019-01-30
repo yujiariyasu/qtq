@@ -62,39 +62,6 @@
 
   .learning-description {
     margin-bottom: 30px;
-
-    a {
-      color: #6dbde4;
-    }
-    h1,h2,h3,h4,h5,h6 {
-      text-align: left;
-    }
-    pre {
-      padding: 12px 18px 0 12px;
-      margin: 20px 0px;
-      background-color: #364549;
-      color: #e3e3e3;
-    }
-
-    p {
-      word-wrap: break-word;
-      white-space: normal;
-    }
-
-    h2 {
-      font-size: 2em;
-      color: black;
-      margin-bottom: 15px;
-      margin-top: 30px;
-    }
-
-    code {
-      background-color: #eee;
-      color: black;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
   }
 }
 
@@ -293,26 +260,6 @@
 
 .comment-body-inner {
   padding: 18px 32px;
-
-  a {
-    color: #6dbde4;
-  }
-  h1,h2,h3,h4,h5,h6 {
-    text-align: left;
-  }
-  pre {
-    padding: 12px 18px 0 12px;
-    margin: 20px 0px;
-    background-color: #364549;
-    color: #e3e3e3;
-  }
-
-  h2 {
-    font-size: 2em;
-    color: black;
-    margin-bottom: 15px;
-    margin-top: 30px;
-  }
 }
 
 .comment-body-inner:before, .comment-body-inner:after {

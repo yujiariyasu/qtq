@@ -54,7 +54,7 @@
     </div>
   </div>
   <% if @user.introduction.present? %>
-    <div class='introduction'>
+    <div class='introduction markdown'>
       <%= simple_format(markdown(@user.introduction)) %>
     </div>
   <% end %>
