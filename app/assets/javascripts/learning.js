@@ -146,45 +146,58 @@ $(document).on('turbolinks:load', function() {
     $('#image_delete_flag').val('true')
   })
 
-  $('.create-learning-modal-text-area').on('keydown', function(e) {
+  function enter_tab(e) {
+    if (e.keyCode === 9) {
+      if (e.preventDefault) {
+        e.preventDefault();
+      }
+      elem = e.target;
+      start = elem.selectionStart;
+      end = elem.selectionEnd;
+      value = elem.value;
+      elem.value = "" + (value.substring(0, start)) + "\t" + (value.substring(end));
+      elem.selectionStart = elem.selectionEnd = start + 1;
+      return false;
+    }
+  }
+
+  function enter_back_quotations(e, ele) {
     if(e.keyCode == 73 && e.metaKey) {
-      $(this).val($(this).val() + "\n\n```ruby\n\n```")
-      height = parseInt($(this).css('lineHeight'));
-      lines = ($(this).val() + '\n').match(/\n/g).length;
+      ele.val(ele.val() + "\n\n```ruby\n\n```")
+      height = parseInt(ele.css('lineHeight'));
+      lines = (ele.val() + '\n').match(/\n/g).length;
       if(lines < 8) {
         lines = 8
       }
-      $(this).height(height * lines);
+      ele.height(height * lines);
     }
+  }
+
+  function active_command_enter(e, selector) {
     if(e.keyCode == 13 && e.metaKey) {
-      $('#new_learning').submit()
+      $(selector).submit()
     }
+  }
+
+  function learning_description_enter(e, selector, ele) {
+    enter_tab(e)
+    enter_back_quotations(e, ele)
+    active_command_enter(e, selector)
+  }
+
+  $('.create-learning-modal-text-area').on('keydown', function(e) {
+    learning_description_enter(e, '#new_learning', $(this))
   });
 
   $('.edit-learning-modal-text-area').on('keydown', function(e) {
-    if(e.keyCode == 73 && e.metaKey) {
-      $(this).val($(this).val() + "\n\n```ruby\n\n```")
-      height = parseInt($(this).css('lineHeight'));
-      lines = ($(this).val() + '\n').match(/\n/g).length;
-      if(lines < 8) {
-        lines = 8
-      }
-      $(this).height(height * lines);
-    }
-    if(e.keyCode == 13 && e.metaKey) {
-      $('.edit_learning').submit()
-    }
+    learning_description_enter(e, '.edit_learning', $(this))
   });
 
   $('.learning-title-for-js').on('keydown', function(e) {
-    if(e.keyCode == 13 && e.metaKey) {
-      $('.new_learning').submit()
-    }
+    active_command_enter(e, '.new_learning')
   });
 
   $('.edit-learning-title-field').on('keydown', function(e) {
-    if(e.keyCode == 13 && e.metaKey) {
-      $('.edit_learning').submit()
-    }
+    active_command_enter(e, '.edit_learning')
   });
 });

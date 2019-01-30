@@ -8,7 +8,7 @@
   <div class='activity-index-item-sentence'>
     <% case activity.type %>
     <% when 'LearningLikeActivity' %>
-      <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title %>」</span>に<span class='bold'>いいね</span>しました。
+      <span class='bold'><%= activity.active_user.name %></span>があなたの記事<span class='bold'>「<%= activity.learning.title.truncate(20) %>」</span>に<span class='bold'>いいね</span>しました。
     <% when 'FollowActivity' %>
       <span class='bold'><%= activity.active_user.name %></span>があなたを<span class='bold'>フォロー</span>しました。
     <% when 'CommentActivity' %>

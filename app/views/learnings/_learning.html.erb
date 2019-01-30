@@ -5,8 +5,10 @@
       <%= link_to "@#{learning.user.name}", user_path(learning.user.name) %>
       <span> <%= learning.created_at.strftime('%Y/%m/%d') %> </span>
     </div>
-    <div>
-      <%= link_to learning.title, learning, class: 'user-list-learning-title' %>
+    <div class='line-break'>
+      <%= link_to learning, class: 'user-list-learning-title line-break' do %>
+        <span class='line-break'><%= learning.title.truncate(100) %></span>
+      <% end %>
     </div>
   </div>
   <div class='user-list-like-container mla'>

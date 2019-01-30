@@ -229,3 +229,9 @@ label {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.line-break {
+  word-wrap: break-word;
+  white-space: normal;
+  display: block;
+}

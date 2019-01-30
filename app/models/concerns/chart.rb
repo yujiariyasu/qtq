@@ -198,7 +198,7 @@ module Chart
       end
     end
     text = learning.finished ? '忘れたらまた再開' : review_text(review_data[-1])
-    return generate_review_chart(learning.title, text, date_category, review_data)
+    return generate_review_chart(learning.title.truncate(100), text, date_category, review_data)
   end
 
   def set_review_date_proficiency(learning)
