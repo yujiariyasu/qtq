@@ -87,6 +87,14 @@
       margin-bottom: 15px;
       margin-top: 30px;
     }
+
+    code {
+      background-color: #eee;
+      color: black;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
   }
 }
 
@@ -216,7 +224,7 @@
   height: 30px;
   background-color: #f6f6f6;
   position: absolute;
-  width: 150%;
+  width: 100%;
   left: 0;
 }
 
