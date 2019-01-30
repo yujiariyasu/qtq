@@ -5,8 +5,8 @@
       <%= link_to user.name, user_path(user.name), class: 'user-list-name' %>
     </div>
     <% if user.introduction.present? %>
-      <div class='user-list-introduction'>
-        <%= user.introduction %>
+      <div class='user-list-introduction markdown'>
+        <%= simple_format(markdown(user.introduction)) %>
       </div>
     <% end %>
   </div>
