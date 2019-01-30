@@ -241,14 +241,15 @@
   }
 }
 
+code {
+  background-color: #eee;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
 .markdown{
-  code {
-    background-color: #eee;
-    color: black;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
-  }
   a {
     color: #6dbde4;
   }
