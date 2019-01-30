@@ -163,7 +163,11 @@ $(document).on('turbolinks:load', function() {
 
   function enter_back_quotations(e, ele) {
     if(e.keyCode == 73 && e.metaKey) {
-      ele.val(ele.val() + "\n\n```ruby\n\n```")
+      text = ele.val()
+      if (text != '') {
+        text += "\n\n"
+      }
+      ele.val(text + "```ruby\n\n```")
       height = parseInt(ele.css('lineHeight'));
       lines = (ele.val() + '\n').match(/\n/g).length;
       if(lines < 8) {

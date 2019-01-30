@@ -17,6 +17,7 @@ class LearningsController < ApplicationController
     @review = Review.new
     @comment = Comment.new
     @comments = @learning.comments.includes(:user)
+    @today_review_learnings = @user.learnings.review_today
   end
 
   def create

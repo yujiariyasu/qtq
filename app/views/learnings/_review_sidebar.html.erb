@@ -56,4 +56,26 @@
   <div class='mb10 back-white pb10 pt10'>
     <%= image_tag 'ex.png' %>
   </div>
+  <div class='user-learning-index'>
+  <% if current_user?(@user) && @today_review_learnings.present? %>
+    <div class='recent-learning-header'>
+      <%= fa_icon 'arrow-down', class: 'pl10' %>
+      <span class='ml10'>今日の復習</span>
+      <%= fa_icon 'arrow-down' %>
+    </div>
+    <div class='today-reviews-list-wrapper'>
+      <% @today_review_learnings.each do |learning| %>
+        <%= link_to learning.title.truncate(20), learning_path(learning) %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class='recent-learning-header'>
+    <%= fa_icon 'arrow-down', class: 'pl10' %>
+    <span class='ml10'>最近の学習</span>
+    <%= fa_icon 'arrow-down' %>
+  </div>
+  <% @user.learnings.reverse.take(10).each do |learning| %>
+    <%= link_to learning.title.truncate(20), learning_path(learning) %>
+  <% end %>
+</div>
 </div>
