@@ -1,0 +1,47 @@
+<div class="modal fade review-sidebar" id="review-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title text-center blue-black" id="exampleModalLabel">新しい学びを記録しましょう！</h5>
+      </div>
+      <div class='learning-new-modal-body'>
+        <div class='modal-inner-box'>
+          <div class='modal-image-box'>
+            <%= image_tag user_avatar_or_default(current_user), class: "avatar-img review-avatar" %>
+          </div>
+          <div>
+            <%= fa_icon 'angle-left', class: 'review-modal-angle-left' %>
+          </div>
+          <div class='modal-form-box'>
+            <%= form_for(@review) do |f| %>
+              <%= hidden_field_tag :id, @learning.id %>
+              <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
+                <%= text_area_tag :description, '', class: 'form-control learning-modal-text-area', rows: '8', placeholder: '復習の気づきをメモしましょう...' %>
+              </div>
+              <%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, value: @learning.proficiency, tabindex: 0, id: 'review-slider' %>
+              <div class='modal-form-button-box clearfix'>
+                <div class='pull-left blue-black proficiency-level'>
+                  <span>習熟度</span><span id='review-level'><%= @learning.proficiency %>%</span>
+                  <div class="proficiency-level-box">
+                    <p class="proficiency-level-comment">習熟度によって次回の復習日が変わります</p>
+                  </div>
+                </div>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect pull-left finish-checkbox" for="finish-checkbox">
+                  <span class='finish-letter'>復習完了</span>
+                  <%= f.check_box :finished, class: "mdl-switch__input", id: "finish-checkbox", checked: @learning.finished %>
+                  <span class="mdl-switch__label"></span>
+                </label>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right">
+                  復習
+                </button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
