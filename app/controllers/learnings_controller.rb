@@ -34,7 +34,7 @@ class LearningsController < ApplicationController
       redirect_to learning_url(learning)
     else
       flash[:danger] = '学習の登録に失敗しました。'
-      redirect_to params[:url]
+      redirect_to request.referrer
     end
   end
 
