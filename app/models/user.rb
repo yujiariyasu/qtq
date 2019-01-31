@@ -81,6 +81,7 @@ class User < ApplicationRecord
     user.remote_avatar_url = auth.info.image.gsub('http', 'https')
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user.goal = 5
     user
   end
 

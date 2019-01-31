@@ -48,6 +48,14 @@
 }
 
 @media screen and (max-width: 768px) {
+  .more-than-768px-only {
+    display: none!important;
+  }
+
+  .less-than-768px-only {
+    display: block!important;
+  }
+
   .navbar-nav {
     margin: 0;
     display: inline-block;
