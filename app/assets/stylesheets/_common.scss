@@ -235,3 +235,11 @@ label {
   white-space: normal;
   display: block;
 }
+
+.more-than-768px-only {
+  display: block;
+}
+
+.less-than-768px-only {
+  display: none;
+}

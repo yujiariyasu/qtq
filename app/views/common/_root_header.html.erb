@@ -34,7 +34,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class='more-than-768px-only'>
         <%= form_tag(search_learnings_path, method: "get", class: 'learning-search-form') do %>
           <span class="fa fa-search learning-search-submit"></span>
           <%= text_field_tag :word, '', class: 'learning-search-field', placeholder: '学習検索...' %>
