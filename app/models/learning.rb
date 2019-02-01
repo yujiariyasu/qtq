@@ -26,7 +26,7 @@ class Learning < ApplicationRecord
   def calc_next_decrease_speed(decrease_speed, proficiency)
     divider = proficiency == 100 ? 6 : 1 + proficiency * 2 / 100.0
     speed = decrease_speed / divider
-    return speed == 0 ? 1 : speed.round(0)
+    return speed < 1 ? 1 : speed.round(0)
   end
 
   def update_with_review(is_finish, proficiency, review_description, first_review_in_the_day)
