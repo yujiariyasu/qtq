@@ -14,7 +14,7 @@ class Learning < ApplicationRecord
 
   scope :not_finished, -> { where(finished: false) }
   scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current).not_finished }
-  scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%") }
+  scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%").or(Learning.where('description LIKE(?)', "%#{word}%")) }
   scope :searched_by_tag, lambda { |word|
     where(id: LearningTag.where(tag_id: Tag.where('name LIKE(?)', "%#{word}%").pluck(:id)).pluck(:learning_id))
   }
