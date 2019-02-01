@@ -14,14 +14,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    session[:path_info] = request.path_info
     @comparison_chart = comparison_chart(@user)
     @schedule_chart = schedule_chart(@user)
     @today_review_learnings = @user.learnings.review_today
   end
 
   def new
-    session[:path_info] = request.path_info
     @user = User.new
   end
 
@@ -37,13 +35,8 @@ class UsersController < ApplicationController
         redirect_to user_url(@user.name) and return
       else
         flash[:danger] = 'Facebookログインに失敗しました。'
-        if session[:path_info] == '/'
-        redirect_to root_path and return
-        elsif session[:path_info] == '/login'
-        redirect_to login_path and return
-        elsif session[:path_info] == '/users/new'
-        redirecto_to new_user_path and return
-        end
+        User.find_by(name: '').try(:destroy)
+        redirect_to request.referrer and return
       end
     end
     @user = User.new(create_params)
