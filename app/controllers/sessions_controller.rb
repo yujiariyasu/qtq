@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    session[:path_info] = request.path_info
   end
 
   def create
