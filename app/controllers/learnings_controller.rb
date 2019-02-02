@@ -77,9 +77,11 @@ class LearningsController < ApplicationController
   end
 
   def search
-    word = params[:word].my_strip
-    searced_learnings = Learning.searched_by(word).includes(:user).order(created_at: :desc)
-    searced_learnings_by_tag = Learning.searched_by_tag(word).includes(:user).order(created_at: :desc)
+    words = params[:word].my_strip.split(':')
+    word = words[0]
+    learnings = words.size >= 2 && words[1] == 'me' && logged_in? ? Learning.where(user: current_user) : Learning.all
+    searced_learnings = learnings.searched_by(word).includes(:user).order(created_at: :desc)
+    searced_learnings_by_tag = learnings.searched_by_tag(word).includes(:user).order(created_at: :desc)
     @learnings =  Kaminari.paginate_array((searced_learnings + searced_learnings_by_tag).uniq).page(params[:page]).per(100)
     @title = "検索結果 / #{word}"
     render 'shared/learnings'
