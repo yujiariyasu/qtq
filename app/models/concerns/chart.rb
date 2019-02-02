@@ -213,7 +213,11 @@ module Chart
   # 11以上の場合は0..経過日数
   def chart_date_range(learning, end_date)
     days_num = elapsed_days_num(learning, end_date)
-    days_num > 10 ? 0..days_num : 0..10
+    if end_date == Date.current
+      days_num > 10 ? 0..days_num : 0..10
+    else
+      0..days_num
+    end
   end
 
   # 経過日数
