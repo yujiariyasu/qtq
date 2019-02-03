@@ -59,14 +59,18 @@
           <%= link_to '削除', @learning, class: 'white learning-delete-button', method: :delete, data: { confirm: '本当に削除しますか？' } %>
         <% end %>
       </div>
-      <div class='divide-main'></div>
-      <div class='comment-header-space'></div>
-      <div class='comment-wrapper'>
-        <div class='past-comment-wrapper'>
-          <%= render @comments, user: @user %>
+      <% if logged_in? || @comments.present? %>
+        <div class='comment-wrapper'>
+          <div class='divide-main'></div>
+          <div class='comment-header-space'></div>
+          <div class='past-comment-wrapper'>
+            <%= render @comments, user: @user %>
+          </div>
+          <% if logged_in? %>
+            <%= render 'post_comment' %>
+          <% end %>
         </div>
-        <%= render 'post_comment' %>
-      </div>
+      <% end %>
     </div>
     <%= render 'review_sidebar' %>
   </div>
