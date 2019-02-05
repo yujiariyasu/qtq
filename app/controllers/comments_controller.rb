@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create!(comment_params)
     learning = Learning.find(params[:learning_id])
-    CommentActivity.create(active_user_id: current_user.id, passive_user_id: learning.user_id, learning_id: learning.id) unless current_user.id == learning.user_id
+    parameters = { active_user_id: current_user.id, passive_user_id: learning.user_id, learning_id: learning.id }
+    CommentActivity.create(parameters) unless current_user.id == learning.user_id || CommentActivity.where(parameters).present?
   end
 
   def update
