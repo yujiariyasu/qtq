@@ -36,13 +36,14 @@ class UsersController < ApplicationController
         flash[:info] = 'Facebookログインしました。'
         redirect_to user_url(@user.name) and return
       else
-        flash[:danger] = 'Facebookログインに失敗しました。'
+        flash[:danger] = @user.errors.full_messages[0]
+        User.find_by(name: '').try(:destroy)
         if session[:path_info] == '/'
         redirect_to root_path and return
         elsif session[:path_info] == '/login'
         redirect_to login_path and return
         elsif session[:path_info] == '/users/new'
-        redirecto_to new_user_path and return
+        redirect_to new_user_path and return
         end
       end
     end

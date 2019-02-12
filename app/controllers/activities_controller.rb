@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
       learning.activities.where(passive_user: current_user).update_all(pushed: true)
     elsif activity.type == 'FollowActivity'
       FollowActivity.where(passive_user: current_user).update_all(pushed: true)
-      path = user_path(activity.active_user)
+      path = user_path(activity.active_user.name)
     end
     redirect_to path
   end

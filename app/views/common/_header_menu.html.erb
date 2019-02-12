@@ -1,0 +1,35 @@
+<button class="header-left-menu-button" id="demo-menu-lower-left">
+  <span class="caret header-left-menu-caret"></span>
+</button>
+<ul class="mdl-menu mdl-js-menu mdl-menu--bottom-left mdl-js-ripple-effect p0" id='header-left-dropdown' style='border: solid 1px #169ae2' for="demo-menu-lower-left">
+  <% if logged_in? %>
+    <li>
+      <%= link_to timeline_user_path(current_user.name),
+        class: 'blue-black mdl-menu__item header-left-menu-list header-left-menu-list-bell' do %>
+        <%= fa_icon 'bell', class: 'blue-black' %>
+        <span>タイムライン</span>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to trend_learnings_path,
+      class: 'blue-black mdl-menu__item header-left-menu-list header-left-menu-list-bell' do %>
+      <%= fa_icon 'bandcamp', class: 'blue-black' %>
+      <span>新着</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to users_path,
+      class: 'blue-black mdl-menu__item header-left-menu-list header-left-menu-list-bell' do %>
+      <%= fa_icon 'circle', class: 'blue-black' %>
+      <span>ユーザー一覧</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to learning_path(1),
+      class: 'blue-black mdl-menu__item header-left-menu-list header-left-menu-list-bell' do %>
+      <%= fa_icon 'asterisk', class: 'blue-black' %>
+      <span>QtQについて</span>
+    <% end %>
+  </li>
+</ul>

@@ -73,14 +73,15 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    user = User.find_by(email: auth.info.email) || User.new
+    user = User.find_by(uid: auth.uid) || User.new
     user.provider = auth.provider
     user.uid = auth.uid
-    user.name = auth.info.name
-    user.email = auth.info.email
-    user.remote_avatar_url = auth.info.image.gsub('http', 'https')
+    user.name ||= auth.info.name
+    user.email ||= auth.info.email
+    user.remote_avatar_url ||= auth.info.image.gsub('http', 'https')
     user.oauth_token = auth.credentials.token
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user.goal ||= 5
     user
   end
 

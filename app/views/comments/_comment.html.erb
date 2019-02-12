@@ -17,7 +17,7 @@
         <span class='pull-right'><%= comment.created_at.strftime('%Y-%m-%d %H:%M') %></span>
       </div>
       <div class='comment-contribution'>
-        <% if comment.user_id == current_user.id %>
+        <% if logged_in? && comment.user_id == current_user.id %>
           <span><%= comment.likes_count || 0 %></span>
           <span class='comment-contribution-unit'>いいね</span>
           <span class='comment-edit-modal-button' data-toggle="modal" data-target=<%= "#comment-modal#{comment.id}" %>>編集</span>

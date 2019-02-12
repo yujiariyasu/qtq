@@ -14,7 +14,7 @@ class Learning < ApplicationRecord
 
   scope :not_finished, -> { where(finished: false) }
   scope :review_today, -> { where(next_review_date: '2019-01-01'.to_date..Date.current).not_finished }
-  scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%") }
+  scope :searched_by, ->(word) { where('title LIKE(?)', "%#{word}%").or(Learning.where('description LIKE(?)', "%#{word}%")) }
   scope :searched_by_tag, lambda { |word|
     where(id: LearningTag.where(tag_id: Tag.where('name LIKE(?)', "%#{word}%").pluck(:id)).pluck(:learning_id))
   }
@@ -26,7 +26,7 @@ class Learning < ApplicationRecord
   def calc_next_decrease_speed(decrease_speed, proficiency)
     divider = proficiency == 100 ? 6 : 1 + proficiency * 2 / 100.0
     speed = decrease_speed / divider
-    return speed == 0 ? 1 : speed.round(0)
+    return speed < 1 ? 1 : speed.round(0)
   end
 
   def update_with_review(is_finish, proficiency, review_description, first_review_in_the_day)
