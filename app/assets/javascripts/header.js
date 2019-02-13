@@ -14,6 +14,7 @@ $(document).on('turbolinks:load', function() {
       type: 'PATCH'
     }).done(function() {
       $('.header-notice-number').text('0')
+      $('.header-notice-number').removeClass('with-notice')
     }).fail(function() {
     });
   })
