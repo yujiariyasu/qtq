@@ -21,7 +21,7 @@
                 <%= f.text_field :title, class: 'mdl-textfield__input p10 learning-title-for-js', placeholder: 'タイトル...', required: true %>
               </div>
               <div class="mdl-textfield mdl-js-textfield form-group" style='width: 100%'>
-                <%= f.text_area :description, class: 'form-control learning-modal-text-area create-learning-modal-text-area', rows: '8', placeholder: '学習のメモなど...' %>
+                <%= f.text_area :description, class: 'form-control learning-modal-text-area create-learning-modal-text-area', rows: '12', placeholder: '' %>
               </div>
               <ul id='learning-tags'></ul>
               <div class='clearfix proficiency-slider-box'><%= f.range_field :proficiency, class: "mdl-slider mdl-js-slider", min: 0, max: 100, value: 80, tabindex: 0, id: 'learning-slider' %>
