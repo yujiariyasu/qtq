@@ -2,9 +2,16 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .modal-dialog {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 857px) {
+  .modal-dialog {
+    width: auto;
+  }
+
   .learning-created-at {
     display: none;
   }
