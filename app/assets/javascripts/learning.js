@@ -95,8 +95,8 @@ $(document).on('turbolinks:load', function() {
   $('.learning-modal-text-area').on('input', function() {
     height = parseInt($(this).css('lineHeight'));
     lines = ($(this).val() + '\n').match(/\n/g).length;
-    if(lines < 8) {
-      lines = 8
+    if(lines < 12) {
+      lines = 12
     }
     $(this).height(height * lines);
   });
@@ -123,8 +123,8 @@ $(document).on('turbolinks:load', function() {
     area = $('.edit-learning-modal-text-area')
     height = parseInt(area.css('lineHeight'));
     lines = (area.val() + '\n').match(/\n/g).length;
-    if(lines < 8) {
-      lines = 8
+    if(lines < 12) {
+      lines = 12
     }
     area.height(height * lines);
 
@@ -170,8 +170,8 @@ $(document).on('turbolinks:load', function() {
       ele.val(text + "```ruby\n\n```")
       height = parseInt(ele.css('lineHeight'));
       lines = (ele.val() + '\n').match(/\n/g).length;
-      if(lines < 8) {
-        lines = 8
+      if(lines < 12) {
+        lines = 12
       }
       ele.height(height * lines);
     }
