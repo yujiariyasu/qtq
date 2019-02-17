@@ -36,7 +36,9 @@
         </li>
         <%= render 'common/create_learning_modal' %>
         <li class='header-notice-number-wrapper'>
-          <span id="demo-menu-lower-right2" class="header-notice-number mdl-js-button"><%= current_user.passive_activities.not_checked.count %></span>
+          <% count = current_user.passive_activities.not_checked.count %>
+          <% clazz = count >= 1 ? 'with-notice' : '' %>
+          <span id="demo-menu-lower-right2" class="header-notice-number mdl-js-button <%= clazz %>"><%= count %></span>
           <%= render 'common/notice' %>
         </li>
       </ul>

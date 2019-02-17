@@ -230,6 +230,10 @@
 
   .learning-modal-text-area {
     border-radius: 8px;
+    background-color: #364549;
+    color: #e3e3e3;
+    font-size:17px;
+    padding: 12px 18px;
   }
 
   .learning-new-modal-img {
@@ -443,4 +447,10 @@
     background-color: #f5f5f5;
     text-decoration: none;
   }
+}
+
+.with-notice {
+  background-color: #e14b22;
+  color: white;
+  border-radius: 4px;
 }
