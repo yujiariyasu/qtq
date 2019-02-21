@@ -30,6 +30,7 @@ module QtQ
     config.time_zone = 'Tokyo'
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ja
+    config.active_record.default_timezone = :local
     config.action_view.embed_authenticity_token_in_remote_forms = true
     config.autoload_paths += %W(#{config.root}/lib)
     config.enable_dependency_loading = true
