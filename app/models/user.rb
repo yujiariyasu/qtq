@@ -125,7 +125,7 @@ class User < ApplicationRecord
   end
 
   def webpush
-    learnings_count = learnings.where(next_review_date: '2019-01-01'..Time.current.strftime('%Y-%m-%d')).count
+    learnings_count = learnings.where(next_review_date: '2019-01-01'.to_date..Date.current).not_finished.count
     return if learnings_count == 0
     message = {
         # tag: Time.current.strftime('%Y-%m-%d'), # 一日複数回送るかもなので一旦コメントアウト
