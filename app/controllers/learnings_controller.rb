@@ -29,7 +29,7 @@ class LearningsController < ApplicationController
     safe_params = learning_params(speed, Time.current.to_date.tomorrow)
     learning = Learning.new(safe_params)
     if learning.save
-      learning.save_tags(params[:tag_names].split(','))
+      learning.save_tags(params[:tag_names].split(',').map{|s| s.gsub('.', '')}.uniq)
       flash[:info] = '学習を登録しました。'
       redirect_to learning_url(learning)
     else
@@ -47,7 +47,7 @@ class LearningsController < ApplicationController
       redirect_to learning_url(learning) and return
     end
     flash[:info] = '学習を編集しました。'
-    learning.save_tags(params[:tag_names].split(','))
+    learning.save_tags(params[:tag_names].split(',').map{|s| s.gsub('.', '')}.uniq)
     if params['image_delete_flag'] == 'true'
       learning.remove_images!
       learning.save
