@@ -33,7 +33,7 @@ class Learning < ApplicationRecord
     update_params = {}
     if first_review_in_the_day
       update_params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
-      days_until_review = REVIEW_NOTIFICATION_LINE / proficiency_decrease_speed + 1
+      days_until_review = REVIEW_NOTIFICATION_LINE / update_params[:proficiency_decrease_speed] + 1
       update_params[:next_review_date] = Date.current + days_until_review
     end
     update_params[:proficiency] = proficiency
