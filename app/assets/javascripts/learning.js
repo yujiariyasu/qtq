@@ -167,7 +167,7 @@ $(document).on('turbolinks:load', function() {
       if (text != '') {
         text += "\n\n"
       }
-      ele.val(text + "```ruby\n\n```")
+      ele.val(text + "```\n\n```")
       height = parseInt(ele.css('lineHeight'));
       lines = (ele.val() + '\n').match(/\n/g).length;
       if(lines < 12) {
