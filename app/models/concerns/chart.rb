@@ -179,12 +179,12 @@ module Chart
 
   def review_chart(learning)
     review_data = [0, 100]
-    decrease_speed = INITIAL_DECREASE_SPEED
+    decrease_speed = learning.proficiency_decrease_speed
     review_date_proficiency_map = set_review_date_proficiency(learning)
     end_date = learning.finished? ? learning.finish_date : Date.current
     range = chart_date_range(learning, end_date)
     date_category = range.to_a.map{ |date| "#{date}日目" }
-    if learning.created_at.to_date != Time.now.to_date
+    if learning.created_at.to_date != Time.current.to_date
       (learning.created_at.to_date.tomorrow..Time.now.to_date).each_with_index do |date, i|
         break if i >= date_category.size - 2
         if review_date_proficiency_map.keys.include?(date)
