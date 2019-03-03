@@ -190,7 +190,6 @@ module Chart
         if review_date_and_speed_map.keys.include?(date)
           review_data << 100
           decrease_speed = review_date_and_speed_map[date]
-binding.pry
           next
         end
         last_data = review_data[-1] - decrease_speed
