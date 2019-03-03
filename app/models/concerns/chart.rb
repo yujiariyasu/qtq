@@ -179,7 +179,7 @@ module Chart
 
   def review_chart(learning)
     review_data = [0, 100]
-    decrease_speed = learning.proficiency_decrease_speed
+    decrease_speed = learning.reviews.present? ? learning.proficiency_decrease_speed : INITIAL_DECREASE_SPEED
     review_dates = learning.reviews.map{ |r| r.created_at.to_date }
     end_date = learning.finished? ? learning.finish_date : Date.current
     range = chart_date_range(learning, end_date)
