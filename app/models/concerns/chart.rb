@@ -190,6 +190,7 @@ module Chart
         if review_date_and_speed_map.keys.include?(date)
           review_data << 100
           decrease_speed = review_date_and_speed_map[date]
+binding.pry
           next
         end
         last_data = review_data[-1] - decrease_speed
@@ -205,7 +206,8 @@ module Chart
     decrease_speed = INITIAL_DECREASE_SPEED
     review_date_and_speed_map = {}
     learning.reviews.each do |review|
-      review_date_and_speed_map[review.created_at.to_date] = learning.calc_next_decrease_speed(decrease_speed, review.proficiency)
+      decrease_speed = learning.calc_next_decrease_speed(decrease_speed, review.proficiency)
+      review_date_and_speed_map[review.created_at.to_date] = decrease_speed
     end
     review_date_and_speed_map
   end
