@@ -179,17 +179,17 @@ module Chart
 
   def review_chart(learning)
     review_data = [0, 100]
-    review_date_proficiency_map = set_review_date_proficiency(learning)
-    decrease_speed = review_date_proficiency_map[learning.created_at.to_date].present? ? learning.proficiency_decrease_speed : INITIAL_DECREASE_SPEED
+    review_date_and_speed_map = set_review_date_and_speed(learning)
+    decrease_speed = review_date_and_speed_map[learning.created_at.to_date].present? ? review_date_and_speed_map[learning.created_at.to_date] : INITIAL_DECREASE_SPEED
     end_date = learning.finished? ? learning.finish_date : Date.current
     range = chart_date_range(learning, end_date)
     date_category = range.to_a.map{ |date| "#{date}日目" }
     if learning.created_at.to_date != Date.current
       (learning.created_at.to_date.tomorrow..Date.current).each_with_index do |date, i|
         break if i >= date_category.size - 2
-        if review_date_proficiency_map.keys.include?(date)
+        if review_date_and_speed_map.keys.include?(date)
           review_data << 100
-          decrease_speed = learning.calc_next_decrease_speed(decrease_speed, review_date_proficiency_map[date])
+          decrease_speed = review_date_and_speed_map[date]
           next
         end
         last_data = review_data[-1] - decrease_speed
@@ -201,12 +201,13 @@ module Chart
     return generate_review_chart(learning.title.truncate(100), text, date_category, review_data)
   end
 
-  def set_review_date_proficiency(learning)
-    review_date_proficiency_map = {}
+  def set_review_date_and_speed(learning)
+    decrease_speed = INITIAL_DECREASE_SPEED
+    review_date_and_speed_map = {}
     learning.reviews.each do |review|
-      review_date_proficiency_map[review.created_at.to_date] = review.proficiency
+      review_date_and_speed_map[review.created_at.to_date] = learning.calc_next_decrease_speed(decrease_speed, review.proficiency)
     end
-    review_date_proficiency_map
+    review_date_and_speed_map
   end
 
   # 経過日数が10以下の場合0..10を返す
