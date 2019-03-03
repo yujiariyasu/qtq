@@ -205,6 +205,7 @@ module Chart
     decrease_speed = INITIAL_DECREASE_SPEED
     review_date_and_speed_map = {}
     learning.reviews.each do |review|
+      next if review_date_and_speed_map[review.created_at.to_date].present?
       decrease_speed = learning.calc_next_decrease_speed(decrease_speed, review.proficiency)
       review_date_and_speed_map[review.created_at.to_date] = decrease_speed
     end
