@@ -26,9 +26,6 @@ ActiveRecord::Schema.define(version: 20190304010608) do
     t.index ["passive_user_id"], name: "index_activities_on_passive_user_id", using: :btree
   end
 
-  create_table "c", primary_key: "digit", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-  end
-
   create_table "comment_likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
