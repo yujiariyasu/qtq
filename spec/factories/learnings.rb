@@ -4,7 +4,6 @@ FactoryBot.define do
     description { "test learning." }
     next_review_date { Date.tomorrow }
     proficiency { 80 }
-    proficiency_decrease_speed { 30 }
     association :user
 
     trait :with_comments do

@@ -4,6 +4,8 @@ class LearningsController < ApplicationController
   before_action :exist_user?,   only: [:liked, :timeline]
   before_action :exist_user_with_params_user_name?,   only: :index
 
+  INITIAL_DECREASE_SPEED = 57
+
   def index
     @description = ' / learnings'
     @learnings = @user.learnings.order(id: :desc).page(params[:page]).per(20)
@@ -21,12 +23,7 @@ class LearningsController < ApplicationController
   end
 
   def create
-    if params[:learning][:proficiency].to_i == 100
-      speed = 16
-    else
-      speed = (70 - params[:learning][:proficiency].to_i / 2)
-    end
-    safe_params = learning_params(speed, Time.current.to_date.tomorrow)
+    safe_params = learning_params(Time.current.to_date.tomorrow)
     learning = Learning.new(safe_params)
     if learning.save
       learning.save_tags(params[:tag_names].split(',').map{|s| s.gsub('.', '')}.uniq)
@@ -40,7 +37,7 @@ class LearningsController < ApplicationController
 
   def update
     learning = Learning.find(params[:id])
-    update_params = learning_params(learning.proficiency_decrease_speed, learning.next_review_date)
+    update_params = learning_params(learning.next_review_date)
     update_params[:title] = update_params[:title].presence || learning.title
     unless learning.update(update_params)
       flash[:danger] = '学習の編集に失敗しました。'
@@ -91,10 +88,10 @@ class LearningsController < ApplicationController
   end
 
   private
-  def learning_params(speed, next_review_date)
-    strip_title(params.require(:learning).permit(:title, :description, {images: []}, :proficiency,
-      :proficiency_decrease_speed, :next_review_date, :finished)
-      .merge(user_id: current_user.id, proficiency_decrease_speed: speed, next_review_date: next_review_date))
+  def learning_params(next_review_date)
+    strip_title(params.require(:learning).permit(:title, :description, {images: []},
+      :proficiency, :next_review_date, :finished)
+      .merge(user_id: current_user.id, next_review_date: next_review_date))
   end
 
   def strip_title(params_hash)
