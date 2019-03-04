@@ -20,7 +20,7 @@ class Learning < ApplicationRecord
   }
   scope :liked_by, ->(user) { where(id: user.learning_likes.pluck(:learning_id)) }
 
-  INITIAL_DECREASE_SPEED = 67
+  INITIAL_DECREASE_SPEED = 57
   REVIEW_NOTIFICATION_LINE = 51
 
   def calc_next_decrease_speed(decrease_speed, proficiency)
@@ -29,11 +29,20 @@ class Learning < ApplicationRecord
     return speed < 1 ? 1 : speed.round(0)
   end
 
+  def calc_last_decrease_speed
+    speed = INITIAL_DECREASE_SPEED
+    reviews.each do |review|
+      divider = review.proficiency == 100 ? 6 : 1 + review.proficiency * 2 / 100.0
+      speed /= divider
+    end
+    speed
+  end
+
   def update_with_review(is_finish, proficiency, review_description, first_review_in_the_day)
     update_params = {}
     if first_review_in_the_day
-      update_params[:proficiency_decrease_speed] = calc_next_decrease_speed(proficiency_decrease_speed, proficiency)
-      days_until_review = REVIEW_NOTIFICATION_LINE / update_params[:proficiency_decrease_speed] + 1
+      speed = calc_last_decrease_speed
+      days_until_review = REVIEW_NOTIFICATION_LINE / speed + 1
       update_params[:next_review_date] = Date.current + days_until_review
     end
     update_params[:proficiency] = proficiency
