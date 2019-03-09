@@ -154,7 +154,7 @@ class User < ApplicationRecord
       end
     end
   end
-# test2
+# test22
   private
   def downcase_email
     self.email = email.downcase
