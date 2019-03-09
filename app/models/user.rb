@@ -1,3 +1,4 @@
+# tewet
 class User < ApplicationRecord
   has_many :active_relationships, class_name: 'UserRelationship',
                                   foreign_key: 'follower_id',
@@ -25,7 +26,7 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
   validates :password, length: (6..32), presence: true, confirmation: true, allow_blank: true
   validates :password, presence: false, on: :facebook_login
-
+# test
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
