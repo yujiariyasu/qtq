@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/thoughtbot/shoulda-matchers.git
+  dddremote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: 4b160bd19ecca7f97d7ac22dccd5fde9b0da5a9f
   branch: rails-5
   specs:
