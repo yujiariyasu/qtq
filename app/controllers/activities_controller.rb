@@ -22,6 +22,7 @@ class ActivitiesController < ApplicationController
 
   def check
     User.find_by(name: params[:user_name]).passive_activities.each do |activity|
+      activity.update(pushed: true) if activity.checked
       activity.update(checked: true)
     end
     render nothing: true

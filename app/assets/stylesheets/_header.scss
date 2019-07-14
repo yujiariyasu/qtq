@@ -364,20 +364,27 @@
   }
 }
 
-.not-pushed-notice-item {
-  background-color:#bae7ff;
-  &:hover {
-    background: #a8e1ff78;
-  }
-}
-
 .notice-item {
   padding: 8px 13px;
   display: flex;
   border-bottom: solid 1px #8cbcd6;
 
   &:hover {
-    background: #a8e1ff78;
+    background-color: #a8e1ff78;
+  }
+}
+
+.not-pushed-notice-item-comment {
+  background-color: #ffbaba;
+  &:hover {
+    background-color: #ffc8c8;
+  }
+}
+
+.not-pushed-notice-item {
+  background-color: #bae7ff;
+  &:hover {
+    background-color: #a8e1ff78;
   }
 }
 

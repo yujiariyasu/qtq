@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190126011338) do
+ActiveRecord::Schema.define(version: 20190304010608) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "active_user_id"
@@ -67,16 +67,15 @@ ActiveRecord::Schema.define(version: 20190126011338) do
 
   create_table "learnings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "description",                limit: 65535
+    t.text     "description",      limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.json     "images"
-    t.integer  "proficiency_decrease_speed"
     t.date     "next_review_date"
     t.integer  "proficiency"
     t.integer  "likes_count"
-    t.boolean  "finished",                                 default: false
+    t.boolean  "finished",                       default: false
     t.date     "finish_date"
     t.index ["user_id"], name: "index_learnings_on_user_id", using: :btree
   end

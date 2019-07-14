@@ -29,7 +29,7 @@ class BanReservedValidator < ActiveModel::EachValidator
     if (WORDS + WORDS.map {|w| w.pluralize}).include?(value)
       record.errors[attribute] << 'に許可されていない文字列です。'
     end
-    if value.include?('.')
+    if value.present? && value.include?('.')
       record.errors[attribute] << 'にドットを使用することは出来ません。'
     end
   end

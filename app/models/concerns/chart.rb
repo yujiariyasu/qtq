@@ -2,7 +2,7 @@ module Chart
   extend ActiveSupport::Concern
 
   DATE_RANGE_NUM = 29
-  INITIAL_DECREASE_SPEED = 67
+  INITIAL_DECREASE_SPEED = 57
 
   def schedule_chart(user)
     days_until_review_hash = Hash.new(0)
