@@ -48,7 +48,10 @@ class UsersController < ApplicationController
       end
     end
     @user = User.new(create_params)
-    result = @user.save
+    if create_params[:password] == ''
+      flash[:danger] = 'パスワードを入力してください。'
+      redirect_to request.referrer and return
+    end
     if @user.save
       if Rails.env.production?
         flash[:info] = 'ユーザー認証のためのメールを送信しました。'
