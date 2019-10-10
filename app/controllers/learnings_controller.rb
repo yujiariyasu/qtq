@@ -97,6 +97,10 @@ class LearningsController < ApplicationController
         image.original_filename = image.original_filename.gsub('_', '')
       end
     end
+    logger.debug(p[:images])
+    logger.debug("-------------------------------")
+    logger.debug(p)
+    logger.debug("-------------------------------")
     return p
   end
 
