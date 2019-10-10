@@ -89,9 +89,17 @@ class LearningsController < ApplicationController
 
   private
   def learning_params(next_review_date)
-    strip_title(params.require(:learning).permit(:title, :description, {images: []},
+    p = strip_title(params.require(:learning).permit(:title, :description, {images: []},
       :proficiency, :next_review_date, :finished)
       .merge(user_id: current_user.id, next_review_date: next_review_date))
+    array = []
+    if p[:images]
+      p[:images].each do |image|
+        array << image.gsub('_', '')
+      end
+    end
+    p[:images] = array
+    return p
   end
 
   def strip_title(params_hash)

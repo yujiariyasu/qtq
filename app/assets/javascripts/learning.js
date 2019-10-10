@@ -47,9 +47,10 @@ $(document).on('turbolinks:load', function() {
   function createImageTag(fileName, ele, id) {
     text = ele.val()
     console.log(fileName)
-    fileName = fileName.replace('(', '_')
-    fileName = fileName.replace(')', '_')
-    fileName = fileName.replace(' ', '_')
+    fileName = fileName.replace('(', '')
+    fileName = fileName.replace(')', '')
+    fileName = fileName.replace(' ', '')
+    fileName = fileName.replace('_', '')
     fileName = fileName.replace(/\s+/g, "")
     ele.val(text + "\n![" + fileName + '](https://quantity-teaches-quality.s3-ap-northeast-1.amazonaws.com/uploads/learning/images/' + id + '/' + fileName + ")\n")
   }
