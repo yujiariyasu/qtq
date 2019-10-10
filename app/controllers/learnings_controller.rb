@@ -94,13 +94,18 @@ class LearningsController < ApplicationController
       .merge(user_id: current_user.id, next_review_date: next_review_date))
     if p[:images]
       p[:images].each do |image|
+logger.debug("１１１１１１１１１１１１１１１１１１１１１")
+logger.debug(image.original_filename)
         image.original_filename = image.original_filename.gsub('_', '')
+        image.original_filename = image.original_filename.gsub(' ', '')
+        image.original_filename = image.original_filename.gsub('(', '')
+        image.original_filename = image.original_filename.gsub(')', '')
+logger.debug("２２２２２２２２２２２２２２２２２２２２２２２")
+logger.debug(image.original_filename)
+logger.debug("333333333333333333333333333333")
+logger.debug(image)
       end
     end
-    logger.debug(p[:images])
-    logger.debug("-------------------------------")
-    logger.debug(p)
-    logger.debug("-------------------------------")
     return p
   end
 
