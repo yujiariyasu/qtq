@@ -35,11 +35,22 @@ $(document).on('turbolinks:load', function() {
             img.src = e.target.result;
             document.getElementById('learning-images-preview').insertBefore(img, null);
             $('.learning-trash-image').show()
+            ele = $('.create-learning-modal-text-area')
+            createImageTag(theFile.name, ele)
           }
         })(f);
       }
     };
   };
+
+  function createImageTag(fileName, ele) {
+    text = ele.val()
+    console.log(fileName)
+    fileName = fileName.replace('(', '_')
+    fileName = fileName.replace(')', '_')
+    fileName = fileName.replace(' ', '_')
+    ele.val(text + "\n![" + fileName + '](  https://quantity-teaches-quality.s3.amazonaws.com/uploads/learning/images/' + fileName + ")\n")
+  }
 
   function initializeFiles() {
     document.getElementById('learning-images-preview').innerHTML = '';
@@ -62,6 +73,8 @@ $(document).on('turbolinks:load', function() {
             document.getElementById('edit-learning-images-preview').insertBefore(img, null);
             $('.edit-learning-trash-image').show()
             $('#image_delete_flag').val(false)
+            ele = $('.edit-learning-modal-text-area')
+            createImageTag(theFile.name, ele)
           }
         })(f);
       }

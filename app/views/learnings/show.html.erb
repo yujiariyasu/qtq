@@ -23,11 +23,11 @@
           <%= link_to tag.name, tag_path(tag.name) %>
         <% end %>
       </div>
-      <% @learning.images.each do |image| %>
-        <%= link_to image.url, target: '_blank' do %>
-          <%= image_tag image, class: 'learning-img' %>
-        <% end %>
-      <% end %>
+<!--       <%# @learning.images.each do |image| %>
+        <%#= link_to image.url, target: '_blank' do %>
+          <%#= image_tag image, class: 'learning-img' %>
+        <#% end %>
+      <#% end %> -->
       <div class='blue-black learning-description markdown'>
         <%= simple_format(markdown(@learning.description)) %>
       </div>
