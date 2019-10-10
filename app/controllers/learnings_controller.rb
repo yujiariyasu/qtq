@@ -94,7 +94,7 @@ class LearningsController < ApplicationController
       .merge(user_id: current_user.id, next_review_date: next_review_date))
     if p[:images]
       p[:images].each do |image|
-        image.image_url = image.image_url.gsub('_', '')
+        image.original_filename = image.original_filename.gsub('_', '')
       end
     end
     return p
