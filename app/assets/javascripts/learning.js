@@ -50,7 +50,7 @@ $(document).on('turbolinks:load', function() {
     fileName = fileName.replace('(', '_')
     fileName = fileName.replace(')', '_')
     fileName = fileName.replace(' ', '_')
-    ele.val(text + "\n![" + fileName + '](  https://quantity-teaches-quality.s3.amazonaws.com/uploads/learning/images/' + id + '/' + fileName + ")\n")
+    ele.val(text + "\n![" + fileName + '](  https://quantity-teaches-quality.s3-ap-northeast-1.amazonaws.com/uploads/learning/images/' + id + '/' + fileName + ")\n")
   }
 
   function initializeFiles() {
