@@ -92,13 +92,11 @@ class LearningsController < ApplicationController
     p = strip_title(params.require(:learning).permit(:title, :description, {images: []},
       :proficiency, :next_review_date, :finished)
       .merge(user_id: current_user.id, next_review_date: next_review_date))
-    array = []
     if p[:images]
       p[:images].each do |image|
-        array << image.gsub('_', '')
+        image.url = image.url.gsub('_', '')
       end
     end
-    p[:images] = array
     return p
   end
 
