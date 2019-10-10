@@ -36,20 +36,21 @@ $(document).on('turbolinks:load', function() {
             document.getElementById('learning-images-preview').insertBefore(img, null);
             $('.learning-trash-image').show()
             ele = $('.create-learning-modal-text-area')
-            createImageTag(theFile.name, ele)
+            id = $('#s3_learning_id').val()
+            createImageTag(theFile.name, ele, id)
           }
         })(f);
       }
     };
   };
 
-  function createImageTag(fileName, ele) {
+  function createImageTag(fileName, ele, id) {
     text = ele.val()
     console.log(fileName)
     fileName = fileName.replace('(', '_')
     fileName = fileName.replace(')', '_')
     fileName = fileName.replace(' ', '_')
-    ele.val(text + "\n![" + fileName + '](  https://quantity-teaches-quality.s3.amazonaws.com/uploads/learning/images/' + fileName + ")\n")
+    ele.val(text + "\n![" + fileName + '](  https://quantity-teaches-quality.s3.amazonaws.com/uploads/learning/images/' + id + '/' + fileName + ")\n")
   }
 
   function initializeFiles() {
@@ -73,8 +74,9 @@ $(document).on('turbolinks:load', function() {
             document.getElementById('edit-learning-images-preview').insertBefore(img, null);
             $('.edit-learning-trash-image').show()
             $('#image_delete_flag').val(false)
+            id = $('#edit_s3_learning_id').val()
             ele = $('.edit-learning-modal-text-area')
-            createImageTag(theFile.name, ele)
+            createImageTag(theFile.name, ele, id)
           }
         })(f);
       }

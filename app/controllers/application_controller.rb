@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :tag_list_to_gon
   before_action :short_activities
+  before_action :get_new_learning_id
 
   def logged_in_user
     unless logged_in?
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
   include ErrorHandlers if Rails.env.production?
 
   private
+
+  def get_new_learning_id
+    @last_learning_id = Learning.last.id + 1
+  end
 
   def tag_list_to_gon
     gon.tag_list = Tag.pluck(:name)

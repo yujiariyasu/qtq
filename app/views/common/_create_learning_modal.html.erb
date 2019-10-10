@@ -17,6 +17,7 @@
           </div>
           <div class='modal-form-box'>
             <%= form_for(Learning.new) do |f| %>
+              <%= hidden_field_tag :s3_learning_id, @last_learning_id %>
               <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
                 <%= f.text_field :title, class: 'mdl-textfield__input p10 learning-title-for-js', placeholder: 'タイトル...', required: true %>
               </div>

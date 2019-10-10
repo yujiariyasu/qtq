@@ -17,6 +17,7 @@
           </div>
           <div class='modal-form-box'>
             <%= form_for(@learning) do |f| %>
+              <%= hidden_field_tag :edit_s3_learning_id, @learning.id %>
               <%= hidden_field_tag :url, request.url %>
               <%= hidden_field_tag :image_delete_flag, false %>
               <div class="mdl-textfield mdl-js-textfield" style='width: 100%'>
