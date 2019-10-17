@@ -23,11 +23,13 @@
           <%= link_to tag.name, tag_path(tag.name) %>
         <% end %>
       </div>
-<!--       <%# @learning.images.each do |image| %>
-        <%#= link_to image.url, target: '_blank' do %>
-          <%#= image_tag image, class: 'learning-img' %>
-        <#% end %>
-      <#% end %> -->
+      <% unless @learning.description.include?('https://quantity-teaches-quality.s3-ap-northeast-1.amazonaws.com/uploads/learning/images/') %>
+        <% @learning.images.each do |image| %>
+          <%= link_to image.url, target: '_blank' do %>
+            <%= image_tag image, class: 'learning-img' %>
+          <% end %>
+        <% end %>
+      <% end %>
       <div class='blue-black learning-description markdown'>
         <%= simple_format(markdown(@learning.description)) %>
       </div>
