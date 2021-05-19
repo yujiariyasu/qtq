@@ -229,7 +229,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (2.0.6)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -387,7 +388,7 @@ DEPENDENCIES
   poltergeist (= 1.6.0)
   pry-byebug
   pry-rails (= 0.3.4)
-  puma (~> 3.0)
+  puma (~> 4.3)
   rails (~> 5.0.6)
   rails-controller-testing
   redcarpet (~> 2.3.0)

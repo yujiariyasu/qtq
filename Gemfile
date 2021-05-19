@@ -7,7 +7,7 @@ end
 
 gem 'rails', '~> 5.0.6'
 gem 'mysql2', '0.3.18'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
